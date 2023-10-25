@@ -8,10 +8,9 @@ import VerifyUserForm from "@/components/VerifyUserForm/VerifyUserForm";
 interface Props {}
 
 const Page = (props: Props) => {
-  const [step, setStep] = useState<number>(2);
 
   const StepToRender = (key: number) => {
-        return <RegisterForm setStep={setStep} step={step} />;
+        return <RegisterForm />;
   };
 
   const handleClick = () => {}; 
