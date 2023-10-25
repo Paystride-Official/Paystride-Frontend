@@ -5,16 +5,7 @@ import Link from "next/link";
 import Paystride from "../../app/assets/Paystride.svg";
 import Image from "next/image";
 
-type Props = {
-  step: number;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-};
-
-const LoginForm = ({ setStep, step }: Props) => {
-  const handleClick = () => {
-    setStep(step + 1);
-  };
-
+const RegisterForm = () => {
   return (
     <section>
       <div className="py-8 md:w-[500px] lg:w-[620px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px]">
@@ -79,7 +70,7 @@ const LoginForm = ({ setStep, step }: Props) => {
             </p>
           </div>
 
-          <Button type="button" text="continue" handleClick={handleClick} />
+          <Button type="button" text="continue" />
         </form>
 
         <p>
@@ -93,4 +84,4 @@ const LoginForm = ({ setStep, step }: Props) => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

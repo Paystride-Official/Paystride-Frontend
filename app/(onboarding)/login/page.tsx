@@ -2,10 +2,10 @@
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import Image from "next/image";
-import Paystride from "../assets/Paystride.svg";
+import Paystride from "../../assets/Paystride.svg";
 
 import React from "react";
-import Link from "next/link";0
+import Link from "next/link";
 
 interface Props {}
 
@@ -46,7 +46,7 @@ const page = (props: Props) => {
               <span>Remember me</span>
             </div>
             <Link href="/forgetpassword" className="capitalize text-[#091F8E] ">
-              forget password?
+              Forgot password?
             </Link>
           </div>
 

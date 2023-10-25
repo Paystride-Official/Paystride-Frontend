@@ -5,17 +5,12 @@ import OtpInput from "react-otp-input";
 
 import React from "react";
 
-type Props = {
-  step: number;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-};
+// type Props = {
+//   step: number;
+// };
 
-const VerifyUserForm = ({ setStep, step }: Props) => {
+const VerifyUserForm = () => {
   const [otp, setOtp] = useState<string>("");
-
-  const onBack = () => {
-    setStep(step - 1);
-  };
 
   const handleChange = (data: string) => {
     setOtp(data);
@@ -45,7 +40,6 @@ const VerifyUserForm = ({ setStep, step }: Props) => {
           type="button"
           text="continue"
           overide="w-[65%]"
-          handleClick={onBack}
         />
         <div className="flex gap-2">
           <span>Didn&apos;t get the code?</span>
