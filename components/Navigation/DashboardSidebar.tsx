@@ -154,6 +154,11 @@ export const DashboardSidebar = () => {
                                                 )}
                                             >
                                                 <item.icon
+                                                    className={classNames(
+                                                        currentRoute == item.href
+                                                            ? 'active'
+                                                            : ''
+                                                    )}
                                                     aria-hidden="true"
                                                 />
                                                 {item.name}

@@ -18,6 +18,12 @@
       &.active {
         background: #091F8E;
         color: #FAFAFA;
+        svg {
+          color: #FAFAFA;
+          g,path {
+            fill: #FAFAFA;
+          }
+        }
       }
     }
   }
