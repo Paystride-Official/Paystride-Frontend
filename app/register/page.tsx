@@ -12,7 +12,7 @@ import VerifyUserForm from "@/components/VerifyUserForm/VerifyUserForm";
 interface Props {}
 
 const page = (props: Props) => {
-  const [step, setStep] = useState<number>(2);
+  const [step, setStep] = useState<number>(1);
 
   const StepToRender = (key: number) => {
     switch (key) {
@@ -30,8 +30,8 @@ const page = (props: Props) => {
   const handleClick = () => {};
 
   return (
-    <section className="">
-      <div className="flex flex-col items-center justify-center mt-8 bg-red">
+    <section>
+      <div className="flex flex-col items-center justify-center  bg-red">
         <Stepper step={step} />
         {StepToRender(step)}
       </div>
