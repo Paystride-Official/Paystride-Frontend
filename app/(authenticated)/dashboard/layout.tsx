@@ -19,7 +19,7 @@ export default function RootLayout({
                     <DashboardSidebar />
                     <div className="lg:pl-72">
                         <main className="py-10">
-                            <div className="px-4 sm:px-6 lg:px-8">
+                            <div className="px-4 sm:px-6 lg:px-8 w-full">
                                 {children}
                             </div>
                         </main>

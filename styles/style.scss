@@ -35,3 +35,23 @@ main {
 .theme-color {
   color: #6A8F9F;
 }
+
+.card-grid {
+  .info {
+    border-radius: 6.198px;
+    border: 2.066px solid #ECEEF6;
+    background: #FFF;
+    padding:25px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+  }
+}
