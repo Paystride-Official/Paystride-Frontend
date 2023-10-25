@@ -8,7 +8,7 @@ import Image from "next/image";
 const RegisterForm = () => {
   return (
     <section>
-      <div className="py-8 md:w-[500px] lg:w-[620px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px]">
+      <div className="py-8 mb-4 max-w-[420px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
         <div className="mb-4 ">
           <Image src={Paystride} alt="Paystride" className="mx-auto" />
           <p>Let&apos;s get you started</p>
@@ -22,7 +22,7 @@ const RegisterForm = () => {
             required
           />
 
-          <Input label=" Name" id="name" placeholder="" type="text" />
+          <Input label=" Name" id="name" placeholder="" type="text" required />
 
           <Input
             id="email"
@@ -61,10 +61,10 @@ const RegisterForm = () => {
               id="privacy"
               className="flex items-center mr-[0.3rem]"
             />
-            <p className="text-sm">
+            <p className="text-[9px]">
               By checking you have accepted our
-              <span className="text-[#091F8E] underline ">
-                Term & conditions
+              <span className="text-[#091F8E] underline px-1">
+                Terms & conditions
               </span>
               and <span className="text-[#091F8E] underline ">policies</span>
             </p>

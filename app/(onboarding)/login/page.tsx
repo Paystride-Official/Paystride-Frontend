@@ -4,7 +4,6 @@ import Input from "@/components/Input/Input";
 import Image from "next/image";
 import Paystride from "../../assets/Paystride.svg";
 
-import React from "react";
 import Link from "next/link";
 
 interface Props {}
@@ -14,12 +13,15 @@ const page = (props: Props) => {
 
   return (
     <section className=" h-screen flex flex-col items-center justify-center">
-      <div className="py-8 md:w-[500px] lg:w-[620px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px]">
-        <div className="mb-4 ">
+      <div className="py-8 md:w-[500px] lg:w-[620px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
+        <div className="mb-4 w-[90%] mx-auto">
           <Image src={Paystride} alt="Paystride" className="mx-auto" />
-          <p>Welcome back, enter your login details</p>
+          <p className="text-center">Welcome back, enter your login details</p>
         </div>
-        <form action="" className="w-[90%] flex flex-col gap-4 mx-auto">
+        <form
+          action=""
+          className="w-[90%] flex flex-col justify-between mx-auto gap-2"
+        >
           <Input
             id="email"
             type="email"
@@ -41,12 +43,15 @@ const page = (props: Props) => {
               <input
                 type="checkbox"
                 id="privacy"
-                className="flex items-center mr-[0.3rem]"
+                className=" text-sm flex items-center mr-[0.3rem]"
               />
-              <span>Remember me</span>
+              <span className="text-sm">Remember me</span>
             </div>
-            <Link href="/forgetpassword" className="capitalize text-[#091F8E] ">
-              Forgot password?
+            <Link
+              href="/forgetpassword"
+              className=" text-sm capitalize text-[#091F8E] "
+            >
+              forget password?
             </Link>
           </div>
 
@@ -60,7 +65,7 @@ const page = (props: Props) => {
             className="text-[#091F8E] underline capitalize px-1"
           >
             sign up
-          </Link>
+          </Link>s
         </p>
       </div>
     </section>

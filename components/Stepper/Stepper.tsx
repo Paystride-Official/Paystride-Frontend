@@ -8,13 +8,13 @@ import Link from "next/link";
 const Stepper = () => {
     const address = usePathname()
   return (
-    <section className="mb-8">
+    <section className="my-8">
       <div className="flex gap-2">
         <Link href="/register" className="w-[46px] h-[46px] rounded-full bg-[#4256D0] flex items-center justify-center text-white">
           1
         </Link>
         <p
-          className=" mt-6 
+          className=" mt-4
         w-[97.169px]
          h-[0.517px]
           bg-[#1E1E1E]"
