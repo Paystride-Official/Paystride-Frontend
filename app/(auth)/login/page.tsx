@@ -2,7 +2,7 @@
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import Image from "next/image";
-import Paystride from "../assets/Paystride.svg";
+import Paystride from "@/app/assets/Paystride.svg";
 
 import React from "react";
 import Link from "next/link";
@@ -14,7 +14,7 @@ const page = (props: Props) => {
 
   return (
     <section className=" h-screen flex flex-col items-center justify-center">
-      <div className="py-8 md:w-[500px] lg:w-[620px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
+      <div className="py-8 md:w-[500px]  flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
         <div className="mb-4 w-[90%] mx-auto">
           <Image src={Paystride} alt="Paystride" className="mx-auto" />
           <p className="text-center">Welcome back, enter your login details</p>
