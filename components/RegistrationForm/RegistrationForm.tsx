@@ -10,14 +10,14 @@ type Props = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const LoginForm = ({ setStep, step }: Props) => {
+const RegistrationForm = ({ setStep, step }: Props) => {
   const handleClick = () => {
     setStep(step + 1);
   };
 
   return (
     <section>
-      <div className="py-8 mb-4 max-w-[420px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
+      <div className="py-8 mb-4 max-w-[500px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
         <div className="mb-4 ">
           <Image src={Paystride} alt="Paystride" className="mx-auto" />
           <p>Let&apos;s get you started</p>
@@ -93,4 +93,4 @@ const LoginForm = ({ setStep, step }: Props) => {
   );
 };
 
-export default LoginForm;
+export default RegistrationForm;

@@ -6,8 +6,8 @@ import Paystride from "../assets/Paystride.svg";
 import Button from "@/components/Button/Button";
 import Link from "next/link";
 import Stepper from "@/components/Stepper/Stepper";
-import LoginForm from "@/components/LoginForm/LoginForm";
 import VerifyUserForm from "@/components/VerifyUserForm/VerifyUserForm";
+import RegistrationForm from "@/components/RegistrationForm/RegistrationForm";
 
 interface Props {}
 
@@ -17,7 +17,7 @@ const page = (props: Props) => {
   const StepToRender = (key: number) => {
     switch (key) {
       case 1:
-        return <LoginForm setStep={setStep} step={step} />;
+        return <RegistrationForm setStep={setStep} step={step} />;
 
       case 2:
         return <VerifyUserForm setStep={setStep} step={step} />;
@@ -31,7 +31,7 @@ const page = (props: Props) => {
 
   return (
     <section>
-      <div className="flex flex-col items-center justify-center  bg-red">
+      <div className="flex flex-col items-center justify-center">
         <Stepper step={step} />
         {StepToRender(step)}
       </div>

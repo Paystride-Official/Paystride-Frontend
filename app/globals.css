@@ -17,6 +17,11 @@ html {
   min-height: 100vh;
 }
 
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
 .otp-input {
   width: 40px !important;
   height: 45px !important;
