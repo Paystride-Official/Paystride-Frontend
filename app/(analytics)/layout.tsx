@@ -19,7 +19,7 @@ export default function RootLayout({
           <Sidebar />
           <div className="flex flex-col flex-[7]">
             <Navbar />
-            <div className=" bg-[#FAFAFA] h-screen ">{children}</div>
+            <div className=" bg-[#FAFAFA] h-full px-4 py-6 ">{children}</div>
           </div>
         </main>
       </body>
