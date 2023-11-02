@@ -2,33 +2,18 @@ import { HeaderStatProps } from "@/types";
 import classNames from "classnames";
 import React from "react";
 
-const Header = () => {
-  const headerStat: HeaderStatProps[] = [
-    {
-      name: "Sales",
-      amount: ` ₦123456`,
-      description: "/yesterday",
-      count: 100,
-    },
-    {
-      name: "Settlement",
-      amount: " ₦123456",
-      description: "No. of settlement",
-      count: 10,
-    },
-    {
-      name: "Payment point",
-      amount: " 6",
-    },
-  ];
+type Header = {
+  headerStat: HeaderStatProps[];
+};
 
+const Header = ({ headerStat }: Header) => {
   return (
     <div className="w-full  md:flex  md:flex-wrap gap-4">
       {headerStat.map((item) => {
         return (
           <div
+            key={item.name}
             className="
-              h-[143px]
               md:w-2/5
               lg:w-60
               bg-white  

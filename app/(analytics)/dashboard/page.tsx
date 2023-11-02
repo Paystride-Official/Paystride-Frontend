@@ -1,5 +1,5 @@
 "use client";
-import { OptionSelectProps, TabProps } from "@/types";
+import { HeaderStatProps, OptionSelectProps, TabProps } from "@/types";
 
 import React, { useState } from "react";
 import Header from "../_components/HeaderStat/Header";
@@ -12,6 +12,24 @@ import DonoughtChart from "@/components/Charts/DonoughtChart/DonoughtChart";
 type DashboardProps = {};
 
 const Dashboard = (props: DashboardProps) => {
+  const headerStat: HeaderStatProps[] = [
+    {
+      name: "Sales",
+      amount: ` ₦123456`,
+      description: "/yesterday",
+      count: 100,
+    },
+    {
+      name: "Settlement",
+      amount: " ₦123456",
+      description: "No. of settlement",
+      count: 10,
+    },
+    {
+      name: "Payment point",
+      amount: " 6",
+    },
+  ];
   const optionSelectOption: OptionSelectProps[] = [
     {
       key: "sales",
@@ -50,7 +68,7 @@ const Dashboard = (props: DashboardProps) => {
   };
   return (
     <section className=" ">
-      <Header />
+      <Header headerStat={headerStat} />
 
       <div
         className="w-full
@@ -70,7 +88,9 @@ const Dashboard = (props: DashboardProps) => {
             onChange={handleSelectChange}
           >
             {optionSelectOption.map((option) => (
-              <option className="">{option.text}</option>
+              <option className="" key={option.key}>
+                {option.text}
+              </option>
             ))}
           </select>
           <div className="flex gap-12 mr-4">
@@ -79,6 +99,7 @@ const Dashboard = (props: DashboardProps) => {
                 <button
                   className="hover:bg-[#DDE2FD] rounded-[10px] px-4"
                   disabled={currentTab == tab.id}
+                  key={tab.id}
                 >
                   {tab.title}
                 </button>
@@ -87,7 +108,9 @@ const Dashboard = (props: DashboardProps) => {
             <div className="bg-[#F6F6F6] rounded-[12px] px-4 py-2">
               <select className="bg-[#F6F6F6] border-none outline-none ">
                 {optionSelectOption.map((option) => (
-                  <option className="">{option.text}</option>
+                  <option className="" key={option.key}>
+                    {option.text}
+                  </option>
                 ))}
               </select>
             </div>
@@ -122,6 +145,7 @@ const Dashboard = (props: DashboardProps) => {
         border-[#eceef6]
         "
         >
+          <h1 className="px-4 pt-4 text-3xl font-bold">Paypoint</h1>
           <DonoughtChart />
         </div>
       </div>

@@ -55,7 +55,7 @@ const Sidebar = (props: Props) => {
           </h1>
         </div>
 
-        <div className="flex item-center justify-center  h-full overflow-hidden bg-[#ECECEC]">
+        <div className="flex item-center justify-center  overflow-hidden bg-[#ECECEC]">
           <div className="flex flex-col mt-4">
             {sideBarItems.map((item, index) => {
               return <SidebarItem key={index} item={item} />;
