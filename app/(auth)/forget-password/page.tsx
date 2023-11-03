@@ -7,7 +7,7 @@ import React from "react";
 
 type Props = {};
 
-const page = (props: Props) => {
+const ForgotPassword = (props: Props) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -39,4 +39,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default ForgotPassword;

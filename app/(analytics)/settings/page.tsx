@@ -9,7 +9,7 @@ import Password from "./_component/Password/Password";
 
 type Props = {};
 
-const settings = (props: Props) => {
+const Settings = (props: Props) => {
   const [selectedSettings, setSelectedSettings] = useState<string>("password");
 
   const stepToRender = (key: string) => {
@@ -38,4 +38,4 @@ const settings = (props: Props) => {
   );
 };
 
-export default settings;
+export default Settings;

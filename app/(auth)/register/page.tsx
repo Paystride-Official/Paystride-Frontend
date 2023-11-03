@@ -11,7 +11,7 @@ import RegistrationForm from "@/components/RegistrationForm/RegistrationForm";
 
 interface Props {}
 
-const page = (props: Props) => {
+const Register = (props: Props) => {
   const [step, setStep] = useState<number>(1);
 
   const StepToRender = (key: number) => {
@@ -39,4 +39,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default Register;
