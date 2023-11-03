@@ -46,16 +46,16 @@ const Sidebar = (props: Props) => {
     },
   ];
   return (
-    <div className="flex ">
-      <div className="h-screen w-64">
-        <div className="flex pl-12 h-[3.5rem]  items-center ">
+    <div className=" min-h-screen sticky hidden sm:flex  bg-[#ECECEC]  ">
+      <div className="h-screen sticky top-0 left-0 w-64 ">
+        <div className="flex pl-12 h-[3.5rem]  items-center  bg-white">
           <Image src={Paystride} alt="Paystride" className="h-[2.5rem]" />
           <h1 className="ml-3 text-lg font-bold text-[#6A8F9F] flex items-center justify-center">
             Paystride
           </h1>
         </div>
 
-        <div className="flex item-center justify-center  h-screen overflow-hidden bg-[#ECECEC]">
+        <div className="flex item-center justify-center  overflow-hidden bg-[#ECECEC]">
           <div className="flex flex-col mt-4">
             {sideBarItems.map((item, index) => {
               return <SidebarItem key={index} item={item} />;
@@ -73,10 +73,10 @@ const SidebarItem = ({ item }: { item: SidebarProps }) => {
   return (
     <button
       className={` 
-      } flex items-center cursor-pointer text-[#8A92A6] bg-white my-3  py-2  px-10 rounded-[10px] hover:bg-[#091f8e] hover:text-white`}
+      } flex items-center cursor-pointer text-[#8A92A6] bg-white my-3  py-3  px-10 rounded-[10px] hover:bg-[#091f8e] hover:text-white`}
     >
       <Link href={item.href} className="flex gap-2">
-        <Image src={item.icon} alt={item.title} />
+        <Image src={item.icon} alt={item.title} className="" />
         <span className="flex-1 text-base font-medium">{item.title}</span>
       </Link>
     </button>
