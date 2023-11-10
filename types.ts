@@ -4,6 +4,7 @@ export type HeaderStatProps = {
   description?: string;
   percent?: number;
   count?: number;
+  img?: any;
 };
 
 export type OptionSelectProps = {
@@ -23,6 +24,7 @@ export type ChartOption = {
   };
   tooltip?: {
     trigger: string;
+    overflowX?: string;
     axisPointer?: {
       type: string;
     };
@@ -108,3 +110,7 @@ export type PieChartOption = {
     }[];
   }[];
 };
+
+export type column = Record<string, any>;
+
+export type row = Record<string, any>;

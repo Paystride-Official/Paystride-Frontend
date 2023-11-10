@@ -11,10 +11,13 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 html {
   min-height: 100vh;
+  /* overflow-x: auto; */
 }
 
 body {
@@ -27,7 +30,6 @@ body {
   height: 45px !important;
   padding: 2px;
   font-size: 20px;
-  margin-bottom: 3rem;
   border-radius: 5px;
   outline: none;
 }
@@ -46,4 +48,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.topP {
+  @apply overflow-x-hidden;
 }

@@ -6,6 +6,7 @@ const SalesChart = () => {
   const option: ChartOption = {
     tooltip: {
       trigger: "axis",
+      overflowX: "hidden",
       axisPointer: {
         type: "none",
       },
