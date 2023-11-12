@@ -3,8 +3,6 @@ import React from "react";
 import Header from "../_components/HeaderStat/Header";
 import { DashboardTable } from "@/components/DashboardTable/DashboardTable";
 import { payPointCol, payPointRow } from "@/Utils/constants";
-import Arrowdown from "@/app/(analytics)/payment-point/assets/arrowdown.svg";
-import Edit from "@/app/(analytics)/payment-point/assets/edit.svg";
 
 type Props = {};
 
@@ -32,7 +30,6 @@ const Paymentpoint = (props: Props) => {
             
             "
         >
-          <div></div>
           <DashboardTable rows={payPointRow} columns={payPointCol} />
         </div>
       </div>

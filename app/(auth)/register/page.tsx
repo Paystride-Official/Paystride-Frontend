@@ -1,7 +1,7 @@
 "use client";
 import Input from "@/components/Input/Input";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Paystride from "../assets/Paystride.svg";
 import Button from "@/components/Button/Button";
 import Link from "next/link";
@@ -14,18 +14,20 @@ interface Props {}
 const Register = (props: Props) => {
   const [step, setStep] = useState<number>(1);
 
-  const StepToRender = (key: number) => {
-    switch (key) {
-      case 1:
-        return <RegistrationForm setStep={setStep} step={step} />;
-
-      case 2:
-        return <VerifyUserForm setStep={setStep} step={step} />;
-
-      default:
-        break;
-    }
-  };
+  const StepToRender = useCallback(
+    (key: number): React.JSX.Element | null => {
+      let step = key;
+      switch (step) {
+        case 1:
+          return <RegistrationForm setStep={setStep} step={step} />;
+        case 2:
+          return <VerifyUserForm setStep={setStep} step={step} />;
+        default:
+          return null;
+      }
+    },
+    [step] // Provide 'key' as a dependency
+  );
 
   const handleClick = () => {};
 
