@@ -1,5 +1,6 @@
 import { HeaderStatProps } from "@/types";
 import classNames from "classnames";
+import Image from "next/image";
 import React from "react";
 
 type Header = {
@@ -57,14 +58,15 @@ const Header = ({ headerStat }: Header) => {
               >
                 {item.description}
               </p>
-              <p
+              <div
                 className={classNames({
-                  "pl-[10.329px] pr-[11.186px] pt-[3.099px] pb-[4.725px] rounded-[51.647px] bg-[#23c10a26] ":
+                  " flex gap-2 pl-[10.329px] pr-[11.186px] pt-[3.099px] pb-[4.725px] rounded-[51.647px] bg-[#23c10a26] ":
                     item.count,
                 })}
               >
-                {item.count}
-              </p>
+                {item.img && <Image src={item.img} alt="arrow" />}
+                <p> {item.count}</p>
+              </div>
             </div>
           </div>
         );

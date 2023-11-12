@@ -7,8 +7,8 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   return (
-    <section className="w-full h-[3.5rem]  flex justify-end sticky top-0 bg-white shadow-sm z-10">
-      <div className="flex gap-4 px-4 ">
+    <section className=" h-[3.5rem]  flex justify-end sticky top-0 bg-white shadow-sm z-10">
+      <div className="flex gap-4 px-4 mr-4">
         <Image
           src={Notification}
           alt="Notification"

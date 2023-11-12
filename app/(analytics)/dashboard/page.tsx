@@ -1,13 +1,13 @@
 "use client";
 import { HeaderStatProps, OptionSelectProps, TabProps } from "@/types";
-
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Header from "../_components/HeaderStat/Header";
-import Barchart from "@/components/Charts/BarChart/Barchart";
 import PaypointChart from "@/components/Charts/PaypointChart/PaypointChart";
 import SalesChart from "@/components/Charts/SalesChart/SalesChart";
-import { log } from "console";
 import DonoughtChart from "@/components/Charts/DonoughtChart/DonoughtChart";
+import Arrow from "@/app/assets/arrowup.svg";
+import { DashboardTable } from "@/components/DashboardTable/DashboardTable";
+import { dashboardCol, dashboardRow } from "@/Utils/constants";
 
 type DashboardProps = {};
 
@@ -18,6 +18,7 @@ const Dashboard = (props: DashboardProps) => {
       amount: ` ₦123456`,
       description: "/yesterday",
       count: 100,
+      img: Arrow,
     },
     {
       name: "Settlement",
@@ -57,29 +58,33 @@ const Dashboard = (props: DashboardProps) => {
     setSelectedOption(event.target.value.toLowerCase());
   };
 
-  const chartToRender = (key: string) => {
-    switch (key) {
-      case "sales":
-        return <SalesChart />;
+  const chartToRender = useCallback(
+    (key: string): React.JSX.Element | null => {
+      switch (key) {
+        case "sales":
+          return <SalesChart />;
 
-      case "paypoint":
-        return <PaypointChart />;
-    }
-  };
+        case "paypoint":
+          return <PaypointChart />;
+        default:
+          return null; // Return null or handle other cases as needed
+      }
+    },
+    [selectedOption] // Provide 'key' as a dependency
+  );
+
   return (
     <section className=" ">
       <Header headerStat={headerStat} />
-
       <div
         className="w-full
          bg-white
-         
           runded-md 
           mt-4 px-2 
           rounded-[6.198px] 
           border-[2.066px]
-           border-solid 
-           border-[#eceef6]
+          border-solid 
+        border-[#eceef6]
 "
       >
         <div className=" flex justify-between mt-4">
@@ -97,7 +102,7 @@ const Dashboard = (props: DashboardProps) => {
             <div className="flex gap-8 bg-[#F6F6F6] rounded-[12px] px-1 py-1 ">
               {tabs.map((tab) => (
                 <button
-                  className="hover:bg-[#DDE2FD] rounded-[10px] px-4"
+                  className="hover:bg-[#DDE2FD] text-xs md:text-sm lg:text-base rounded-[10px] px-2 lg:px-4"
                   disabled={currentTab == tab.id}
                   key={tab.id}
                 >
@@ -116,27 +121,31 @@ const Dashboard = (props: DashboardProps) => {
             </div>
           </div>
         </div>
-        {chartToRender(selectedOption)}
+        <div className="">{chartToRender(selectedOption)}</div>
       </div>
-      <div className="flex gap-4">
+      <div className=" md:flex gap-4">
         <div
-          className="w-full
-          flex-[3]
-        bg-white
+          className="
+        w-full
+        flex-[3]
+       bg-white
         runded-md 
-        mt-4 px-2 
-        rounded-[6.198px] 
+        mt-4 
+        px-4 
+        pt-4
+        rounded-md 
         border-[2.066px]
         border-solid 
         border-[#eceef6]
         "
         >
-          hey
+          <h1 className="font-bold text-2xl">Recent Transaction</h1>
+          <DashboardTable rows={dashboardRow} columns={dashboardCol} />
         </div>
         <div
           className="w-full
-          flex-[2]
-        bg-white
+        flex-[2]
+       bg-white
         runded-md 
         mt-4 px-2 
         rounded-[6.198px] 

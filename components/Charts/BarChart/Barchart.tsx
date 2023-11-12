@@ -3,7 +3,7 @@ import ReactEcharts from "echarts-for-react";
 
 const Barchart = (option: ChartOption) => {
   return (
-    <div>
+    <div className="">
       <ReactEcharts option={option} />
     </div>
   );

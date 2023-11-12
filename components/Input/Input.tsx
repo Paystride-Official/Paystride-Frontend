@@ -22,7 +22,7 @@ const Input = ({ label, placeholder, id, type, required }: InputProps) => {
         id={id}
         placeholder={placeholder}
         required={required}
-        className="px-[15px] py-[8px] focus:bg-white rounded-[10px] outline-none w-[90%]"
+        className="px-[15px] py-[8px] rounded-[10px] outline-none w-[90%]"
       />
     </div>
   );

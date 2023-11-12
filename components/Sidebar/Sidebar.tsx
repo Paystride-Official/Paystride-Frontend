@@ -9,6 +9,7 @@ import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
+import { useEffect, useState } from "react";
 
 type Props = {};
 export type SidebarProps = {
@@ -68,12 +69,23 @@ const Sidebar = (props: Props) => {
 };
 
 const SidebarItem = ({ item }: { item: SidebarProps }) => {
-  const currentRoute = usePathname();
+  const pathName = usePathname();
 
   return (
     <button
-      className={` 
-      } flex items-center cursor-pointer text-[#8A92A6] bg-white my-3  py-3  px-10 rounded-[10px] hover:bg-[#091f8e] hover:text-white`}
+      className={classNames(
+        "flex",
+        "items-center",
+        "cursor-pointer",
+        "my-3",
+        "py-3",
+        "px-10",
+        "rounded-[10px]",
+        {
+          "bg-[#091f8e] text-white": pathName === item.href,
+          "bg-white text-[#8A92A6] hover:bg-slate-100": pathName !== item.href,
+        }
+      )}
     >
       <Link href={item.href} className="flex gap-2">
         <Image src={item.icon} alt={item.title} className="" />
