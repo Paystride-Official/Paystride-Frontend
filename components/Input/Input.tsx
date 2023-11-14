@@ -1,14 +1,19 @@
+import { LoginUser, NewUser } from "@/types/types";
 import React from "react";
+import { z } from "zod";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { SignUpSchema } from "@/Utils/Schemas";
 
 type InputProps = {
-  label?: string;
+  label: string;
   placeholder?: string;
-  id: string;
+  id: keyof NewUser;
   type: string;
-  required?: boolean;
+  register: UseFormRegister<NewUser>;
 };
 // rounded-[37px]
-const Input = ({ label, placeholder, id, type, required }: InputProps) => {
+
+const Input = ({ label, placeholder, id, type, register }: InputProps) => {
   return (
     <div className="text-center">
       <label
@@ -20,8 +25,8 @@ const Input = ({ label, placeholder, id, type, required }: InputProps) => {
       <input
         type={type}
         id={id}
+        {...register(id)}
         placeholder={placeholder}
-        required={required}
         className="px-[15px] py-[8px] rounded-[10px] outline-none w-[90%]"
       />
     </div>

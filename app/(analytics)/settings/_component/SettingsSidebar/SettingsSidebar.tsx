@@ -34,7 +34,7 @@ const SettingsSidebar = ({ setSelectedSettings }: Props) => {
 
   return (
     <div className="flex-[1]">
-      <h1 className="font-bold text-3xl mb-4">Settings</h1>
+      <h1 className="font-bold text-3xl mb-4 p-2">Settings</h1>
       <div className=" border-l-[#D9D9D9] border-l border-solid flex flex-col text-start gap-6 pl-2">
         {settingsSidebar.map(({ key, text }) => (
           <span

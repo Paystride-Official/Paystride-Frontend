@@ -1,27 +1,38 @@
 "use client";
-import Input from "@/components/Input/Input";
-import Image from "next/image";
+
 import React, { useState, useCallback } from "react";
-import Paystride from "../assets/Paystride.svg";
-import Button from "@/components/Button/Button";
-import Link from "next/link";
+import { useForm } from "react-hook-form";
 import Stepper from "@/components/Stepper/Stepper";
-import VerifyUserForm from "@/components/VerifyUserForm/VerifyUserForm";
-import RegistrationForm from "@/components/RegistrationForm/RegistrationForm";
+import VerifyUserForm from "@/app/(auth)/register/_components/VerifyUserForm/VerifyUserForm";
+import RegistrationForm from "./_components/RegistrationForm/RegistrationForm";
 
 interface Props {}
 
 const Register = (props: Props) => {
   const [step, setStep] = useState<number>(1);
 
+  const handleSubmit = () => {};
+
   const StepToRender = useCallback(
     (key: number): React.JSX.Element | null => {
       let step = key;
       switch (step) {
         case 1:
-          return <RegistrationForm setStep={setStep} step={step} />;
+          return (
+            <RegistrationForm
+              setStep={setStep}
+              step={step}
+              onSubmit={handleSubmit}
+            />
+          );
         case 2:
-          return <VerifyUserForm setStep={setStep} step={step} />;
+          return (
+            <VerifyUserForm
+              setStep={setStep}
+              step={step}
+              onSubmit={handleSubmit}
+            />
+          );
         default:
           return null;
       }

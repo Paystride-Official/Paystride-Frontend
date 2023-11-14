@@ -114,3 +114,25 @@ export type PieChartOption = {
 export type column = Record<string, any>;
 
 export type row = Record<string, any>;
+
+export type NewUser = Record<string, any>;
+
+// NewUser {
+//   business_name: string;
+//   email: string;
+//   name: string;
+//   password: string;
+//   phone_number: string;
+//   t_and_c: boolean;
+//   aboutUs?: string;
+// }
+
+export interface LoginUser {
+  business_name?: string;
+  email: string;
+  name?: string;
+  password: string;
+  phone_number: string;
+  t_and_c?: boolean;
+  aboutUs?: string;
+}

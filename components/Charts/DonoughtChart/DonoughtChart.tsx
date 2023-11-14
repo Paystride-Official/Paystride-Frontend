@@ -1,4 +1,4 @@
-import { PieChartOption } from "@/types";
+import { PieChartOption } from "@/types/types";
 import React from "react";
 import PieChart from "../PieChart/PieChart";
 

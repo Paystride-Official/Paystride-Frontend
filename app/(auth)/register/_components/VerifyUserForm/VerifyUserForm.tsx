@@ -8,6 +8,7 @@ import React from "react";
 type Props = {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  onSubmit: () => void;
 };
 
 const VerifyUserForm = ({ setStep, step }: Props) => {
