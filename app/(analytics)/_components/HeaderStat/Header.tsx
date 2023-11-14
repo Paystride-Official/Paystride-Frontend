@@ -1,4 +1,4 @@
-import { HeaderStatProps } from "@/types";
+import { HeaderStatProps } from "@/types/types";
 import classNames from "classnames";
 import Image from "next/image";
 import React from "react";

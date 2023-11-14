@@ -1,4 +1,4 @@
-import { ChartOption } from "@/types";
+import { ChartOption } from "@/types/types";
 import ReactEcharts from "echarts-for-react";
 
 const Barchart = (option: ChartOption) => {

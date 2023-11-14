@@ -1,4 +1,5 @@
 "use client";
+import { z } from "zod";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import Image from "next/image";
@@ -6,11 +7,29 @@ import Paystride from "@/app/assets/Paystride.svg";
 
 import React from "react";
 import Link from "next/link";
+import { FieldValues, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LogInSchema } from "@/Utils/Schemas";
 
 interface Props {}
+//http://localhost:3000/register?businessName=&name=&email=&phoneNumber=&password=&aboutUs=
+const LoginPage = (props: Props) => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(LogInSchema),
+  });
 
-const page = (props: Props) => {
-  const handleClick = () => {};
+  const handleOnSubmit = (data: FieldValues) => {
+    const formData = getValues();
+    console.log(formData);
+
+    reset();
+  };
 
   return (
     <section className=" h-screen flex flex-col items-center justify-center">
@@ -20,23 +39,23 @@ const page = (props: Props) => {
           <p className="text-center">Welcome back, enter your login details</p>
         </div>
         <form
-          action=""
+          onSubmit={handleSubmit(handleOnSubmit)}
           className="w-[90%] flex flex-col justify-between mx-auto gap-2"
         >
           <Input
+            register={register}
             id="email"
             type="email"
             label="Email"
             placeholder=""
-            required
           />
 
           <Input
+            register={register}
             label="Password"
             id="password"
             placeholder="Enter at least 8 characters"
             type="password"
-            required
           />
 
           <div className="w-[90%] flex mx-auto justify-between">
@@ -56,7 +75,13 @@ const page = (props: Props) => {
             </Link>
           </div>
 
-          <Button type="button" text="login" handleClick={handleClick} />
+          {errors.password && (
+            <p className="text-red-500 w-[90%] mx-auto my-0 ">
+              {`Invalid email/password`}
+            </p>
+          )}
+
+          <Button type="submit" text="login" disabled={isSubmitting} />
         </form>
 
         <p>
@@ -73,4 +98,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default LoginPage;

@@ -1,5 +1,5 @@
 import ReactEcharts from "echarts-for-react";
-import { PieChartOption } from "@/types";
+import { PieChartOption } from "@/types/types";
 
 const PieChart = (option: PieChartOption) => {
   return (

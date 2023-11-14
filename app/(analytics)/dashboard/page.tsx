@@ -1,5 +1,5 @@
 "use client";
-import { HeaderStatProps, OptionSelectProps, TabProps } from "@/types";
+import { HeaderStatProps, OptionSelectProps, TabProps } from "@/types/types";
 import React, { useCallback, useState } from "react";
 import Header from "../_components/HeaderStat/Header";
 import PaypointChart from "@/components/Charts/PaypointChart/PaypointChart";
@@ -154,7 +154,7 @@ const Dashboard = (props: DashboardProps) => {
         border-[#eceef6]
         "
         >
-          <h1 className="px-4 pt-4 text-3xl font-bold">Paypoint</h1>
+          <h1 className="px-3 pt-3 p-1 text-3xl font-bold">Paypoint</h1>
           <DonoughtChart />
         </div>
       </div>

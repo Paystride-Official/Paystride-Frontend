@@ -10,7 +10,7 @@ import {
   TableCell,
   getKeyValue,
 } from "@nextui-org/react";
-import { column, row } from "@/types";
+import { column, row } from "@/types/types";
 import Image from "next/image";
 
 type TableProps = {

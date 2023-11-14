@@ -1,6 +1,6 @@
 import React from "react";
 import Barchart from "../BarChart/Barchart";
-import { ChartOption } from "@/types";
+import { ChartOption } from "@/types/types";
 
 const SalesChart = () => {
   const option: ChartOption = {

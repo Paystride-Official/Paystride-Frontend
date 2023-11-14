@@ -2,16 +2,22 @@ import Input from "@/components/Input/Input";
 import classNames from "classnames";
 import Image from "next/image";
 import React from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 type Props = {};
 
 const BusinessInfo = (props: Props) => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FieldValues>();
+
   return (
     <section>
-      <form
-        action=""
-        className="w-[90%] flex flex-col justify-between mx-auto gap-4 "
-      >
+      <form className="w-[90%] flex flex-col justify-between mx-auto gap-4 ">
         <div className="w-[90%] mx-auto flex items-center gap-8">
           <Image
             src=""
@@ -25,26 +31,46 @@ const BusinessInfo = (props: Props) => {
           </p>
         </div>
         <Input
+          register={register}
           label="Business Name"
-          id="businessName"
+          id="business_name"
           placeholder=""
           type="text"
         />
-        <Input id="email" type="email" label="Email" placeholder="" />
-
         <Input
-          label="Phone Number"
-          id="phoneNumber"
+          register={register}
+          id="email"
+          type="email"
+          label="Email"
           placeholder=""
-          type="number"
-          required
         />
 
-        <Input label="Address" id="address" placeholder=" line1" type="text" />
-        <Input label="" id="address" placeholder="line2" type="text" />
         <Input
+          register={register}
+          label="Phone Number"
+          id="phone_number"
+          placeholder=""
+          type="number"
+        />
+
+        <Input
+          register={register}
+          label="Address"
+          id="address1"
+          placeholder=" line1"
+          type="text"
+        />
+        <Input
+          register={register}
+          label=""
+          id="address"
+          placeholder="line2"
+          type="text"
+        />
+        <Input
+          register={register}
           label="No. of employees"
-          id="noEmployee"
+          id="no_employee"
           placeholder=""
           type="number"
         />
