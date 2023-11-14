@@ -13,7 +13,7 @@ import { LogInSchema } from "@/Utils/Schemas";
 
 interface Props {}
 //http://localhost:3000/register?businessName=&name=&email=&phoneNumber=&password=&aboutUs=
-const page = (props: Props) => {
+const LoginPage = (props: Props) => {
   const {
     register,
     handleSubmit,
@@ -98,4 +98,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default LoginPage;
