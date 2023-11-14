@@ -1,13 +1,21 @@
 "use client";
 
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
 import { useRouter } from "next/navigation";
 import React from "react";
+import Button from "@/components/Button/Button";
+import Input from "@/components/Input/Input";
+import { useForm } from "react-hook-form";
 
 type Props = {};
 
 const ForgotPassword = (props: Props) => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({});
   const router = useRouter();
 
   const handleClick = () => {
@@ -22,11 +30,11 @@ const ForgotPassword = (props: Props) => {
         </div>
         <form action="" className="w-[90%] flex flex-col gap-4 mx-auto">
           <Input
+            register={register}
             id="email"
             type="email"
             label="Email"
             placeholder=""
-            required
           />
           <Button
             type="button"

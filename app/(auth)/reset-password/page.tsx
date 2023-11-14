@@ -2,11 +2,17 @@
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import { useRouter } from "next/navigation";
-import React from "react";
-
+import { useForm } from "react-hook-form";
 type Props = {};
 
 const ResetPassword = (props: Props) => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({});
   const router = useRouter();
 
   const handleClick = () => {
@@ -21,18 +27,18 @@ const ResetPassword = (props: Props) => {
         </div>
         <form action="" className="w-[90%] flex flex-col gap-4 mx-auto">
           <Input
-            id="newPassword"
+            register={register}
+            id="new_password"
             type="password"
             label="New password"
             placeholder=""
-            required
           />
           <Input
-            id="confirmPassword"
+            register={register}
+            id="confirm_password"
             type="password"
             label="Confirm your password"
             placeholder=""
-            required
           />
           <Button
             type="button"
