@@ -1,10 +1,8 @@
 "use client";
-
 import React, { useState, useCallback } from "react";
-import { useForm } from "react-hook-form";
 import Stepper from "@/components/Stepper/Stepper";
-import VerifyUserForm from "@/app/(auth)/register/_components/VerifyUserForm/VerifyUserForm";
-import RegistrationForm from "./_components/RegistrationForm/RegistrationForm";
+import VerifyUserForm from "../../_components/VerifyUserForm/VerifyUserForm";
+import RegistrationForm from "../../_components/RegistrationForm/RegistrationForm";
 
 interface Props {}
 

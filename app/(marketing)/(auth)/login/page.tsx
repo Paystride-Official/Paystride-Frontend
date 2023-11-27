@@ -1,15 +1,13 @@
 "use client";
-import { z } from "zod";
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
 import Image from "next/image";
 import Paystride from "@/app/assets/Paystride.svg";
-
 import React from "react";
 import Link from "next/link";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LogInSchema } from "@/Utils/Schemas";
+import Input from "@/components/Input/Input";
+import Button from "@/components/Button/Button";
 
 interface Props {}
 //http://localhost:3000/register?businessName=&name=&email=&phoneNumber=&password=&aboutUs=
@@ -32,8 +30,8 @@ const LoginPage = (props: Props) => {
   };
 
   return (
-    <section className=" h-screen flex flex-col items-center justify-center">
-      <div className="py-8 md:w-[500px]  flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
+    <section className=" h-fit mt-12 flex flex-col items-center justify-center">
+      <div className="py-8 sm:w-[350px] md:w-[500px]  flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
         <div className="mb-4 w-[90%] mx-auto">
           <Image src={Paystride} alt="Paystride" className="mx-auto" />
           <p className="text-center">Welcome back, enter your login details</p>

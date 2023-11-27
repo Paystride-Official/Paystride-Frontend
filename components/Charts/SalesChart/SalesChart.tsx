@@ -21,7 +21,7 @@ const SalesChart = () => {
       },
     },
     grid: {
-      left: "4%",
+      left: "6%",
     },
     xAxis: [
       {
@@ -54,7 +54,7 @@ const SalesChart = () => {
           color: "#5932EA",
           barBorderRadius: [10],
         },
-        name: "xAxis",
+        name: "sales",
         type: "bar",
         barWidth: "70%",
         data: [50, 80, 400, 334, 540, 330, 220, 100, 120],

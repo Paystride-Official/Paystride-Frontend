@@ -123,7 +123,7 @@ const Dashboard = (props: DashboardProps) => {
         </div>
         <div className="">{chartToRender(selectedOption)}</div>
       </div>
-      <div className=" md:flex gap-4">
+      <div className=" lg:flex gap-4">
         <div
           className="
         w-full

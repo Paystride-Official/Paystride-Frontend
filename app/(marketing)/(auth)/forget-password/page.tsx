@@ -1,11 +1,14 @@
 "use client";
+
+import { useRouter } from "next/navigation";
+import React from "react";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+
 type Props = {};
 
-const ResetPassword = (props: Props) => {
+const ForgotPassword = (props: Props) => {
   const {
     register,
     handleSubmit,
@@ -16,28 +19,21 @@ const ResetPassword = (props: Props) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/otp");
+    router.push("/reset-password");
   };
 
   return (
-    <section className="h-screen flex flex-col items-center justify-center">
-      <div className="py-8 md:w-[500px]  flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px]">
+    <section className="h-fit mt-12 flex flex-col items-center justify-center">
+      <div className="py-8 sm:w-[350px] md:w-[500px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px]">
         <div className="mb-4 ">
           <h1 className="font-bold text-2xl">Forgot Password</h1>
         </div>
         <form action="" className="w-[90%] flex flex-col gap-4 mx-auto">
           <Input
             register={register}
-            id="new_password"
-            type="password"
-            label="New password"
-            placeholder=""
-          />
-          <Input
-            register={register}
-            id="confirm_password"
-            type="password"
-            label="Confirm your password"
+            id="email"
+            type="email"
+            label="Email"
             placeholder=""
           />
           <Button
@@ -51,4 +47,4 @@ const ResetPassword = (props: Props) => {
   );
 };
 
-export default ResetPassword;
+export default ForgotPassword;

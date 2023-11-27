@@ -8,7 +8,7 @@ import Paystride from "@/app/assets/Paystride.svg";
 import Image from "next/image";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
-import { useCreateUserAccount } from "../../_slice/query";
+import { useCreateUserAccount } from "../../(auth)/register/_slice/query";
 import { NewUser } from "@/types/types";
 import { SignUpSchema } from "@/Utils/Schemas";
 
@@ -44,7 +44,7 @@ const RegistrationForm = ({ setStep, step }: Props) => {
 
   return (
     <section>
-      <div className="py-8 mb-4 max-w-[500px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
+      <div className="py-8 mb-4 sm:w-[350px] md:w-[500px] flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
         <div className="mb-4 ">
           <Image src={Paystride} alt="Paystride" className="mx-auto" />
           <p>Let&apos;s get you started</p>

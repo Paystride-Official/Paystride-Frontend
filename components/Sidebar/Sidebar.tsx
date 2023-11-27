@@ -70,7 +70,7 @@ const Sidebar = (props: Props) => {
 
 const SidebarItem = ({ item }: { item: SidebarProps }) => {
   const pathName = usePathname();
-
+  const isActive = pathName === item.href;
   return (
     <button
       className={classNames(
@@ -82,13 +82,17 @@ const SidebarItem = ({ item }: { item: SidebarProps }) => {
         "px-10",
         "rounded-[10px]",
         {
-          "bg-[#091f8e] text-white": pathName === item.href,
-          "bg-white text-[#8A92A6] hover:bg-slate-100": pathName !== item.href,
+          "bg-[#091f8e] text-white": isActive,
+          "bg-white text-[#8A92A6] hover:bg-slate-100": !isActive,
         }
       )}
     >
       <Link href={item.href} className="flex gap-2">
-        <Image src={item.icon} alt={item.title} className="" />
+        <Image
+          src={item.icon}
+          alt={item.title}
+          className={classNames({ "text-white": isActive })}
+        />
         <span className="flex-1 text-base font-medium">{item.title}</span>
       </Link>
     </button>
