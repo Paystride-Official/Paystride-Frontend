@@ -21,29 +21,17 @@ type TableProps = {
   setSingleRow?: React.Dispatch<React.SetStateAction<object>>;
 };
 
-type MyFunctionType = () => { [key: string]: any };
-
-export function DashboardTable({
+export function TableComponent({
   rows,
   columns,
   setSingleRow,
   openModal,
 }: TableProps) {
-  // const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  // const openModal = () => {
-  //   setIsOpen(true);
-  // };
-
   const getData = (column: object) => {
     if (column) {
       setSingleRow?.(column);
     }
   };
-
-  // const closeModal = () => {
-  //   setIsOpen(false);
-  // };
 
   const renderCell = React.useCallback((column: column, columnKey: any) => {
     // const cellValue = column[columnKey as keyof column[]];
@@ -83,38 +71,39 @@ export function DashboardTable({
   }, []);
 
   return (
-    // <div className="mt-2 mx-4 ">
-    <Table
-      removeWrapper
-      aria-label="Example table with dynamic content"
-      className="overflow-auto"
-    >
-      <TableHeader columns={columns}>
-        {(column) => (
-          <TableColumn
-            key={column.key}
-            style={{ overflowX: "auto" }}
-            className="bg-[#FAFAFA]  border-b-[#EFEFEF] border-b border-solid text-[#949494] text-md"
-          >
-            {column.label}
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody items={rows}>
-        {/* <TableBody emptyContent={"No rows to display."}>{[]}</TableBody> */}
-        {(item) => (
-          <TableRow key={item.key}>
-            {(columnKey) => (
-              <TableCell
-                className="text-[#949494]"
-                style={{ overflowX: "auto" }}
-              >
-                {renderCell(item, columnKey)}
-              </TableCell>
-            )}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+    <div className="mt-2  ">
+      <Table
+        removeWrapper
+        aria-label="Example table with dynamic content"
+        className="overflow-auto"
+      >
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn
+              key={column.key}
+              style={{ overflowX: "auto" }}
+              className="bg-[#FAFAFA]  border-b-[#EFEFEF] border-b border-solid text-[#949494] text-md"
+            >
+              {column.label}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={rows}>
+          {/* <TableBody emptyContent={"No rows to display."}>{[]}</TableBody> */}
+          {(item) => (
+            <TableRow key={item.key}>
+              {(columnKey) => (
+                <TableCell
+                  className="text-[#949494]"
+                  style={{ overflowX: "auto" }}
+                >
+                  {renderCell(item, columnKey)}
+                </TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
   );
 }

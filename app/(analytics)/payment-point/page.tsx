@@ -1,12 +1,14 @@
 "use client";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import "./paypoint.css";
 import Header from "../_components/HeaderStat/Header";
-import { DashboardTable } from "@/components/DashboardTable/DashboardTable";
+import { TableComponent } from "@/components/Table/Table";
 import { payPointCol, payPointRow } from "@/Utils/constants";
 import ModalPopUp from "@/components/Modal/Modal";
 import Controllers from "@/components/Controllers/Controllers";
 import { FieldValues, useForm } from "react-hook-form";
+import { EditPayPoint } from "./_components/EditPayPoint/EditPayPoint";
+import { AddPayPoint } from "./_components/AddPayPoint/AddPayPoint";
 
 type Props = {};
 
@@ -14,11 +16,14 @@ const Paymentpoint = (props: Props) => {
   const { handleSubmit, register } = useForm();
   const [singleRow, setSingleRow] = useState<{ [key: string]: any }>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [addNewModal, setAddNewModal] = useState(false);
   const [search, setSearch] = useState<string>("");
   const [filters, setFilters] = useState<string>("");
+  const [content, setContent] = useState<ReactNode>("");
   const onSubmit = (data: FieldValues) => console.log(data);
 
   const closeModal = () => {
+    setAddNewModal(false);
     setIsOpen(false);
   };
 
@@ -26,78 +31,19 @@ const Paymentpoint = (props: Props) => {
     setIsOpen(true);
   };
 
-  const title = <h1> {singleRow?.payPoint}</h1>;
-
-  const ModalBody: ReactNode = (
-    <div>
-      <p>staff</p>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <select
-          className=" block border-[0.889px] border-solid
-        border-[#D9D9D9] px-2 py-2 outline-none max-w-[10rem] rounded-sm"
-          {...register("example")}
-        >
-          <option value="option1">{singleRow?.onDuty}</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
-
-        <select
-          className=" block border-[0.889px] border-solid border-[#D9D9D9] px-2 py-2 outline-none w-fit rounded-sm"
-          {...register("example2")}
-        >
-          <option value={singleRow?.status}>{singleRow?.status}</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
-        <div className="flex gap-4 justify-center w-full mb-2">
-          <button
-            type="submit"
-            className="text-white bg-[#091F8E] px-4 py-1 capitalize rounded"
-          >
-            update
-          </button>
-          <button className=" border-[0.615px] border-solid border-[#DDE2FD] px-4 py-1 rounded">
-            cancel
-          </button>
-        </div>
-      </form>
-    </div>
-    // <div>
-    //   <p>staff</p>
-    //   <div>
-    //     <form className="flex flex-col gap-4">
-    //       <select
-    //         name=""
-    //         id=""
-    //         className=" block border-[0.889px] border-solid border-[#D9D9D9] px-2 py-2 outline-none max-w-[10rem] rounded-sm"
-    //       >
-    //         <option value="">{singleRow?.onDuty}</option>
-    //       </select>
-    //       <select
-    //         name=""
-    //         id=""
-    //         className=" block border-[0.889px] border-solid border-[#D9D9D9] px-2 py-2 outline-none w-fit rounded-sm"
-    //       >
-    //         <option value="">Active</option>
-    //         <option value="">Inactive</option>
-    //       </select>
-    //     </form>
-    //   </div>
-    // </div>
-  );
-
-  const footer: ReactNode = (
-    <h1>.</h1>
-    // <div className="flex gap-4 justify-center w-full mb-4">
-    //   <button className="text-white bg-[#091F8E] px-4 py-1 capitalize rounded">
-    //     update
-    //   </button>
-    //   <button className=" border-[0.615px] border-solid border-[#DDE2FD] px-4 py-1 rounded">
-    //     cancel
-    //   </button>
-    // </div>
-  );
+  useEffect(() => {
+    if (addNewModal) {
+      setContent(<AddPayPoint onSubmit={onSubmit} closeModal={closeModal} />);
+    } else if (isOpen) {
+      setContent(
+        <EditPayPoint
+          singleRow={singleRow}
+          onSubmit={onSubmit}
+          closeModal={closeModal}
+        />
+      );
+    }
+  }, [isOpen, addNewModal]);
 
   const bankStat = [
     {
@@ -110,7 +56,20 @@ const Paymentpoint = (props: Props) => {
     <section className="">
       <div className="mt-8">
         <h1 className="text-[#333] text-xl font-bold pb-4">Payment Point</h1>
-        <Header headerStat={bankStat} />
+        <div className="flex">
+          <Header headerStat={bankStat} />
+
+          <div className="w-full flex justify-start items-end ml-4">
+            <button
+              onClick={() => {
+                setAddNewModal(!addNewModal);
+              }}
+              className="bg-[#091F8E]  text-white px-4 py-1 rounded"
+            >
+              Add New Payment point
+            </button>
+          </div>
+        </div>
 
         <div
           className="    
@@ -127,9 +86,8 @@ const Paymentpoint = (props: Props) => {
             setSearch={setSearch}
             filters={filters}
             setFilters={setFilters}
-            addNew
           />
-          <DashboardTable
+          <TableComponent
             rows={payPointRow}
             columns={payPointCol}
             openModal={openModal}
@@ -139,11 +97,9 @@ const Paymentpoint = (props: Props) => {
 
         <div>
           <ModalPopUp
-            isOpen={isOpen}
+            isOpen={isOpen || addNewModal}
             closeModal={closeModal}
-            body={ModalBody}
-            title={title}
-            footer={footer}
+            body={content}
           />
         </div>
       </div>

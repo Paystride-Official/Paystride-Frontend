@@ -12,8 +12,7 @@ type ModalProp = {
   isOpen: boolean;
   closeModal: () => void;
   body: ReactNode;
-  title: ReactNode;
-  footer?: ReactNode;
+  title?: ReactNode;
 };
 
 export default function ModalPopUp({
@@ -21,7 +20,6 @@ export default function ModalPopUp({
   closeModal,
   title,
   body,
-  footer,
 }: ModalProp) {
   return (
     <div className="w-full">
@@ -40,7 +38,6 @@ export default function ModalPopUp({
               {title}
             </ModalHeader>
             <ModalBody className="p-2">{body}</ModalBody>
-            <ModalFooter>{footer}</ModalFooter>
           </>
         </ModalContent>
       </Modal>

@@ -8,7 +8,6 @@ const PieChart = (option: PieChartOption) => {
   useEffect(() => {
     const handleResize = () => {
       chartRef?.current?.getEchartsInstance().resize();
-      console.log(chartRef);
     };
 
     window.addEventListener("resize", handleResize);

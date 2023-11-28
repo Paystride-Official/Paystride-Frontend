@@ -8,7 +8,6 @@ const Barchart = (option: ChartOption) => {
   useEffect(() => {
     const handleResize = () => {
       chartRef?.current?.getEchartsInstance().resize();
-      console.log(chartRef);
     };
 
     window.addEventListener("resize", handleResize);

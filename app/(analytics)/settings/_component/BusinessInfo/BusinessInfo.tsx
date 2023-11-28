@@ -15,9 +15,16 @@ const BusinessInfo = (props: Props) => {
     formState: { errors, isSubmitting },
   } = useForm<FieldValues>();
 
+  const handleOnSubmit = (data: FieldValues) => {
+    console.log(data);
+  };
+
   return (
     <section>
-      <form className="w-[90%] flex flex-col justify-between mx-auto gap-4 ">
+      <form
+        className="w-[90%] flex flex-col justify-between mx-auto gap-4  "
+        onSubmit={handleSubmit(handleOnSubmit)}
+      >
         <div className="w-[90%] mx-auto flex items-center gap-8">
           <Image
             src=""
