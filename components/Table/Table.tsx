@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Arrowdown from "@/app/(analytics)/payment-point/assets/arrowdown.svg";
 import Edit from "@/app/(analytics)/payment-point/assets/edit.svg";
+
 import {
   Table,
   TableHeader,
@@ -8,7 +9,6 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  getKeyValue,
 } from "@nextui-org/react";
 import { column, row } from "@/types/types";
 import Image from "next/image";
@@ -16,16 +16,35 @@ import Image from "next/image";
 type TableProps = {
   columns: column[];
   rows: row[];
+  openModal?: () => void;
+
+  setSingleRow?: React.Dispatch<React.SetStateAction<object>>;
 };
 
-export function DashboardTable({ rows, columns }: TableProps) {
+export function TableComponent({
+  rows,
+  columns,
+  setSingleRow,
+  openModal,
+}: TableProps) {
+  const getData = (column: object) => {
+    if (column) {
+      setSingleRow?.(column);
+    }
+  };
+
   const renderCell = React.useCallback((column: column, columnKey: any) => {
     // const cellValue = column[columnKey as keyof column[]];
 
     switch (columnKey) {
       case "onDuty":
         return (
-          <div className="flex item-center gap-4">
+          <div
+            onClick={() => {
+              openModal?.(), getData(column);
+            }}
+            className="flex item-center gap-8 cursor-pointer "
+          >
             <p>{column.onDuty}</p>
             <div className="flex item-center justify-center ">
               <Image src={Arrowdown} alt="arrow_down" />
@@ -34,10 +53,15 @@ export function DashboardTable({ rows, columns }: TableProps) {
         );
       case "status":
         return (
-          <div className=" flex items-center gap-4">
+          <div className=" flex items-center gap-8">
             <p>{column.status}</p>
-            <div className="flex item-center justify-center ">
-              <Image src={Edit} alt="arrow_down" />
+            <div
+              className="flex item-center justify-center gap-6 cursor-pointer"
+              onClick={() => {
+                openModal?.(), getData(column);
+              }}
+            >
+              <Image src={Edit} alt="Edit" />
             </div>
           </div>
         );
@@ -47,7 +71,7 @@ export function DashboardTable({ rows, columns }: TableProps) {
   }, []);
 
   return (
-    <div className="mt-2 ">
+    <div className="mt-2  ">
       <Table
         removeWrapper
         aria-label="Example table with dynamic content"
@@ -57,7 +81,8 @@ export function DashboardTable({ rows, columns }: TableProps) {
           {(column) => (
             <TableColumn
               key={column.key}
-              className="bg-transparent border-b-[#EFEFEF] border-b border-solid text-[#949494] text-md"
+              style={{ overflowX: "auto" }}
+              className="bg-[#FAFAFA]  border-b-[#EFEFEF] border-b border-solid text-[#949494] text-md"
             >
               {column.label}
             </TableColumn>
@@ -68,7 +93,10 @@ export function DashboardTable({ rows, columns }: TableProps) {
           {(item) => (
             <TableRow key={item.key}>
               {(columnKey) => (
-                <TableCell className="text-[#949494]">
+                <TableCell
+                  className="text-[#949494]"
+                  style={{ overflowX: "auto" }}
+                >
                   {renderCell(item, columnKey)}
                 </TableCell>
               )}

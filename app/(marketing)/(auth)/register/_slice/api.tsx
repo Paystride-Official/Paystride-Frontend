@@ -13,12 +13,17 @@ export const createUserAccount = async (user: NewUser) => {
   // return user;
 };
 function registerApi(data: NewUser) {
-  const url = `${SERVER_URL}/merchants/`;
+  // const url = `${SERVER_URL}/merchants/`;
+  const url = "http://staging-api.paystride.co/api/merchants/";
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      // "X-CSRF-TOKEN": document?.querySelector('meta[name="csrf-token"]').getAttribute("content"),
     },
+
+    // Now you can use the 'headers' object in your HTTP request
+
     data: data,
   };
 

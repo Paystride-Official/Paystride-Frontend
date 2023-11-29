@@ -7,9 +7,10 @@ type Header = {
   headerStat: HeaderStatProps[];
 };
 
+//md:flex-wrap
 const Header = ({ headerStat }: Header) => {
   return (
-    <div className="w-full  md:flex  md:flex-wrap gap-4">
+    <div className="w-full  md:flex   gap-4">
       {headerStat.map((item) => {
         return (
           <div
@@ -18,7 +19,7 @@ const Header = ({ headerStat }: Header) => {
               md:w-2/5
               lg:w-60
               bg-white  
-            rounded-[6.198px]
+            rounded-md
             border-[2.066px]
             border-solid
             border-[#eceef6]
@@ -60,7 +61,7 @@ const Header = ({ headerStat }: Header) => {
               </p>
               <div
                 className={classNames({
-                  " flex gap-2 pl-[10.329px] pr-[11.186px] pt-[3.099px] pb-[4.725px] rounded-[51.647px] bg-[#23c10a26] ":
+                  " flex gap-2 pl-[10px] pr-[11px] pt-[3px] pb-[4.725px] rounded-[51px] bg-[#23c10a26] ":
                     item.count,
                 })}
               >

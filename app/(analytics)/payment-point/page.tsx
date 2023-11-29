@@ -1,23 +1,75 @@
 "use client";
-import React from "react";
+import React, { ReactNode, useEffect, useState } from "react";
+import "./paypoint.css";
 import Header from "../_components/HeaderStat/Header";
-import { DashboardTable } from "@/components/DashboardTable/DashboardTable";
+import { TableComponent } from "@/components/Table/Table";
 import { payPointCol, payPointRow } from "@/Utils/constants";
+import ModalPopUp from "@/components/Modal/Modal";
+import Controllers from "@/components/Controllers/Controllers";
+import { FieldValues, useForm } from "react-hook-form";
+import { EditPayPoint } from "./_components/EditPayPoint/EditPayPoint";
+import { AddPayPoint } from "./_components/AddPayPoint/AddPayPoint";
 
 type Props = {};
 
 const Paymentpoint = (props: Props) => {
+  const { handleSubmit, register } = useForm();
+  const [singleRow, setSingleRow] = useState<{ [key: string]: any }>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [addNewModal, setAddNewModal] = useState(false);
+  const [search, setSearch] = useState<string>("");
+  const [filters, setFilters] = useState<string>("");
+  const [content, setContent] = useState<ReactNode>("");
+  const onSubmit = (data: FieldValues) => console.log(data);
+
+  const closeModal = () => {
+    setAddNewModal(false);
+    setIsOpen(false);
+  };
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    if (addNewModal) {
+      setContent(<AddPayPoint onSubmit={onSubmit} closeModal={closeModal} />);
+    } else if (isOpen) {
+      setContent(
+        <EditPayPoint
+          singleRow={singleRow}
+          onSubmit={onSubmit}
+          closeModal={closeModal}
+        />
+      );
+    }
+  }, [isOpen, addNewModal]);
+
   const bankStat = [
     {
       name: "Active Payment Point",
       amount: "3",
     },
   ];
+
   return (
-    <section>
+    <section className="">
       <div className="mt-8">
         <h1 className="text-[#333] text-xl font-bold pb-4">Payment Point</h1>
-        <Header headerStat={bankStat} />
+        <div className="flex">
+          <Header headerStat={bankStat} />
+
+          <div className="w-full flex justify-start items-end ml-4">
+            <button
+              onClick={() => {
+                setAddNewModal(!addNewModal);
+              }}
+              className="bg-[#091F8E]  text-white px-4 py-1 rounded"
+            >
+              Add New Payment point
+            </button>
+          </div>
+        </div>
 
         <div
           className="    
@@ -27,10 +79,28 @@ const Paymentpoint = (props: Props) => {
             border-solid
             border-[#eceef6]
             mt-4
-            
             "
         >
-          <DashboardTable rows={payPointRow} columns={payPointCol} />
+          <Controllers
+            search={search}
+            setSearch={setSearch}
+            filters={filters}
+            setFilters={setFilters}
+          />
+          <TableComponent
+            rows={payPointRow}
+            columns={payPointCol}
+            openModal={openModal}
+            setSingleRow={setSingleRow}
+          />
+        </div>
+
+        <div>
+          <ModalPopUp
+            isOpen={isOpen || addNewModal}
+            closeModal={closeModal}
+            body={content}
+          />
         </div>
       </div>
     </section>

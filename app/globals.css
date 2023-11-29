@@ -12,17 +12,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 html {
   min-height: 100vh;
+  width: full !important;
   /* overflow-x: auto; */
 }
 
 body {
   max-width: 1440px;
   margin: 0 auto;
+  overflow-x: auto;
 }
 
 .otp-input {
@@ -49,6 +50,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
-.topP {
-  @apply overflow-x-hidden;
+
+.otp-input {
+  @apply border border-solid border-[#D9D9D9];
 }

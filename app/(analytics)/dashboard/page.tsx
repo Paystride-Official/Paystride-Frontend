@@ -6,8 +6,8 @@ import PaypointChart from "@/components/Charts/PaypointChart/PaypointChart";
 import SalesChart from "@/components/Charts/SalesChart/SalesChart";
 import DonoughtChart from "@/components/Charts/DonoughtChart/DonoughtChart";
 import Arrow from "@/app/assets/arrowup.svg";
-import { DashboardTable } from "@/components/DashboardTable/DashboardTable";
 import { dashboardCol, dashboardRow } from "@/Utils/constants";
+import { TableComponent } from "@/components/Table/Table";
 
 type DashboardProps = {};
 
@@ -67,10 +67,10 @@ const Dashboard = (props: DashboardProps) => {
         case "paypoint":
           return <PaypointChart />;
         default:
-          return null; // Return null or handle other cases as needed
+          return null;
       }
     },
-    [selectedOption] // Provide 'key' as a dependency
+    [selectedOption]
   );
 
   return (
@@ -123,7 +123,7 @@ const Dashboard = (props: DashboardProps) => {
         </div>
         <div className="">{chartToRender(selectedOption)}</div>
       </div>
-      <div className=" md:flex gap-4">
+      <div className=" lg:flex gap-4">
         <div
           className="
         w-full
@@ -140,15 +140,14 @@ const Dashboard = (props: DashboardProps) => {
         "
         >
           <h1 className="font-bold text-2xl">Recent Transaction</h1>
-          <DashboardTable rows={dashboardRow} columns={dashboardCol} />
+          <TableComponent rows={dashboardRow} columns={dashboardCol} />
         </div>
         <div
           className="w-full
         flex-[2]
        bg-white
         runded-md 
-        mt-4 px-2 
-        rounded-[6.198px] 
+        mt-4 px-2  
         border-[2.066px]
         border-solid 
         border-[#eceef6]

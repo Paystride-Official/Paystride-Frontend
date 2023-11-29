@@ -26,9 +26,10 @@ const VerifyUserForm = ({ setStep, step }: Props) => {
   const handleChange = (data: string) => {
     setOtp(data);
   };
+
   return (
-    <section className="flex flex-col items-center justify-center mx-4">
-      <div className="py-8 sm:w-[450px] md:w-[500px]  flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px]">
+    <section className="flex flex-col items-center justify-center mx-2">
+      <div className="py-8 min-w-[330px] sm:w-[500px] md:w-[]  flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px]">
         <div className="mb-4 ">
           <h1 className="text-2xl font-bold leading-[normal] px-2 text-center capitalize">
             Verify you email

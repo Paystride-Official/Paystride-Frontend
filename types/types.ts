@@ -78,7 +78,7 @@ export type PieChartOption = {
   tooltip: {
     trigger: string;
   };
-  legend: {
+  legend?: {
     top: string;
     right: string;
     orient: string;
