@@ -11,10 +11,19 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
   min-height: 100vh;
+  width: full !important;
+  /* overflow-x: auto; */
+}
+
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow-x: auto;
 }
 
 .otp-input {
@@ -22,9 +31,11 @@ html {
   height: 45px !important;
   padding: 2px;
   font-size: 20px;
-  margin-bottom: 3rem;
   border-radius: 5px;
   outline: none;
+}
+.otp-input:active {
+  color: black;
 }
 
 @media screen and (min-width: 450px) {
@@ -41,4 +52,8 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.otp-input {
+  @apply border border-solid border-[#D9D9D9];
 }
