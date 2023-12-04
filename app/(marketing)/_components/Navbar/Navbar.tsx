@@ -7,7 +7,7 @@ type Props = {};
 const Navbar = (props: Props) => {
   return (
     <div className="h-fit w-full sticky top-0 bg-white border-b-[#21232a] border-b border-solid z-1000 ">
-      <div className="flex items-center justify-between p-2">
+      <div className="flex items-center justify-between px-8 py-2">
         <div className="flex gap-2 items-center">
           <Image
             src={Paystride}

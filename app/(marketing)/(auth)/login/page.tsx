@@ -8,9 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LogInSchema } from "@/Utils/Schemas";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
+import { useSignInAccount } from "./_slice/query";
 
 interface Props {}
-//http://localhost:3000/register?businessName=&name=&email=&phoneNumber=&password=&aboutUs=
 const LoginPage = (props: Props) => {
   const {
     register,
@@ -22,8 +22,11 @@ const LoginPage = (props: Props) => {
     resolver: zodResolver(LogInSchema),
   });
 
+  const { mutateAsync: signInAccount } = useSignInAccount();
+
   const handleOnSubmit = (data: FieldValues) => {
     const formData = getValues();
+    signInAccount(formData);
     console.log(formData);
 
     reset();

@@ -4,7 +4,6 @@ import { signInAccount } from "./api";
 
 export const useSignInAccount = () => {
   return useMutation({
-    mutationFn: (user: { email: string; password: string }) =>
-      signInAccount(user),
+    mutationFn: (user: NewUser) => signInAccount(user),
   });
 };

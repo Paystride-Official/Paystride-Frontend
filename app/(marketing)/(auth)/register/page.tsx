@@ -3,11 +3,14 @@ import React, { useState, useCallback } from "react";
 import Stepper from "@/components/Stepper/Stepper";
 import VerifyUserForm from "../../_components/VerifyUserForm/VerifyUserForm";
 import RegistrationForm from "../../_components/RegistrationForm/RegistrationForm";
+import { signUpUser } from "@/types/types";
+import { FieldValues } from "react-hook-form";
 
 interface Props {}
 
 const Register = (props: Props) => {
   const [step, setStep] = useState<number>(1);
+  const [userData, setUserData] = useState<FieldValues>();
 
   const handleSubmit = () => {};
 
@@ -21,6 +24,7 @@ const Register = (props: Props) => {
               setStep={setStep}
               step={step}
               onSubmit={handleSubmit}
+              setUserData={setUserData}
             />
           );
         case 2:
@@ -29,6 +33,7 @@ const Register = (props: Props) => {
               setStep={setStep}
               step={step}
               onSubmit={handleSubmit}
+              userData={userData}
             />
           );
         default:
