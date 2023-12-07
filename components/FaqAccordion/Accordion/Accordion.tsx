@@ -21,12 +21,12 @@ const Accordion = ({ question, answer }: FaqProps) => {
 
     return (
         <>
-            <div className="w-[full] mb-3 border-2 border-[#6A8F9F] text-[12px] md:text-base">
+            <div className="w-[full] mb-3 border-2 border-[#D2DDE2] text-[12px] md:text-base">
                 <button
                     onClick={() => {
                         setShow(!show);
                     }}
-                    className="bg-[#6A8F9F] font-medium border-none text-start px-4 py-2 w-full flex justify-between"
+                    className="bg-[#D2DDE2] font-medium border-none text-start px-4 py-2 w-full flex justify-between"
                 >
                     {question}
                     <span
