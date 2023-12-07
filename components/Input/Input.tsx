@@ -1,8 +1,5 @@
-import { LoginUser, NewUser } from "@/types/types";
-import React from "react";
-import { z } from "zod";
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { SignUpSchema } from "@/Utils/Schemas";
+import { NewUser } from "@/types/types";
+import { UseFormRegister } from "react-hook-form";
 
 type InputProps = {
   label: string;

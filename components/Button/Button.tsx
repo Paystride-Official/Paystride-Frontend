@@ -6,17 +6,17 @@ interface Props {
   text: string;
   handleClick?: () => void;
   disabled?: boolean;
-  overide?: string;
+  size?: string;
 }
 
-const Button = ({ type, text, handleClick, overide, disabled }: Props) => {
+const Button = ({ type, text, handleClick, size, disabled }: Props) => {
   return (
     <div
       className={classNames(
         "  text-center bg-[#091f8e] text-[white] mx-auto my-4  px-0 rounded-[37px]",
         { "disabled:bg-slate-500": disabled },
-        { "w-[90%]": !overide },
-        {}
+        { "w-[90%]": !size },
+        { "w-[65%]": size }
       )}
     >
       <button

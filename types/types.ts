@@ -127,7 +127,7 @@ export type NewUser = Record<string, any>;
 //   aboutUs?: string;
 // }
 
-export interface LoginUser {
+export interface signUpUser {
   business_name?: string;
   email: string;
   name?: string;

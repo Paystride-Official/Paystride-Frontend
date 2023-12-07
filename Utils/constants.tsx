@@ -64,6 +64,72 @@ export const dashboardCol = [
     label: "Amount",
   },
 ];
+export const transactionRow = [
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    ppointNumber: "08123893451",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    ppointNumber: "08123893451",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    ppointNumber: "08123893451",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    ppointNumber: "08123893451",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    ppointNumber: "08123893451",
+    amount: "N 20,000",
+  },
+];
+
+export const transactionCol = [
+  {
+    key: "date",
+    label: "Date & Time",
+  },
+  {
+    key: "transactionId",
+    label: "Transaction Id",
+  },
+  {
+    key: "accountNumber",
+    label: "Account Number",
+  },
+  {
+    key: "ppointNumber",
+    label: "P.Point Number",
+  },
+  {
+    key: "amount",
+    label: "Amount",
+  },
+];
+
 export const payPointRow = [
   {
     key: "1",
@@ -129,4 +195,12 @@ export const payPointCol = [
     label: "Status",
   },
 ];
-export const SERVER_URL = "http://api.paystride.co/api";
+let server_url;
+
+if (process.env.REACT_APP_ENVIRONMENT === "production") {
+  server_url = "http://api.paystride.co/api";
+} else {
+  server_url = "http://staging-api.paystride.co";
+}
+
+export const SERVER_URL = server_url;

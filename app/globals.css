@@ -34,6 +34,9 @@ body {
   border-radius: 5px;
   outline: none;
 }
+.otp-input:active {
+  color: black;
+}
 
 @media screen and (min-width: 450px) {
   .otp-input {
