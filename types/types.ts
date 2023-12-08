@@ -136,3 +136,7 @@ export interface signUpUser {
   t_and_c?: boolean;
   aboutUs?: string;
 }
+
+export interface FilterObject {
+  [key: string]: any;
+}

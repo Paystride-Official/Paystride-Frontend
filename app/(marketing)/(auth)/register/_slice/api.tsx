@@ -1,11 +1,10 @@
 import { SERVER_URL } from "@/Utils/constants";
-import { request } from "@/Utils/request";
+import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
 import axios from "axios";
 
 function registerApi(data: NewUser) {
-  // const url = `${SERVER_URL}/merchants/`;
-  const url = "http://staging-api.paystride.co/api/merchants/";
+  const url = `${SERVER_URL}/merchants/`;
   const options = {
     method: "POST",
     headers: {
@@ -14,11 +13,10 @@ function registerApi(data: NewUser) {
     data: data,
   };
 
-  return request(url, options);
+  return axios(url, options);
 }
 function verifyOtpApi(data: { otp: string; email: string }) {
-  // const url = `${SERVER_URL}/merchants/`;
-  const url = "http://staging-api.paystride.co/api/verifyemail";
+  const url = `${SERVER_URL}/verifyemail`;
   const options = {
     method: "POST",
     headers: {
@@ -27,27 +25,64 @@ function verifyOtpApi(data: { otp: string; email: string }) {
     data: data,
   };
 
-  return request(url, options);
+  return axios(url, options);
+}
+function resendOtpApi(data: { email: string }) {
+  const url = `${SERVER_URL}/merchants/resend-otp`;
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data,
+  };
+
+  return axios(url, options);
 }
 
 export const createUserAccount = async (user: NewUser) => {
   try {
-    const response = await registerApi(user);
-    return response;
+    const response: any = await registerApi(user);
+    const { data, status, statusText } = response;
+    const successResponse = { success: { ...data, status, statusText } };
+
+    if (data) {
+      return successResponse;
+    }
   } catch (error) {
-    console.log(error);
+    const errorResponse = { error: handleAxiosError(error) };
+    return errorResponse;
   }
   // return user;
 };
 
-export const verifyOtp = async (data: { otp: string; email: string }) => {
+export const verifyOtp = async (otpdeatails: {
+  otp: string;
+  email: string;
+}) => {
   try {
-    const response = await verifyOtpApi(data);
-    return response;
+    const response = await verifyOtpApi(otpdeatails);
+    const { data }: any = response;
+    if (data) {
+      const successResponse = { success: { data } };
+      return successResponse;
+    }
   } catch (error) {
-    console.log(error);
+    const errorResponse = { error: handleAxiosError(error) };
+
+    return errorResponse;
   }
-  return;
+};
+
+export const resendOtp = async (resendOptdata: { email: string }) => {
+  try {
+    const response = await resendOtpApi(resendOptdata);
+    const successResponse = { success: { response } };
+    return successResponse;
+  } catch (error) {
+    const errorResponse = { error: handleAxiosError(error) };
+    return errorResponse;
+  }
 };
 
 //axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').content;
