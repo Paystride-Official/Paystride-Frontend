@@ -1,9 +1,8 @@
-import handleAxiosError from "@/Utils/Request";
 import { SERVER_URL } from "@/Utils/constants";
 import { storeItem } from "@/Utils/localStorage";
+import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 function loginApi(data: NewUser) {
   //user: { email: string; password: string }
