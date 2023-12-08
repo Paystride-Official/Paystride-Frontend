@@ -60,7 +60,7 @@ const Accordion = () => {
         <div className="flex-[1] py-7 flex justify-center">
           <div>
             {Faq.map((faqs) => {
-              return <AccordionItem {...faqs} />;
+              return <AccordionItem {...faqs} key={faqs.id} />;
             })}
           </div>
         </div>
