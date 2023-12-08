@@ -1,3 +1,4 @@
+import ProtectedRoute from "@/ProtectedRoute/ProtectedRoute";
 import Navbar from "@/components/Navbar/Navbar";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import type { Metadata } from "next";
@@ -18,9 +19,11 @@ export default function RootLayout({
         <Sidebar />
         <div className="flex flex-col flex-[7]">
           <Navbar />
-          <div className=" w-full bg-[#FAFAFA] min-h-[calc(100vh_-_3.5rem)] px-4 py-6  ">
-            {children}
-          </div>
+          <ProtectedRoute>
+            <div className=" w-full bg-[#FAFAFA] min-h-[calc(100vh_-_3.5rem)] px-4 py-6  ">
+              {children}
+            </div>
+          </ProtectedRoute>
         </div>
       </main>
     </section>

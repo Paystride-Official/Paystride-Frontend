@@ -5,6 +5,7 @@ import VerifyUserForm from "../../_components/VerifyUserForm/VerifyUserForm";
 import RegistrationForm from "../../_components/RegistrationForm/RegistrationForm";
 import { signUpUser } from "@/types/types";
 import { FieldValues } from "react-hook-form";
+import { useCreateUserAccount } from "./_slice/query";
 
 interface Props {}
 
@@ -13,6 +14,19 @@ const Register = (props: Props) => {
   const [userData, setUserData] = useState<FieldValues>();
 
   const handleSubmit = () => {};
+
+  const { mutateAsync: createUserAccount } = useCreateUserAccount();
+
+  const handleRegister = async (data: FieldValues) => {
+    // setUserData(data);
+    // const session: any = await useCreateUserAccount(formData);
+    // // z.infer<typeof SignUpSchema>
+    // console.log(session);
+    // if (session.success) {
+    //   setStep(step + 1);
+    //   reset();
+    // }
+  };
 
   const StepToRender = useCallback(
     (key: number): React.JSX.Element | null => {

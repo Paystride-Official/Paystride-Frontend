@@ -1,7 +1,7 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import Paystride from "@/app/assets/Paystride.svg";
-import React from "react";
 import Link from "next/link";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,9 +9,11 @@ import { LogInSchema } from "@/Utils/Schemas";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useSignInAccount } from "./_slice/query";
+import { useRouter } from "next/navigation";
 
 interface Props {}
 const LoginPage = (props: Props) => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -24,10 +26,18 @@ const LoginPage = (props: Props) => {
 
   const { mutateAsync: signInAccount } = useSignInAccount();
 
-  const handleOnSubmit = (data: FieldValues) => {
+  const handleOnSubmit = async (data: FieldValues) => {
     const formData = getValues();
-    signInAccount(formData);
-    console.log(formData);
+    const session = await signInAccount(formData);
+
+    if (session.status === 200 && session.statusText === "OK") {
+      console.log("to dashboard");
+
+      router.push("/dashboard");
+      return;
+    } else {
+      console.log(session);
+    }
 
     reset();
   };
@@ -69,7 +79,7 @@ const LoginPage = (props: Props) => {
               <span className="text-sm">Remember me</span>
             </div>
             <Link
-              href="/forgetpassword"
+              href="/forget-password"
               className=" text-sm capitalize text-[#091F8E] "
             >
               forget password?

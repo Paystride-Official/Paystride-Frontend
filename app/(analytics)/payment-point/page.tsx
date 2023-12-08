@@ -9,6 +9,7 @@ import { EditPayPoint } from "./_components/EditPayPoint/EditPayPoint";
 import { AddPayPoint } from "./_components/AddPayPoint/AddPayPoint";
 import { payPointCol, payPointRow } from "@/Utils/constants";
 import { TableComponent } from "@/components/Table/Table";
+import { FilterObject } from "@/types/types";
 
 type Props = {};
 
@@ -17,9 +18,10 @@ const Paymentpoint = (props: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [addNewModal, setAddNewModal] = useState(false);
   const [search, setSearch] = useState<string>("");
-  const [filters, setFilters] = useState<string>("");
+  const [filters, setFilters] = useState<FilterObject | null>(null);
   const [content, setContent] = useState<ReactNode>("");
   const onSubmit = (data: FieldValues) => console.log(data);
+  console.log("filters", search);
 
   const closeModal = () => {
     setAddNewModal(false);
@@ -27,6 +29,8 @@ const Paymentpoint = (props: Props) => {
   };
 
   const openModal = () => {
+    console.log("open");
+
     setIsOpen(true);
   };
 
@@ -61,10 +65,10 @@ const Paymentpoint = (props: Props) => {
     <section className="">
       <div className="mt-8">
         <h1 className="text-[#333] text-xl font-bold pb-4">Payment Point</h1>
-        <div className="flex">
-          <Header headerStat={bankStat} />
+        {/* <div className="flex"> */}
+        <Header headerStat={bankStat} />
 
-          <div className="w-full flex justify-start items-end ml-4">
+        {/* <div className="w-full flex justify-start items-end ml-4">
             <button
               onClick={() => {
                 setAddNewModal(!addNewModal);
@@ -74,7 +78,7 @@ const Paymentpoint = (props: Props) => {
               Add New Payment point
             </button>
           </div>
-        </div>
+        </div> */}
 
         <div
           className="    
@@ -91,6 +95,9 @@ const Paymentpoint = (props: Props) => {
             setSearch={setSearch}
             filters={filters}
             setFilters={setFilters}
+            addNew
+            addNewModal={addNewModal}
+            setAddNewModal={setAddNewModal}
           />
           <TableComponent
             rows={payPointRow}

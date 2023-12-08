@@ -197,10 +197,10 @@ export const payPointCol = [
 ];
 let server_url;
 
-if (process.env.REACT_APP_ENVIRONMENT === "production") {
+if (process.env.NODE_ENV === "production") {
   server_url = "http://api.paystride.co/api";
 } else {
-  server_url = "http://staging-api.paystride.co";
+  server_url = "http://staging-api.paystride.co/api";
 }
 
 export const SERVER_URL = server_url;
