@@ -1,10 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import LogoName from "@/app/(marketing)/assets/image 11.svg";
+import PaystrideWhite from "@/app/(marketing)/assets/image 11.svg";
 import Facebook from "@/app/(marketing)/assets/Facebook.svg";
 import Instagram from "@/app/(marketing)/assets/Instagram.svg";
 import Twitter from "@/app/(marketing)/assets/Twitter.svg";
 import LinkedIn from "@/app/(marketing)/assets/LinkedIn.svg";
+import Link from "next/link";
 
 type Props = {};
 
@@ -23,7 +24,7 @@ const Footer = (props: Props) => {
                     </div>
                     {/* <div className="hidden md:col-span-1"></div> */}
                     <div className="w-full md:w-[40%] lg:w-[34%] flex flex-col justify-between items-start h-[12rem] md:h-[15rem]">
-                        <Image src={LogoName} alt="LogoNameImage" />
+                        <Image src={PaystrideWhite} alt="LogoNameImage" />
                         <div className="text-xs md:text-sm">
                             <h3 className="font-semibold">Address:</h3>
                             <p>Level 1, 12 Sample St, Sydney NSW 2000</p>
@@ -34,19 +35,33 @@ const Footer = (props: Props) => {
                             <p>info@relume.io</p>
                         </div>
                         <div className="flex gap-4">
-                            <Image src={Facebook} alt="FacebookIcon" />
-                            <Image src={Instagram} alt="InstagramIcon" />
-                            <Image src={Twitter} alt="TwitterIcon" />
-                            <Image src={LinkedIn} alt="LinkedInIcon" />
+                            <Link href="">
+                                <Image src={Facebook} alt="FacebookIcon" />
+                            </Link>
+                            <Link href="">
+                                <Image src={Instagram} alt="InstagramIcon" />
+                            </Link>
+                            <Link href="">
+                                <Image src={Twitter} alt="TwitterIcon" />
+                            </Link>
+                            <Link href="">
+                                <Image src={LinkedIn} alt="LinkedInIcon" />
+                            </Link>
                         </div>
                     </div>
                 </div>
                 <hr className="mt-8" />
                 <div className="text-xs md:text-sm capitalize flex flex-col md:flex-row justify-between">
                     <div className="gap-2 md:gap-4 flex pt-4">
-                        <p>privacy policy</p>
-                        <p>terms of service</p>
-                        <p>cookie settings</p>
+                        <Link href="" className="underline">
+                            <p>privacy policy</p>
+                        </Link>
+                        <Link href="" className="underline">
+                            <p>terms of service</p>
+                        </Link>
+                        <Link href="" className="underline">
+                            <p>cookie settings</p>
+                        </Link>
                     </div>
                     <div className="pt-4">
                         &copy; 2023 paystride. all rights reserved
