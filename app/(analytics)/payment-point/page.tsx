@@ -2,18 +2,17 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import "./paypoint.css";
 import Header from "../_components/HeaderStat/Header";
-import { TableComponent } from "@/components/Table/Table";
-import { payPointCol, payPointRow } from "@/Utils/constants";
 import ModalPopUp from "@/components/Modal/Modal";
 import Controllers from "@/components/Controllers/Controllers";
 import { FieldValues, useForm } from "react-hook-form";
 import { EditPayPoint } from "./_components/EditPayPoint/EditPayPoint";
 import { AddPayPoint } from "./_components/AddPayPoint/AddPayPoint";
+import { payPointCol, payPointRow } from "@/Utils/constants";
+import { TableComponent } from "@/components/Table/Table";
 
 type Props = {};
 
 const Paymentpoint = (props: Props) => {
-  const { handleSubmit, register } = useForm();
   const [singleRow, setSingleRow] = useState<{ [key: string]: any }>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [addNewModal, setAddNewModal] = useState(false);
@@ -32,17 +31,23 @@ const Paymentpoint = (props: Props) => {
   };
 
   useEffect(() => {
-    if (addNewModal) {
-      setContent(<AddPayPoint onSubmit={onSubmit} closeModal={closeModal} />);
-    } else if (isOpen) {
-      setContent(
-        <EditPayPoint
-          singleRow={singleRow}
-          onSubmit={onSubmit}
-          closeModal={closeModal}
-        />
-      );
-    }
+    const determineContent = () => {
+      if (addNewModal) {
+        return <AddPayPoint onSubmit={onSubmit} closeModal={closeModal} />;
+      } else if (isOpen) {
+        return (
+          <EditPayPoint
+            singleRow={singleRow}
+            onSubmit={onSubmit}
+            closeModal={closeModal}
+          />
+        );
+      }
+      // Return a default or null if neither condition is met
+      return null;
+    };
+
+    setContent(determineContent());
   }, [isOpen, addNewModal]);
 
   const bankStat = [

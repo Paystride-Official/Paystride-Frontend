@@ -9,16 +9,17 @@ import Image from "next/image";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useCreateUserAccount } from "../../(auth)/register/_slice/query";
-import { NewUser } from "@/types/types";
+import { NewUser, signUpUser } from "@/types/types";
 import { SignUpSchema } from "@/Utils/Schemas";
 
 type Props = {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  setUserData: React.Dispatch<React.SetStateAction<FieldValues>>;
   onSubmit: () => void;
 };
 
-const RegistrationForm = ({ setStep, step }: Props) => {
+const RegistrationForm = ({ setStep, step, setUserData }: Props) => {
   const {
     register,
     handleSubmit,
@@ -35,6 +36,7 @@ const RegistrationForm = ({ setStep, step }: Props) => {
 
   const handleOnSubmit = async (data: FieldValues) => {
     const formData = getValues();
+    setUserData(formData);
     createUserAccount(formData);
     // z.infer<typeof SignUpSchema>
     setStep(step + 1);
