@@ -13,7 +13,7 @@ const Pricing = (props: Props) => {
     return (
         <>
             <div className="relative md:py-[3rem] lg:py-[6rem] w-[100%]">
-                <div className="bg-[#d0d0df] pt-9 pb-5 lg:pb-11 w-[100%] md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-5 md:rounded-2xl">
+                <div className="bg-[#d0d0df] pt-11 pb-5 lg:pb-12 w-[100%] md:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-5 md:rounded-2xl">
                     <div className="md:pl-8 col-span-3 flex items-center w-[90%] md:w-auto mx-auto">
                         <div className="">
                             <h1 className="text-3xl md:text-5xl lg:text-[56px] font-bold">
@@ -141,7 +141,10 @@ const Pricing = (props: Props) => {
                 </div>
             </main>
 
-            <AccordionItem />
+            <AccordionItem
+                bgcolor={{ backgroundColor: "#D2DDE2" }}
+                border={{ borderColor: "#D2DDE2" }}
+            />
 
             <Footer />
         </>

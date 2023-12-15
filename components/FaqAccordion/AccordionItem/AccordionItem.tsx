@@ -4,7 +4,12 @@ import PlusSign from "@/app/(marketing)/assets/Plus.svg";
 import Image from "next/image";
 import Accordion from "../Accordion/Accordion";
 
-const AccordionItem = () => {
+type CssProps = {
+    bgcolor: React.CSSProperties;
+    border: React.CSSProperties;
+};
+
+const AccordionItem = ({ bgcolor, border }: CssProps) => {
     const Faq = [
         {
             id: 1,
@@ -56,7 +61,14 @@ const AccordionItem = () => {
                 <div className="flex-[1] py-7 flex justify-center">
                     <div>
                         {Faq.map((faqs) => {
-                            return <Accordion {...faqs} key={faqs.id} />;
+                            return (
+                                <Accordion
+                                    {...faqs}
+                                    key={faqs.id}
+                                    bgcolor={bgcolor}
+                                    border={border}
+                                />
+                            );
                         })}
                     </div>
                 </div>

@@ -1,69 +1,64 @@
+"use client";
+import React from "react";
 import Image from "next/image";
 import Banner from "@/app/(marketing)/assets/image 2.svg";
 import Atm from "@/app/(marketing)/assets/image 4.svg";
 import Settle from "@/app/(marketing)/assets/Image 15.svg";
 import Dash from "@/app/(marketing)/assets/image 16.svg";
 import Slider1 from "@/app/(marketing)/assets/Slider.svg";
-import StarIcon from "@/app/(marketing)/assets/VectorStar.svg";
 import Webflow from "@/app/(marketing)/assets/Black.svg";
-import ActiveDot from "@/app/(marketing)/assets/ActiveDot.svg";
-import Dot from "@/app/(marketing)/assets/Dot.svg";
-import PrevButton from "@/app/(marketing)/assets/ButtonPrev.svg";
-import NextButton from "@/app/(marketing)/assets/ButtonNext.svg";
-import Carousel from "./_components/Carousel/Carousel";
+import Carousel from "@/app/(marketing)/_components/Carousel/Carousel";
+import AccordionItem from "@/components/FaqAccordion/AccordionItem/AccordionItem";
+import Footer from "@/components/Footer/Footer";
+import Accordion from "@/components/FaqAccordion/Accordion/Accordion";
 
 export default function Home() {
-    const Slide = [
+    const slides = [
         {
-            id: 1,
             image: Slider1,
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
             name: "Name",
             surname: "Surname",
             position: "Position",
-            companyName: "Company name",
+            companyName: "Company name1",
             companyLogo: Webflow,
         },
-        // {
-        //     id: 2,
-        //     image: Settle,
-        //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
-        //     name: "Name",
-        //     surname: "Surname",
-        //     position: "Position",
-        //     companyName: "Company name",
-        //     companyLogo: Webflow,
-        // },
-        // {
-        //     id: 3,
-        //     image: Dash,
-        //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
-        //     name: "Name",
-        //     surname: "Surname",
-        //     position: "Position",
-        //     companyName: "Company name",
-        //     companyLogo: Webflow,
-        // },
-        // {
-        //     id: 4,
-        //     image: Slider1,
-        //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
-        //     name: "Name",
-        //     surname: "Surname",
-        //     position: "Position",
-        //     companyName: "Company name",
-        //     companyLogo: Webflow,
-        // },
-        // {
-        //     id: 5,
-        //     image: Settle,
-        //     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
-        //     name: "Name",
-        //     surname: "Surname",
-        //     position: "Position",
-        //     companyName: "Company name",
-        //     companyLogo: Webflow,
-        // },
+        {
+            image: Settle,
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+            name: "Name",
+            surname: "Surname",
+            position: "Position",
+            companyName: "Company name2",
+            companyLogo: Webflow,
+        },
+        {
+            image: Dash,
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+            name: "Name",
+            surname: "Surname",
+            position: "Position",
+            companyName: "Company name3",
+            companyLogo: Webflow,
+        },
+        {
+            image: Slider1,
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+            name: "Name",
+            surname: "Surname",
+            position: "Position",
+            companyName: "Company name4",
+            companyLogo: Webflow,
+        },
+        {
+            image: Settle,
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+            name: "Name",
+            surname: "Surname",
+            position: "Position",
+            companyName: "Company name5",
+            companyLogo: Webflow,
+        },
     ];
 
     return (
@@ -210,77 +205,94 @@ export default function Home() {
 
             <div className="bg-[#d2dde2] w-full">
                 <div className="w-[90%] mx-auto pb-8">
-                    <h1 className="bg-red-300 text-[22px] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center py-4 my-8">
+                    <h1 className="text-[22px] sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center py-4 my-8">
                         What our customers say...
                     </h1>
-                    <div className="">
-                        <div className="">
-                            {Slide.map((slides) => {
-                                return <Carousel {...slides} key={slides.id} />;
-                            })}
-                        </div>
-                    </div>
-                    {/* <div className="bg-green-400 w-full flex flex-col md:flex-row items-center gap-4 h-25">
-                        <div className=" flex-[1] relative w-full">
-                            <Image
-                                src={Slider1}
-                                alt="SliderImage"
-                                priority
-                                className="w-full md:w-[85%]"
-                            />
-                        </div>
-                        <div className="flex-[1] flex items-center order-2 md:order-1">
-                            <div>
-                                <div className="flex gap-1">
-                                    <Image src={StarIcon} alt="StarIcon" />
-                                    <Image src={StarIcon} alt="StarIcon" />
-                                    <Image src={StarIcon} alt="StarIcon" />
-                                    <Image src={StarIcon} alt="StarIcon" />
-                                    <Image src={StarIcon} alt="StarIcon" />
-                                </div>
-                                <q className="mt-3 font-bold max-w-[50rem] md:mt-6 mx-auto md:text-xl text-start">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Suspendisse varius enim in
-                                    eros elementum tristique. Duis cursus, mi
-                                    quis viverra ornare, eros dolor interdum
-                                    nulla, ut commodo diam libero vitae erat.
-                                </q>
-                                <div className="bg-red-600 flex capitalize my-2 md:my-6">
-                                    <div className="bg-purple-500 pr-3 text-[12px] md:text-base border-r-2 border-zinc-950">
-                                        <h3 className="font-semibold">
-                                            Name Surname
-                                        </h3>
-                                        <p>position, company name</p>
-                                    </div>
-                                    <Image
-                                        src={Webflow}
-                                        alt="Logo"
-                                        className="w-auto pl-2"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
-                    <div className="bg-purple-300 flex items-center justify-between">
-                        <div className="bg-yellow-300 flex gap-2">
-                            <Image src={ActiveDot} alt="ActiveDot" />
-                            <Image src={Dot} alt="Dot" />
-                        </div>
-                        <div className="bg-white flex gap-2">
-                            <Image
-                                src={PrevButton}
-                                alt="PrevButton"
-                                className="w-6 md:w-auto"
-                            />
-                            <Image
-                                src={NextButton}
-                                alt="NextButton"
-                                className="w-6 md:w-auto"
-                            />
-                        </div>
+                    <Carousel slides={slides} />
+                </div>
+            </div>
+
+            <div className="w-full py-9">
+                <div className="w-[90%] mx-auto pb-5 md:p-10 ">
+                    <p className="text-sm md:text-lg text-center mb-5">
+                        Used by the world's most average companies
+                    </p>
+                    <div className="flex flex-wrap items-center justify-center gap-5 md:gap-10">
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
+
+                        <Image
+                            src={Webflow}
+                            className="w-[5.2rem] md:w-[7.5rem] h-auto"
+                            alt="WebflowLogo"
+                        />
                     </div>
                 </div>
             </div>
+
+            <AccordionItem
+                bgcolor={{ backgroundColor: "white" }}
+                border={{ borderColor: "black" }}
+            />
+
+            <Footer />
         </>
     );
 }
