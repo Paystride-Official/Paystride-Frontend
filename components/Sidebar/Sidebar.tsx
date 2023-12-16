@@ -5,6 +5,7 @@ import Transaction from "@/components/Sidebar/assets/Transaction.svg";
 import Paymentpoint from "@/components/Sidebar/assets/Paymentpoint.svg";
 import Settlement from "@/components/Sidebar/assets/Settlement.svg";
 import Settings from "@/components/Sidebar/assets/Settings.svg";
+import Support from "@/components/Sidebar/assets/Support.svg";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -44,6 +45,11 @@ const Sidebar = (props: Props) => {
       href: "/settings",
       icon: Settings,
     },
+    {
+      title: "Support",
+      href: "/support",
+      icon: Support,
+    }
   ];
   return (
     <div className=" min-h-screen sticky hidden sm:flex  bg-[#ECECEC]  ">
