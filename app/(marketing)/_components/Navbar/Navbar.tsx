@@ -38,14 +38,20 @@ const Navbar = (props: Props) => {
                         </li>
                         <li>
                             <Link href="/login">
-                                <button className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-xl capitalize">
+                                <button
+                                    type="button"
+                                    className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-xl capitalize"
+                                >
                                     Login
                                 </button>
                             </Link>
                         </li>
                         <li>
-                            <Link href="">
-                                <button className="text-white capitalize bg-[#091F8E] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-xl">
+                            <Link href="/sign-up">
+                                <button
+                                    type="button"
+                                    className="text-white capitalize bg-[#091F8E] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-xl"
+                                >
                                     try paystride for free
                                 </button>
                             </Link>
@@ -63,11 +69,10 @@ const Navbar = (props: Props) => {
                         className={`absolute md:hidden bg-[#051355] text-white w-full h-[100vh] top-0 left-0 duration-0 ${
                             open ? "left-0 " : "left-[-100%]"
                         }`}
-                        onClick={() => setOpen(!open)}
                     >
                         <div className="px-[5%] border-b-white border-b border-solid relative z-20">
                             <div className="flex justify-between p-2">
-                                <Link href="/">
+                                <Link href="/" onClick={() => setOpen(!open)}>
                                     <Image
                                         src={PaystrideWhite}
                                         alt="Paystride"
@@ -75,6 +80,7 @@ const Navbar = (props: Props) => {
                                     />
                                 </Link>
                                 <Image
+                                    onClick={() => setOpen(!open)}
                                     src={Close}
                                     alt="Close"
                                     className="cursor-pointer"
@@ -82,21 +88,37 @@ const Navbar = (props: Props) => {
                             </div>
                         </div>
                         <ul className="relative text-center py-7 px-[5%] z-20">
-                            <li className="hover:font-bold hover:text-[#d0d0df] w-full py-5">
-                                <Link href="/features">Features</Link>
+                            <li className="hover:font-bold hover:text-[#d0d0df] w-full py-3">
+                                <Link
+                                    href="/features"
+                                    onClick={() => setOpen(!open)}
+                                >
+                                    Features
+                                </Link>
                             </li>
-                            <li className="hover:font-bold hover:text-[#d0d0df] w-full py-5">
-                                <Link href="/pricing">Pricing</Link>
+                            <li className="hover:font-bold hover:text-[#d0d0df] w-full py-3">
+                                <Link
+                                    href="/pricing"
+                                    onClick={() => setOpen(!open)}
+                                >
+                                    Pricing
+                                </Link>
                             </li>
-                            <li className="hover:font-bold hover:text-[#d0d0df] w-full py-5">
-                                <Link href="/login">
+                            <li className="hover:font-bold hover:text-[#d0d0df] w-full py-3">
+                                <Link
+                                    href="/login"
+                                    onClick={() => setOpen(!open)}
+                                >
                                     <button className="border-none py-1 px-3 md:py-2 md:px-4 text-base xl:text-lg capitalize">
                                         Login
                                     </button>
                                 </Link>
                             </li>
                             <li className="hover:font-bold w-full py-5">
-                                <Link href="">
+                                <Link
+                                    href="/sign-up"
+                                    onClick={() => setOpen(!open)}
+                                >
                                     <button className="text-black capitalize bg-white py-1 px-3 md:py-2 md:px-4 text-base xl:text-xl">
                                         try paystride for free
                                     </button>
