@@ -30,14 +30,16 @@ export const signInAccount = async (user: NewUser) => {
 
       // Store the token in local storage
       storeItem("AuthToken", token);
+      storeItem("user-info", data.user);
 
       // Navigate to the dashboard page
 
       // Return the remaining user data
-      return rest;
+      return { success: { ...rest } };
     }
   } catch (error) {
     const response = handleAxiosError(error);
-    return response;
+
+    return { error: { response } };
   }
 };

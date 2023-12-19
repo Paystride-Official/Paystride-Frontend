@@ -10,6 +10,12 @@ import { AddPayPoint } from "./_components/AddPayPoint/AddPayPoint";
 import { payPointCol, payPointRow } from "@/Utils/constants";
 import { TableComponent } from "@/components/Table/Table";
 import { FilterObject } from "@/types/types";
+import {
+  useCreatePaymentPoint,
+  useEditPaymentPoint,
+  useGetAllPaypoint,
+  useGetPaypoint,
+} from "./_slice/query";
 
 type Props = {};
 
@@ -20,8 +26,27 @@ const Paymentpoint = (props: Props) => {
   const [search, setSearch] = useState<string>("");
   const [filters, setFilters] = useState<FilterObject | null>(null);
   const [content, setContent] = useState<ReactNode>("");
-  const onSubmit = (data: FieldValues) => console.log(data);
-  console.log("filters", search);
+
+  const { mutateAsync: createPaypoint } = useCreatePaymentPoint();
+  const { mutateAsync: editPaypoint } = useEditPaymentPoint();
+  const { isLoading, data, isError } = useGetPaypoint();
+  const {} = useGetAllPaypoint();
+
+  const merchant_id = "1";
+  const addPaypoint = async (data: FieldValues) => {
+    const updatedData = { ...data, merchant_id };
+
+    console.log(data);
+    const response = await createPaypoint(updatedData);
+
+    console.log(response);
+  };
+
+  const handleEditPaypoint = async (data: FieldValues) => {
+    const updatedData = { ...data, merchant_id };
+    const response = await editPaypoint(updatedData);
+    console.log(data);
+  };
 
   const closeModal = () => {
     setAddNewModal(false);
@@ -29,25 +54,27 @@ const Paymentpoint = (props: Props) => {
   };
 
   const openModal = () => {
-    console.log("open");
-
     setIsOpen(true);
+  };
+
+  const openAddNewMOdal = () => {
+    setAddNewModal(true);
   };
 
   useEffect(() => {
     const determineContent = () => {
       if (addNewModal) {
-        return <AddPayPoint onSubmit={onSubmit} closeModal={closeModal} />;
+        return <AddPayPoint onSubmit={addPaypoint} closeModal={closeModal} />;
       } else if (isOpen) {
         return (
           <EditPayPoint
             singleRow={singleRow}
-            onSubmit={onSubmit}
+            onSubmit={handleEditPaypoint}
             closeModal={closeModal}
           />
         );
       }
-      // Return a default or null if neither condition is met
+
       return null;
     };
 
@@ -67,18 +94,6 @@ const Paymentpoint = (props: Props) => {
         <h1 className="text-[#333] text-xl font-bold pb-4">Payment Point</h1>
         {/* <div className="flex"> */}
         <Header headerStat={bankStat} />
-
-        {/* <div className="w-full flex justify-start items-end ml-4">
-            <button
-              onClick={() => {
-                setAddNewModal(!addNewModal);
-              }}
-              className="bg-[#091F8E]  text-white px-4 py-1 rounded"
-            >
-              Add New Payment point
-            </button>
-          </div>
-        </div> */}
 
         <div
           className="    

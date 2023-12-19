@@ -133,7 +133,10 @@ const Pricing = (props: Props) => {
         </div>
       </main>
 
-      <Accordion />
+      <Accordion
+        bgcolor={{ backgroundColor: "white" }}
+        border={{ borderColor: "black" }}
+      />
 
       <Footer />
     </>

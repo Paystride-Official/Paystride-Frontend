@@ -82,7 +82,10 @@ const Features = (props: Props) => {
         </div>
       </div>
 
-      <Accordion />
+      <Accordion
+        bgcolor={{ backgroundColor: "#D2DDE2" }}
+        border={{ borderColor: "#D2DDE2" }}
+      />
 
       <Footer />
     </>
