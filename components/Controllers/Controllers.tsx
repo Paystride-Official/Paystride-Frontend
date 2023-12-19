@@ -25,6 +25,7 @@ const Controllers = ({
   setFilters,
   addNewModal,
   setAddNewModal,
+  
 }: Props) => {
   return (
     <section className="flex justify-between items-center px-4 pt-4">
@@ -38,7 +39,7 @@ const Controllers = ({
               onClick={() => setAddNewModal && setAddNewModal(!addNewModal)}
               className="border border-solid bg-[#091F8E] text-white border-[#DDE2FD] px-4 py-1 rounded-md"
             >
-              AddNew
+              + AddNew
             </button>
           </div>
         )}

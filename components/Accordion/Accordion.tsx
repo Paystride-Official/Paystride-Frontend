@@ -1,10 +1,10 @@
-"use client";
-import React, { useRef, useState, useEffect } from "react";
-import PlusSign from "@/app/(marketing)/assets/Plus.svg";
-import Image from "next/image";
 import AccordionItem from "./AccordionItem/AccordionItem";
 
-const Accordion = () => {
+type AccordionProps = {
+  bgcolor: React.CSSProperties;
+  border: React.CSSProperties;
+};
+const Accordion = ({ bgcolor, border }: AccordionProps) => {
   const Faq = [
     {
       id: 1,
@@ -60,7 +60,14 @@ const Accordion = () => {
         <div className="flex-[1] py-7 flex justify-center">
           <div>
             {Faq.map((faqs) => {
-              return <AccordionItem {...faqs} key={faqs.id} />;
+              return (
+                <AccordionItem
+                  {...faqs}
+                  key={faqs.id}
+                  bgcolor={bgcolor}
+                  border={border}
+                />
+              );
             })}
           </div>
         </div>

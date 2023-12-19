@@ -1,8 +1,11 @@
 "use client";
+import { ResetPasswordSchema } from "@/Utils/Schemas";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
+import { useResetPassword } from "./_slice/query";
 type Props = {};
 
 const ResetPassword = (props: Props) => {
@@ -12,10 +15,26 @@ const ResetPassword = (props: Props) => {
     getValues,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm({});
+  } = useForm({
+    resolver: zodResolver(ResetPasswordSchema),
+  });
+
   const router = useRouter();
 
-  const handleClick = () => {
+  const { mutateAsync: resetPassword } = useResetPassword();
+
+  const handleClick = async (data: FieldValues) => {
+    const updatedData = { ...data, email: "ozoremenachiima@gmail.com" };
+    const response = await resetPassword(updatedData);
+
+    if (response.success) {
+      // console.log(response.success);
+
+      return;
+    } else {
+      // console.log(response.error);
+    }
+
     // router.push("/otp");
   };
 
@@ -25,7 +44,10 @@ const ResetPassword = (props: Props) => {
         <div className="mb-4 ">
           <h1 className="font-bold text-2xl">Reset Password</h1>
         </div>
-        <form action="" className="w-[90%] flex flex-col gap-4 mx-auto">
+        <form
+          onSubmit={handleSubmit(handleClick)}
+          className="w-[90%] flex flex-col gap-4 mx-auto"
+        >
           <Input
             register={register}
             id="new_password"
@@ -33,6 +55,7 @@ const ResetPassword = (props: Props) => {
             label="New password"
             placeholder=""
           />
+
           <Input
             register={register}
             id="confirm_password"
@@ -40,11 +63,14 @@ const ResetPassword = (props: Props) => {
             label="Confirm your password"
             placeholder=""
           />
-          <Button
-            type="button"
-            text="reset password"
-            handleClick={handleClick}
-          />
+          {(errors.new_password || errors.confirm_password) && (
+            <p className="text-red-500 w-[90%] mx-auto my-0 mt-[-1rem]">
+              {errors.new_password
+                ? `${errors.new_password?.message} `
+                : `${errors.confirm_password?.message}`}
+            </p>
+          )}
+          <Button type="submit" text="reset password" disabled={isSubmitting} />
         </form>
       </div>
     </section>

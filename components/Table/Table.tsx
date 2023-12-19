@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Arrowdown from "@/app/(analytics)/payment-point/assets/arrowdown.svg";
 import Edit from "@/app/(analytics)/payment-point/assets/edit.svg";
+import Delete from "@/components/Table/assets/Delete.svg";
 
 import {
   Table,
@@ -37,6 +38,13 @@ export function TableComponent({
     // const cellValue = column[columnKey as keyof column[]];
 
     switch (columnKey) {
+      case "name":
+        return (
+          <div>
+            <p className="text-[#21272A] font-bold capitalize">{column.name}</p>
+            <p>{column.phoneNumber}</p>
+          </div>
+        );
       case "onDuty":
         return (
           <div
@@ -53,16 +61,40 @@ export function TableComponent({
         );
       case "status":
         return (
-          <div className=" flex items-center gap-8">
+          <div className=" flex items-start gap-8">
             <p>{column.status}</p>
-            <div
+            {/* <div
               className="flex item-center justify-center gap-6 cursor-pointer"
               onClick={() => {
                 openModal?.(), getData(column);
               }}
             >
               <Image src={Edit} alt="Edit" />
-            </div>
+            </div> */}
+          </div>
+        );
+      case "action":
+        return (
+          <div
+            className="flex w-full item-start justify-start gap-6 cursor-pointer"
+            onClick={() => {
+              openModal?.(), getData(column);
+            }}
+          >
+            <Image
+              src={Edit}
+              alt="Edit"
+              width={15}
+              height={15}
+              // className="flex items-start "
+            />
+            <Image
+              src={Delete}
+              width={15}
+              height={15}
+              alt="Delete"
+              // className="flex items-start "
+            />
           </div>
         );
       default:

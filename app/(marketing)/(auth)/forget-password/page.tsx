@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
+import { useForgotPassword } from "./_slice/query";
 
 type Props = {};
 
@@ -18,8 +19,21 @@ const ForgotPassword = (props: Props) => {
   } = useForm({});
   const router = useRouter();
 
-  const handleClick = () => {
-    router.push("/reset-password");
+  const { mutateAsync: forgotPassword } = useForgotPassword();
+
+  const handleClick = async (data: FieldValues) => {
+    if (!data.email) {
+      console.log("please input your email");
+      return;
+    }
+
+    const response: any = await forgotPassword(data);
+    if (response.success) {
+      // router.push("/reset-password");
+      reset();
+    } else {
+      console.log(response.error);
+    }
   };
 
   return (
@@ -28,7 +42,10 @@ const ForgotPassword = (props: Props) => {
         <div className="mb-4 ">
           <h1 className="font-bold text-2xl">Forgot Password</h1>
         </div>
-        <form action="" className="w-[90%] flex flex-col gap-4 mx-auto">
+        <form
+          className="w-[90%] flex flex-col gap-4 mx-auto"
+          onSubmit={handleSubmit(handleClick)}
+        >
           <Input
             register={register}
             id="email"
@@ -36,11 +53,7 @@ const ForgotPassword = (props: Props) => {
             label="Email"
             placeholder=""
           />
-          <Button
-            type="button"
-            text="reset password"
-            handleClick={handleClick}
-          />
+          <Button type="submit" text="reset password" disabled={isSubmitting} />
         </form>
       </div>
     </section>

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import PlusSign from "@/app/(marketing)/assets/Plus.svg";
@@ -6,9 +7,11 @@ type FaqProps = {
   question: string;
   answer: string;
   id: number;
+  bgcolor: React.CSSProperties;
+  border: React.CSSProperties;
 };
 
-const AccordionItem = ({ question, answer }: FaqProps) => {
+const AccordionItem = ({ question, answer, bgcolor, border }: FaqProps) => {
   const [show, setShow] = useState(false);
   const [divHeight, setDivHeight] = useState("0px");
   const answerRef = useRef<HTMLDivElement>(null);
@@ -21,11 +24,15 @@ const AccordionItem = ({ question, answer }: FaqProps) => {
 
   return (
     <>
-      <div className="w-[full] mb-3 border-2 border-[#6A8F9F] text-[12px] md:text-base">
+      <div
+        className="w-[full] mb-3 border-2 border-[#6A8F9F] text-[12px] md:text-base"
+        style={border}
+      >
         <button
           onClick={() => {
             setShow(!show);
           }}
+          style={bgcolor}
           className="bg-[#6A8F9F] font-medium border-none text-start px-4 py-2 w-full flex justify-between"
         >
           {question}

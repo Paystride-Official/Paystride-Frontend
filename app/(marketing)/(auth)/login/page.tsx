@@ -10,6 +10,7 @@ import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useSignInAccount } from "./_slice/query";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/context/AuthContext";
 
 interface Props {}
 const LoginPage = (props: Props) => {
@@ -24,19 +25,21 @@ const LoginPage = (props: Props) => {
     resolver: zodResolver(LogInSchema),
   });
 
+  const { setUser } = useUserContext();
   const { mutateAsync: signInAccount } = useSignInAccount();
 
   const handleOnSubmit = async (data: FieldValues) => {
     const formData = getValues();
-    const session = await signInAccount(formData);
+    const response: any = await signInAccount(formData);
 
-    if (session.status === 200 && session.statusText === "OK") {
+    if (response.success) {
+      console.log(response.success);
       console.log("to dashboard");
 
-      router.push("/dashboard");
+      // router.push("/dashboard");
       return;
     } else {
-      console.log(session);
+      console.log(response.error);
     }
 
     reset();
