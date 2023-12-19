@@ -78,7 +78,7 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
                 leaveTo="opacity-0 translate-x-4"
               >
                 <p className="font-bold py-3 lg:py-5 max-w-[50rem] sm:mt-3 lg:mt-6 mx-auto  text-sm md:text-base lg:text-xl text-start">
-                  "{slide.text}"
+                  {slide.text}
                 </p>
               </Transition>
             ))}

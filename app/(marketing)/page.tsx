@@ -64,7 +64,7 @@ export default function Home() {
   return (
     <>
       <main className="w-[90%] mx-auto">
-        <div className="">
+        <div>
           <h1 className="text-3xl md:text-5xl lg:text-7xl mt-8 font-extrabold text-center p-4 max-w-[27rem] mx-auto md:max-w-[40rem]  lg:max-w-[48rem] ">
             Mobile checkout No More Waiting
           </h1>
@@ -205,7 +205,7 @@ export default function Home() {
       <div className="w-full py-9">
         <div className="w-[90%] mx-auto pb-5 md:p-10 ">
           <p className="text-sm md:text-lg text-center mb-5">
-            Used by the world's most average companies
+            Used by the world&apos;s most average companies
           </p>
           <div className="flex flex-wrap items-center justify-center gap-5 md:gap-10">
             <Image
@@ -220,9 +220,8 @@ export default function Home() {
       </div>
 
       <Accordion
-      // bgcolor={{ backgroundColor: "white" }}
-      // border={{ borderColor: "black" }}
-      //fix later
+        bgcolor={{ backgroundColor: "white" }}
+        border={{ borderColor: "black" }}
       />
 
       <Footer />
