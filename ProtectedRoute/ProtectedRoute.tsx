@@ -3,7 +3,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
-import { getItemFromStorage } from "@/Utils/localStorage";
+import {
+  getItemFromStorage,
+  removeItemFromStorage,
+} from "@/Utils/localStorage";
 import Loader from "@/components/Loader/Loader";
 
 interface ProtectedRouteProps {
@@ -21,11 +24,17 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
     if (!authToken) {
       console.log("not true");
-
+      removeItemFromStorage("user-info");
       // If not authenticated, redirect to the login page
       redirect("/login");
     }
   }, []);
 
   return <>{loading ? <Loader /> : children}</>;
+};
+
+export const getUser = () => {
+  const user = getItemFromStorage("user-info");
+  console.log(user, "user-inf");
+  return user;
 };

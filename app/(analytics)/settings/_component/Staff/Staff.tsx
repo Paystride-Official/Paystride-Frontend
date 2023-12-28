@@ -16,6 +16,7 @@ import NewStaff from "../NewStaff/NewStaff";
 import EditStaff from "../EditStaff/EditStaff";
 import { useUserContext } from "@/context/AuthContext";
 import DeleteStaff from "../DeleteStaff/DeleteStaff";
+import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 
 type Props = {
   // setAddNewModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,17 +35,18 @@ const Staff = (props: Props) => {
   const [content, setContent] = useState<ReactNode>("");
   const { mutateAsync: createStaff } = useCreateStaff();
   const { mutateAsync: editStaff } = useEditStaff();
-  const { isLoading, user } = useUserContext();
+  const user = getUser();
+  console.log(user, "user");
 
+  //  if(user){
+
+  //  }
   const {
     isLoading: loading,
     data,
     isError,
   } = useGetAllStaff({ merchant_id: user?.id });
 
-  if (data && !isLoading) {
-    // setStaff(data.success);
-  }
   console.log(data?.success);
 
   // setStaff(data);

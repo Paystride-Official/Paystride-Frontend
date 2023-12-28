@@ -11,6 +11,7 @@ import Button from "@/components/Button/Button";
 import { useSignInAccount } from "./_slice/query";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/AuthContext";
+import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 
 interface Props {}
 const LoginPage = (props: Props) => {
@@ -25,7 +26,7 @@ const LoginPage = (props: Props) => {
     resolver: zodResolver(LogInSchema),
   });
 
-  const { user } = useUserContext();
+  const user = getUser();
   const { mutateAsync: signInAccount } = useSignInAccount();
 
   const handleOnSubmit = async (data: FieldValues) => {

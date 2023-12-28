@@ -16,6 +16,7 @@ import {
   useGetAllPaypoint,
   useGetPaypoint,
 } from "./_slice/query";
+import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 
 type Props = {};
 
@@ -32,9 +33,9 @@ const Paymentpoint = (props: Props) => {
   const { isLoading, data, isError } = useGetPaypoint();
   const {} = useGetAllPaypoint();
 
-  const merchant_id = "2";
+  const user = getUser();
   const addPaypoint = async (data: FieldValues) => {
-    const updatedData = { ...data, merchant_id };
+    const updatedData = { ...data, merchant_id: user.id };
 
     console.log(data);
     const response = await createPaypoint(updatedData);
@@ -43,7 +44,7 @@ const Paymentpoint = (props: Props) => {
   };
 
   const handleEditPaypoint = async (data: FieldValues) => {
-    const updatedData = { ...data, merchant_id };
+    const updatedData = { ...data, merchant_id: user.id };
     const response = await editPaypoint(updatedData);
     console.log(data);
   };

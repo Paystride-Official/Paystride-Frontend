@@ -16,7 +16,6 @@ type Props = {};
 const Settings = (props: Props) => {
   const { reset } = useForm();
   const [selectedSettings, setSelectedSettings] = useState<string>("staff");
-  const { isLoading, user } = useUserContext();
 
   const handleCickSettings = (item: string) => {
     setSelectedSettings(item);
