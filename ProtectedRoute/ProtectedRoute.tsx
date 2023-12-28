@@ -1,30 +1,31 @@
 // components/ProtectedRoute.tsx
 
-// "use client";
-import { useEffect } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { getItemFromStorage } from "@/Utils/localStorage";
-import { authToken } from "./Auth";
+import Loader from "@/components/Loader/Loader";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  // const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    // Check if the user is authenticated
+    setLoading(true);
+    const authToken = getItemFromStorage("AuthToken");
 
-  // useEffect(() => {
-  // Check if the user is authenticated
-  // const authToken = getItemFromStorage("AuthToken");
-  // console.log(authToken);
+    setLoading(false);
 
-  if (!authToken) {
-    console.log("not true");
+    if (!authToken) {
+      console.log("not true");
 
-    // If not authenticated, redirect to the login page
-    redirect("/login");
-  }
-  // }, []);
+      // If not authenticated, redirect to the login page
+      redirect("/login");
+    }
+  }, []);
 
-  return <>{children}</>;
+  return <>{loading ? <Loader /> : children}</>;
 };

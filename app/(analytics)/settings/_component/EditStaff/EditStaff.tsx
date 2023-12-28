@@ -1,14 +1,13 @@
 import React from "react";
-import { useForm, FieldValues } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 type Props = {
   closeModal: () => void;
   onSubmit: (data: FieldValues) => void;
 };
 
-const NewStaff = ({ closeModal, onSubmit }: Props) => {
-  const { handleSubmit, register } = useForm();
-
+const EditStaff = ({ closeModal, onSubmit }: Props) => {
+  const { register, handleSubmit } = useForm();
   return (
     <main>
       {/* <section className="flex"> */}
@@ -23,6 +22,7 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
             type="text"
             placeholder="paypoint 1"
             {...register("name")}
+            disabled
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
           />
         </div>
@@ -32,6 +32,7 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
             type="text"
             placeholder="paypoint 1"
             {...register("phone_number")}
+            disabled
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
           />
         </div>
@@ -41,6 +42,7 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
             type="email"
             placeholder="abc@gmail.com"
             {...register("email")}
+            disabled
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
           />
         </div>
@@ -53,6 +55,7 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
             type="password"
             placeholder="paypoint 1"
             {...register("password")}
+            disabled
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
           />
         </div>
@@ -71,7 +74,7 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
             type="submit"
             className="text-white bg-[#091F8E] px-4 py-1 capitalize rounded"
           >
-            Add
+            update
           </button>
           <button
             type="button"
@@ -86,4 +89,4 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
   );
 };
 
-export default NewStaff;
+export default EditStaff;

@@ -15,17 +15,17 @@ export default function RootLayout({
 }) {
   return (
     <section>
-      <main className="w-full flex">
-        <Sidebar />
-        <div className="flex flex-col flex-[7]">
-          <Navbar />
-          <ProtectedRoute>
-            <div className=" w-full bg-[#FAFAFA] min-h-[calc(100vh_-_3.5rem)] px-4 py-6  ">
+      <ProtectedRoute>
+        <main className="w-full flex">
+          <Sidebar />
+          <div className="flex flex-col flex-[7]">
+            <Navbar />
+            <div className=" w-full bg-[#FAFAFA] min-h-[calc(100vh_-_3.5rem)] px-4 py-6 pb-24  ">
               {children}
             </div>
-          </ProtectedRoute>
-        </div>
-      </main>
+          </div>
+        </main>
+      </ProtectedRoute>
     </section>
   );
 }

@@ -11,15 +11,17 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
-import { column, row } from "@/types/types";
+import { NewUser, column, row } from "@/types/types";
 import Image from "next/image";
 
 type TableProps = {
-  columns: column[];
+  columns: NewUser[] | undefined;
   rows: row[];
   openModal?: () => void;
 
   setSingleRow?: React.Dispatch<React.SetStateAction<object>>;
+  setDeleteModal?: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteModal?: boolean;
 };
 
 export function TableComponent({
@@ -27,6 +29,8 @@ export function TableComponent({
   columns,
   setSingleRow,
   openModal,
+  deleteModal,
+  setDeleteModal,
 }: TableProps) {
   const getData = (column: object) => {
     if (column) {
@@ -75,24 +79,23 @@ export function TableComponent({
         );
       case "action":
         return (
-          <div
-            className="flex w-full item-start justify-start gap-6 cursor-pointer"
-            onClick={() => {
-              openModal?.(), getData(column);
-            }}
-          >
+          <div className="flex w-full item-start justify-start gap-6 cursor-pointer">
             <Image
               src={Edit}
               alt="Edit"
               width={15}
               height={15}
               // className="flex items-start "
+              onClick={() => {
+                openModal?.(), getData(column);
+              }}
             />
             <Image
               src={Delete}
               width={15}
               height={15}
               alt="Delete"
+              onClick={() => setDeleteModal && setDeleteModal(!deleteModal)}
               // className="flex items-start "
             />
           </div>
@@ -112,7 +115,7 @@ export function TableComponent({
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn
-              key={column.key}
+              key={column?.key}
               style={{ overflowX: "auto" }}
               className="bg-[#FAFAFA]  border-b-[#EFEFEF] border-b border-solid text-[#949494] text-md"
             >

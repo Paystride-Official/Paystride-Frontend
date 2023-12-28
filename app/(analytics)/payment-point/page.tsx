@@ -32,7 +32,7 @@ const Paymentpoint = (props: Props) => {
   const { isLoading, data, isError } = useGetPaypoint();
   const {} = useGetAllPaypoint();
 
-  const merchant_id = "1";
+  const merchant_id = "2";
   const addPaypoint = async (data: FieldValues) => {
     const updatedData = { ...data, merchant_id };
 

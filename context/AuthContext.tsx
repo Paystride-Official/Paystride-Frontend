@@ -1,13 +1,10 @@
-import { useSignInAccount } from "@/app/(marketing)/(auth)/login/_slice/query";
+"use client";
+import { createContext, useContext, useState } from "react";
+import { getItemFromStorage } from "@/Utils/localStorage";
 import { NewUser } from "@/types/types";
-import { createContext, useContext, useEffect, useState } from "react";
 
 export const INITIAL_USER = {
-  id: "",
-  name: "",
-  business_name: "",
-  email: "",
-  phone_number: "",
+  ...getItemFromStorage("user-info"),
 };
 
 const INITIAL_STATE = {
@@ -15,21 +12,21 @@ const INITIAL_STATE = {
   isLoading: false,
   isAuthenticated: false,
   setUser: () => {},
-  setIsAuthenticated: () => {},
+  setIsLoading: () => {},
 };
 
 type IContextType = {
-  user: NewUser;
+  user: NewUser | null;
   isLoading: boolean;
   setUser: React.Dispatch<React.SetStateAction<NewUser>>;
   isAuthenticated: boolean;
-  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<NewUser>(INITIAL_USER);
+  const [user, setUser] = useState<NewUser | null>(INITIAL_USER);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,7 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser,
     isLoading,
     isAuthenticated,
-    setIsAuthenticated,
+    setIsLoading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

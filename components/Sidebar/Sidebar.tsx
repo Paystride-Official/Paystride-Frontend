@@ -44,6 +44,11 @@ const Sidebar = (props: Props) => {
       href: "/settings",
       icon: Settings,
     },
+    {
+      title: "Support",
+      href: "/support",
+      icon: Settings,
+    },
   ];
   return (
     <div className=" min-h-screen sticky hidden sm:flex  bg-[#ECECEC]  ">

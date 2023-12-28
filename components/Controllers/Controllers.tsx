@@ -12,6 +12,7 @@ type Props = {
   addNew?: boolean;
   setAddNewModal?: React.Dispatch<React.SetStateAction<boolean>>;
   addNewModal?: boolean;
+ 
 };
 
 interface FilterObject {

@@ -1,26 +1,102 @@
 "use client";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import Header from "@/app/(analytics)/_components/HeaderStat/Header";
 import Controllers from "@/components/Controllers/Controllers";
-import { FilterObject } from "@/types/types";
+import { FilterObject, NewUser } from "@/types/types";
 import { staffCol, staffRow } from "@/Utils/constants";
 import { TableComponent } from "@/components/Table/Table";
 import { FieldValues } from "react-hook-form";
+import {
+  useCreateStaff,
+  useEditStaff,
+  useGetAllStaff,
+} from "../../_slice/qurey";
+import ModalPopUp from "@/components/Modal/Modal";
+import NewStaff from "../NewStaff/NewStaff";
+import EditStaff from "../EditStaff/EditStaff";
+import { useUserContext } from "@/context/AuthContext";
+import DeleteStaff from "../DeleteStaff/DeleteStaff";
 
 type Props = {
-  setAddNewModal: React.Dispatch<React.SetStateAction<boolean>>;
-  addNewModal: boolean | undefined;
-  openModal: () => void;
+  // setAddNewModal: React.Dispatch<React.SetStateAction<boolean>>;
+  // addNewModal: boolean | undefined;
+  // openModal: () => void;
+  // staff?: NewUser[] | undefined;
 };
 
-const Staff = ({ setAddNewModal, addNewModal }: Props) => {
+const Staff = (props: Props) => {
   const [search, setSearch] = useState<string>("");
   const [filters, setFilters] = useState<FilterObject | null>(null);
+  const [staff, setStaff] = useState<NewUser[] | undefined>();
+  const [addNewModal, setAddNewModal] = useState<boolean>(false);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [content, setContent] = useState<ReactNode>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { mutateAsync: createStaff } = useCreateStaff();
+  const { mutateAsync: editStaff } = useEditStaff();
+  const { isLoading, user } = useUserContext();
+
+  const {
+    isLoading: loading,
+    data,
+    isError,
+  } = useGetAllStaff({ merchant_id: user?.id });
+
+  if (data && !isLoading) {
+    // setStaff(data.success);
+  }
+  console.log(data?.success);
+
+  // setStaff(data);
+
+  useEffect(() => {
+    const determineContent = () => {
+      if (addNewModal) {
+        return (
+          <NewStaff closeModal={closeModal} onSubmit={handleCreateStaff} />
+        );
+      } else if (editModal) {
+        return <EditStaff closeModal={closeModal} onSubmit={handleEditStaff} />;
+      } else if (deleteModal) {
+        return <DeleteStaff />;
+      }
+
+      return null;
+    };
+
+    setContent(determineContent());
+  }, [addNewModal, editModal, deleteModal]);
+
+  const closeModal = () => {
+    setAddNewModal(false);
+    setEditModal(false);
+    setDeleteModal(false);
+  };
 
   const openModal = () => {
-    setAddNewModal(true);
+    setEditModal(true);
+  };
+
+  const handleEditStaff = async (data: FieldValues) => {
+    const response = await editStaff({ merchant_id: user?.id, ...data });
+    response.success
+      ? console.log("success", response.success)
+      : console.log("error", response.error);
+
+    closeModal();
+    console.log(data);
+  };
+
+  const handleCreateStaff = async (data: FieldValues) => {
+    const updatedData = { merchant_id: user?.id, ...data };
+
+    const response: any = await createStaff(updatedData);
+
+    response.success
+      ? console.log("success", response.success)
+      : console.log("error", response.error);
+
+    closeModal();
   };
 
   const staffStat = [
@@ -33,6 +109,7 @@ const Staff = ({ setAddNewModal, addNewModal }: Props) => {
       amount: "3",
     },
   ];
+
   return (
     <section>
       <Header headerStat={staffStat} />
@@ -55,7 +132,22 @@ const Staff = ({ setAddNewModal, addNewModal }: Props) => {
           addNewModal={addNewModal}
           setAddNewModal={setAddNewModal}
         />
-        <TableComponent rows={staffRow} columns={staffCol} />
+        <TableComponent
+          rows={staffRow}
+          columns={staffCol}
+          // columns={staff}
+          openModal={openModal}
+          deleteModal={deleteModal}
+          setDeleteModal={setDeleteModal}
+        />
+      </div>
+
+      <div>
+        <ModalPopUp
+          isOpen={addNewModal || editModal || deleteModal}
+          closeModal={closeModal}
+          body={content}
+        />
       </div>
     </section>
   );
