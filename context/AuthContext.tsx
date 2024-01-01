@@ -1,44 +1,36 @@
-import { useSignInAccount } from "@/app/(marketing)/(auth)/login/_slice/query";
+import { createContext, useContext, useState } from "react";
+import { getItemFromStorage } from "@/Utils/localStorage";
 import { NewUser } from "@/types/types";
-import { createContext, useContext, useEffect, useState } from "react";
-
-export const INITIAL_USER = {
-  id: "",
-  name: "",
-  business_name: "",
-  email: "",
-  phone_number: "",
-};
+import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 
 const INITIAL_STATE = {
-  user: INITIAL_USER,
+  user: getUser(),
   isLoading: false,
   isAuthenticated: false,
   setUser: () => {},
-  setIsAuthenticated: () => {},
+  setIsLoading: () => {},
 };
 
 type IContextType = {
   user: NewUser;
-  isLoading: boolean;
   setUser: React.Dispatch<React.SetStateAction<NewUser>>;
-  isAuthenticated: boolean;
-  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<NewUser>(INITIAL_USER);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<NewUser>(getUser());
   const [isLoading, setIsLoading] = useState(false);
+
+  console.log(user, "user");
 
   const value = {
     user,
     setUser,
     isLoading,
-    isAuthenticated,
-    setIsAuthenticated,
+    setIsLoading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

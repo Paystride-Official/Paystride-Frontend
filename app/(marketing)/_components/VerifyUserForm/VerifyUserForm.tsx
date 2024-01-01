@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import Button from "@/components/Button/Button";
 import OtpInput from "react-otp-input";
 
 import React from "react";
 import { useResendOtp, useVerifyOtp } from "../../(auth)/register/_slice/query";
 import { FieldValues } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 type Props = {
   step: number;
@@ -15,13 +15,13 @@ type Props = {
 };
 
 const VerifyUserForm = ({ setStep, step, userData }: Props) => {
+  const router = useRouter();
   const [otp, setOtp] = useState<string>("");
   const [isMounted, setIsMounted] = useState(false);
   const [otpSuccessResponse, setOtpSuccessResponse] = useState<any>();
   const [otpErrorResponse, setOtpErrorResponse] = useState<any>();
   const [resendEror, setResendError] = useState<any>();
   const [resendSuccess, setResendSuccess] = useState<any>();
-  console.log(userData);
 
   useEffect(() => {
     setIsMounted(true);
@@ -52,6 +52,7 @@ const VerifyUserForm = ({ setStep, step, userData }: Props) => {
     const response: any = await verifyOtp(data);
     if (response.success) {
       setOtpSuccessResponse(response.success);
+      router.push("/login");
     } else {
       setOtpErrorResponse(response.error);
     }

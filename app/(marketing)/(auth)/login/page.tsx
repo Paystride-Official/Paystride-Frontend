@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useSignInAccount } from "./_slice/query";
 import { useRouter } from "next/navigation";
-import { useUserContext } from "@/context/AuthContext";
+import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 
 interface Props {}
 const LoginPage = (props: Props) => {
@@ -25,7 +25,11 @@ const LoginPage = (props: Props) => {
     resolver: zodResolver(LogInSchema),
   });
 
-  const { setUser } = useUserContext();
+  let user;
+  useEffect(() => {
+    user = getUser();
+  }, []);
+
   const { mutateAsync: signInAccount } = useSignInAccount();
 
   const handleOnSubmit = async (data: FieldValues) => {
@@ -33,20 +37,20 @@ const LoginPage = (props: Props) => {
     const response: any = await signInAccount(formData);
 
     if (response.success) {
+      const { data } = response.success;
       console.log(response.success);
-      console.log("to dashboard");
+      router.push(`dashboard/${data?.id}`);
+      reset();
 
       // router.push("/dashboard");
       return;
     } else {
       console.log(response.error);
     }
-
-    reset();
   };
 
   return (
-    <section className=" h-fit mt-12 flex flex-col items-center justify-center">
+    <section className=" h-[calc(100vh_-_3.5rem)] mt-2 flex flex-col items-center justify-center">
       <div className="py-8 sm:w-[350px] md:w-[500px]  flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px] mx-4">
         <div className="mb-4 w-[90%] mx-auto">
           <Image src={Paystride} alt="Paystride" className="mx-auto" />

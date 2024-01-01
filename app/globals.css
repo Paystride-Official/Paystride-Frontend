@@ -56,3 +56,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
+
+.h {
+  @apply h-[calc(100vh_-_3.5rem)];
+}

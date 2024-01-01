@@ -30,7 +30,7 @@ export const signInAccount = async (user: NewUser) => {
 
       // Store the token in local storage
       storeItem("AuthToken", token);
-      storeItem("user-info", data.user);
+      storeItem("user-info", data.data);
 
       // Navigate to the dashboard page
 

@@ -2,8 +2,6 @@ import React from "react";
 import Image from "next/image";
 import Banner from "@/app/(marketing)/assets/image 2.svg";
 import Atm from "@/app/(marketing)/assets/image 4.svg";
-// import Settle from "@/app/(marketing)/assets/Image 15.svg";
-// import Dash from "@/app/(marketing)/assets/image 16.svg";
 import Slider1 from "@/app/(marketing)/assets/Slider.svg";
 import Webflow from "@/app/(marketing)/assets/Black.svg";
 import Laptop from "@/app/(marketing)/assets/Laptop1.svg";
