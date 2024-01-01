@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
@@ -10,7 +10,6 @@ import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useSignInAccount } from "./_slice/query";
 import { useRouter } from "next/navigation";
-import { useUserContext } from "@/context/AuthContext";
 import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 
 interface Props {}
@@ -26,7 +25,11 @@ const LoginPage = (props: Props) => {
     resolver: zodResolver(LogInSchema),
   });
 
-  const user = getUser();
+  let user;
+  useEffect(() => {
+    user = getUser();
+  }, []);
+
   const { mutateAsync: signInAccount } = useSignInAccount();
 
   const handleOnSubmit = async (data: FieldValues) => {
