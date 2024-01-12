@@ -18,7 +18,7 @@ const Navbar = (props: Props) => {
 
     return (
         <div className="h-fit w-full sticky top-0 bg-white border-b-[#21232a] border-b border-solid z-[1000]">
-            <div className="flex items-center justify-between p-2 md:py-3 w-[90%] mx-auto">
+            <div className="flex items-center justify-between px-2 py-4 md:py-5 w-[90%] mx-auto">
                 <div className="flex gap-2 items-center">
                     <Link href="/">
                         <Image
@@ -50,7 +50,7 @@ const Navbar = (props: Props) => {
                             <Link href="/sign-up">
                                 <button
                                     type="button"
-                                    className="text-white capitalize bg-[#091F8E] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-xl"
+                                    className="text-white capitalize bg-[#091F8E] py-2 px-4 text-base xl:text-xl"
                                 >
                                     try paystride for free
                                 </button>
@@ -67,11 +67,11 @@ const Navbar = (props: Props) => {
                     {/* mobile view */}
                     <div
                         className={`absolute md:hidden bg-[#051355] text-white w-full h-[100vh] top-0 left-0 duration-0 ${
-                            open ? "left-0 " : "left-[-100%]"
+                            open ? "left-0 " : "left-[-200%]"
                         }`}
                     >
                         <div className="px-[5%] border-b-white border-b border-solid relative z-20">
-                            <div className="flex justify-between p-2">
+                            <div className="flex justify-between px-2 py-4">
                                 <Link href="/" onClick={() => setOpen(!open)}>
                                     <Image
                                         src={PaystrideWhite}
@@ -119,7 +119,7 @@ const Navbar = (props: Props) => {
                                     href="/sign-up"
                                     onClick={() => setOpen(!open)}
                                 >
-                                    <button className="text-black capitalize bg-white py-1 px-3 md:py-2 md:px-4 text-base xl:text-xl">
+                                    <button className="text-black capitalize bg-white py-[6px] px-3 text-base">
                                         try paystride for free
                                     </button>
                                 </Link>

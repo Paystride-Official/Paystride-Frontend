@@ -5,7 +5,7 @@ import PlusSign from "@/app/(marketing)/assets/Plus.svg";
 type FaqProps = {
     question: string;
     answer: string;
-    id: number;
+    //id: number;
     bgcolor: React.CSSProperties;
     border: React.CSSProperties;
 };
@@ -24,26 +24,28 @@ const Accordion = ({ question, answer, bgcolor, border }: FaqProps) => {
     return (
         <>
             <div
-                className="w-[full] mb-3 border-2 border-[#D2DDE2] text-[12px] md:text-base"
+                className="w-[full] mb-3 border-2 text-[12px] min-[360px]:text-sm sm:text-base"
                 style={border}
             >
-                <button
+                <div
                     onClick={() => {
                         setShow(!show);
                     }}
-                    className="font-medium border-none text-start px-4 py-2 w-full flex justify-between"
+                    className="font-medium border-none text-start px-3 sm:px-4 py-2 w-full flex justify-between"
                     style={bgcolor}
                 >
-                    {question}
-                    <span
-                        style={{
-                            transform: `rotate(${show ? "45deg" : "0deg"})`,
-                        }}
-                        className="w-[5%]"
-                    >
-                        <Image src={PlusSign} alt="PlusSign" />
+                    <button className="text-start">{question}</button>
+                    <span className="ml-1 ">
+                        <Image
+                            src={PlusSign}
+                            alt="PlusSign"
+                            className="max-w-[15px] min-[360px]:max-w-[23px] sm:min-w-[30px]"
+                            style={{
+                                transform: `rotate(${show ? "45deg" : "0deg"})`,
+                            }}
+                        />
                     </span>
-                </button>
+                </div>
                 <div
                     style={{ height: show ? `${divHeight}` : "0px" }}
                     ref={answerRef}

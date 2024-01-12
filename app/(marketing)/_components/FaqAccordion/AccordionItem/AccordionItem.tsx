@@ -1,7 +1,5 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
-import PlusSign from "@/app/(marketing)/assets/Plus.svg";
-import Image from "next/image";
+import React from "react";
 import Accordion from "../Accordion/Accordion";
 
 type CssProps = {
@@ -53,7 +51,8 @@ const AccordionItem = ({ bgcolor, border }: CssProps) => {
                             elit. Suspendisse varius enim in eros elementum
                             tristique.
                         </p>
-                        <button className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-lg capitalize">
+
+                        <button className="border border-solid border-[#21232a] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg capitalize">
                             contact sales
                         </button>
                     </div>

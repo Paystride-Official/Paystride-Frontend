@@ -1,6 +1,6 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import StarIcon from "@/app/(marketing)/assets/VectorStar.svg";
 import PrevButton from "@/app/(marketing)/assets/ButtonPrev.svg";
@@ -18,12 +18,15 @@ type SlideProps = {
 
 const Carousel = ({ slides }: { slides: SlideProps[] }) => {
     const [active, setActive] = useState<number>(0);
+    const [autorotate, setAutorotate] = useState<boolean>(true);
+    const autorotateTiming: number = 5000;
 
     function showNext() {
         setActive((index) => {
             if (index === slides.length - 1) return 0;
             return index + 1;
         });
+        setAutorotate(false);
     }
 
     function showPrev() {
@@ -31,7 +34,18 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
             if (index === 0) return slides.length - 1;
             return index - 1;
         });
+        setAutorotate(false);
     }
+
+    useEffect(() => {
+        if (!autorotate) return;
+        const interval = setInterval(() => {
+            setActive(
+                active + 1 === slides.length ? 0 : (active) => active + 1
+            );
+        }, autorotateTiming);
+        return () => clearInterval(interval);
+    }, [active, autorotate]);
 
     return (
         <div className="h-auto relative">
@@ -145,6 +159,7 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
                             }`}
                             onClick={() => {
                                 setActive(index);
+                                setAutorotate(false);
                             }}
                         ></button>
                     ))}

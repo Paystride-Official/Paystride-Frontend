@@ -4,8 +4,8 @@ import Basket from "@/app/(marketing)/assets/image 9.svg";
 import Atm from "@/app/(marketing)/assets/image 4.svg";
 import Settle from "@/app/(marketing)/assets/Image 15.svg";
 import Dash from "@/app/(marketing)/assets/image 16.svg";
-import Footer from "@/components/Footer/Footer";
-import AccordionItem from "@/components/FaqAccordion/AccordionItem/AccordionItem";
+import AccordionItem from "@/app/(marketing)/_components/FaqAccordion/AccordionItem/AccordionItem";
+import Footer from "@/app/(marketing)/_components/Footer/Footer";
 
 type Props = {};
 
@@ -21,10 +21,10 @@ const Pricing = (props: Props) => {
                                 business
                             </h1>
                             <div className="flex mt-6 mb-2 md:mt-8 gap-4">
-                                <button className="text-white capitalize bg-[#091F8E] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-xl">
+                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
                                     try paystride for free
                                 </button>
-                                <button className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-lg capitalize">
+                                <button className="border border-solid border-[#21232a] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg capitalize">
                                     Discover in 1 minute
                                 </button>
                             </div>
@@ -55,19 +55,20 @@ const Pricing = (props: Props) => {
                     <div className="flex-[1] flex items-center">
                         <div>
                             <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">
-                                Receive mobile transfer notifications
-                                <span className="pl-4 text-[#6A8F9F]">
+                                Receive mobile transfer notifications{" "}
+                                <span className="text-[#6A8F9F]">
                                     instantly
                                 </span>
                             </h1>
-                            <p className="mt-3 tracking-wide max-w-[50rem] md:mt-6 mx-auto md:text-lg text-start">
+                            <p className="mt-3 mb-1 tracking-wide max-w-[50rem] md:mt-6 mx-auto md:text-lg text-start">
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit. Suspendisse varius enim in eros
                                 elementum tristique. Duis cursus, mi quis
                                 viverra ornare, eros dolor interdum nulla, ut
                                 commodo diam libero vitae erat.
                             </p>
-                            <button className="text-white capitalize bg-[#091F8E] py-1 px-3 md:py-2 md:px-4 my-2 md:my-6 text-[12px] md:text-base xl:text-xl">
+
+                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
                                 try paystride for free
                             </button>
                         </div>
@@ -78,19 +79,17 @@ const Pricing = (props: Props) => {
                     <div className="flex-[1] flex items-center order-2 md:order-1">
                         <div>
                             <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">
-                                Manage settlements with
-                                <span className="pl-4 text-[#6A8F9F]">
-                                    ease
-                                </span>
+                                Manage settlements with{" "}
+                                <span className="text-[#6A8F9F]">ease</span>
                             </h1>
-                            <p className="mt-3 tracking-wide max-w-[50rem] md:mt-6 mx-auto md:text-lg text-start">
+                            <p className="mt-3 mb-1 tracking-wide max-w-[50rem] md:mt-6 mx-auto md:text-lg text-start">
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit. Suspendisse varius enim in eros
                                 elementum tristique. Duis cursus, mi quis
                                 viverra ornare, eros dolor interdum nulla, ut
                                 commodo diam libero vitae erat.
                             </p>
-                            <button className="text-white capitalize bg-[#091F8E] py-1 px-3 md:py-2 md:px-4 my-2 md:my-6 text-[12px] md:text-base xl:text-xl">
+                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
                                 try paystride for free
                             </button>
                         </div>
@@ -120,20 +119,20 @@ const Pricing = (props: Props) => {
                         <div>
                             <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">
                                 Make
-                                <span className="pl-4 text-[#6A8F9F]">
-                                    smarter, data-driven
-                                    <span className="text-transparent">-</span>
+                                <span className="text-[#6A8F9F]">
+                                    {" "}
+                                    smarter, data-driven{" "}
                                 </span>
                                 decisions with dashboard
                             </h1>
-                            <p className="mt-3 tracking-wide max-w-[50rem] md:mt-6 mx-auto md:text-lg text-start">
+                            <p className="mt-3 mb-1 tracking-wide max-w-[50rem] md:mt-6 mx-auto md:text-lg text-start">
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit. Suspendisse varius enim in eros
                                 elementum tristique. Duis cursus, mi quis
                                 viverra ornare, eros dolor interdum nulla, ut
                                 commodo diam libero vitae erat.
                             </p>
-                            <button className="text-white capitalize bg-[#091F8E] py-1 px-3 md:py-2 md:px-4 my-2 md:my-6 text-[12px] md:text-base xl:text-xl">
+                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
                                 try paystride for free
                             </button>
                         </div>

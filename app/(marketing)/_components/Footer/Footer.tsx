@@ -11,18 +11,18 @@ type Props = {};
 
 const Footer = (props: Props) => {
     return (
-        <div className="bg-[#091F8E] w-[100%] flex justify-center py-10 md:py-16">
+        <div className="bg-[#091F8E] w-[100%] flex justify-center pt-10 pb-3 md:pt-16 md:pb-5">
             <div className="w-[90%] text-white">
                 <div className="flex flex-col md:flex-row justify-between">
                     <div className="flex w-full md:w-[60%] lg:w-[50%] flex-col justify-between items-center h-[8rem] md:h-[15rem] mb-5 md:mb-0">
                         <h1 className="text-2xl md:text-3xl lg:text-[40px] xl:text-5xl capitalize font-bold text-center leading-7 md:leading-10">
                             Growth your business with Paystride solution now!
                         </h1>
-                        <button className="text-black capitalize bg-white py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-xl">
+
+                        <button className="text-black capitalize bg-white py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
                             try paystride for free
                         </button>
                     </div>
-                    {/* <div className="hidden md:col-span-1"></div> */}
                     <div className="w-full md:w-[40%] lg:w-[34%] flex flex-col justify-between items-start h-[12rem] md:h-[15rem]">
                         <Image src={PaystrideWhite} alt="LogoNameImage" />
                         <div className="text-xs md:text-sm">
@@ -67,6 +67,9 @@ const Footer = (props: Props) => {
                         &copy; 2023 paystride. all rights reserved
                     </div>
                 </div>
+                <p className="font-bold capitalize text-xs md:text-sm text-center pt-7 md:pt-11">
+                    powered by topstride
+                </p>
             </div>
         </div>
     );
