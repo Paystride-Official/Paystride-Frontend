@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-
+"use client";
 export const clearStorage = (): void => {
   localStorage.clear();
 };
@@ -14,7 +14,7 @@ export const getItemFromStorage = (key: string): any => {
     }
   }
 
-  return null;
+  // return null;
 };
 
 export const storeItem = (key: string, item: any): void => {

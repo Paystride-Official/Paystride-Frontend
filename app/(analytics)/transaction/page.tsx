@@ -3,12 +3,13 @@ import { useState } from "react";
 import { transactionCol, transactionRow } from "@/Utils/constants";
 import Controllers from "@/components/Controllers/Controllers";
 import { TableComponent } from "@/components/Table/Table";
+import { FilterObject } from "@/types/types";
 
 type Props = {};
 
 const Transaction = (props: Props) => {
   const [search, setSearch] = useState<string>("");
-  const [filters, setFilters] = useState<string>("");
+  const [filters, setFilters] = useState<FilterObject | null>(null);
 
   return (
     <div>

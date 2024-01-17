@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +20,10 @@ type Props = {
   onSubmit: () => void;
 };
 
-const RegistrationForm = ({ setStep, step, setUserData }: Props) => {
+const RegistrationForm = ({ setStep, step, setUserData, onSubmit }: Props) => {
+  const [registerSuccessResponse, setRegisterSuccessRonse] =
+    useState<any>(null);
+  const [registerErrorResponse, setRegisterErrorRonse] = useState<any>(null);
   const {
     register,
     handleSubmit,
@@ -37,11 +41,14 @@ const RegistrationForm = ({ setStep, step, setUserData }: Props) => {
   const handleOnSubmit = async (data: FieldValues) => {
     const formData = getValues();
     setUserData(formData);
-    createUserAccount(formData);
-    // z.infer<typeof SignUpSchema>
-    setStep(step + 1);
-
-    reset();
+    const response: any = await createUserAccount(formData);
+    if (response.success) {
+      setRegisterSuccessRonse(response.success);
+      setStep(step + 1);
+      reset();
+    } else {
+      setRegisterErrorRonse(response.error);
+    }
   };
 
   return (

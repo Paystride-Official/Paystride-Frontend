@@ -1,13 +1,14 @@
 "use client";
 import { HeaderStatProps, OptionSelectProps, TabProps } from "@/types/types";
 import React, { useCallback, useState } from "react";
-import Header from "../_components/HeaderStat/Header";
+// import Header from "../_components/HeaderStat/Header";
 import PaypointChart from "@/components/Charts/PaypointChart/PaypointChart";
 import SalesChart from "@/components/Charts/SalesChart/SalesChart";
 import DonoughtChart from "@/components/Charts/DonoughtChart/DonoughtChart";
 import Arrow from "@/app/assets/arrowup.svg";
 import { dashboardCol, dashboardRow } from "@/Utils/constants";
 import { TableComponent } from "@/components/Table/Table";
+import Header from "../../_components/HeaderStat/Header";
 
 type DashboardProps = {};
 
@@ -81,8 +82,8 @@ const Dashboard = (props: DashboardProps) => {
          bg-white
           runded-md 
           mt-4 px-2 
-          rounded-[6.198px] 
-          border-[2.066px]
+          rounded-md 
+          border-[2px]
           border-solid 
         border-[#eceef6]
 "

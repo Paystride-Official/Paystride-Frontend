@@ -134,7 +134,7 @@ export const payPointRow = [
   {
     key: "1",
     payPoint: "paypoint 1",
-    onDuty: "chima",
+    onDuty: "Account",
     phoneNumber: "08138465066",
     account: "XXXXXXXXXX",
     status: "Active",
@@ -194,13 +194,147 @@ export const payPointCol = [
     key: "status",
     label: "Status",
   },
+  {
+    key: "action",
+    label: "Action",
+  },
+];
+export const staffCol = [
+  {
+    key: "name",
+    label: "Name",
+  },
+  {
+    key: "role",
+    label: "Role",
+  },
+  {
+    key: "department",
+    label: "Department",
+  },
+  {
+    key: "phoneNumber",
+    label: "Phone number",
+  },
+  {
+    key: "status",
+    label: "Status",
+  },
+  {
+    key: "action",
+    label: "Action",
+  },
+];
+export const staffRow = [
+  {
+    key: "1",
+    role: "sales Manager",
+    name: "Alex",
+    department: "Account",
+    phoneNumber: "08138465066",
+    status: "Active",
+  },
+  {
+    key: "2",
+    role: "sales Manager",
+    name: "Omotola",
+    department: "Account",
+    phoneNumber: "08138465066",
+    status: "Active",
+  },
+  {
+    key: "3",
+    role: "sales Manager",
+    name: "Chidi",
+    department: "Account",
+    phoneNumber: "08138465066",
+    status: "Active",
+  },
+  {
+    key: "4",
+    role: "sales Manager",
+    name: "Korede",
+    department: "Account",
+    phoneNumber: "08138465066",
+    status: "Active",
+  },
+  {
+    key: "5",
+    role: "sales Manager",
+    phoneNumber: "08138465066",
+    name: "Jumat",
+    department: "Account",
+    status: "InActive",
+  },
+];
+
+export const virtualCol = [
+  {
+    key: "date",
+    label: "Date Generated",
+  },
+  {
+    key: "accountNumber",
+    label: "Account Number",
+  },
+
+  {
+    key: "amount",
+    label: "Amount",
+  },
+  {
+    key: "status",
+    label: "status",
+  },
+  {
+    key: "action",
+    label: "Action",
+  },
+];
+
+export const virtualRow = [
+  {
+    key: "1",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "Active",
+  },
+  {
+    key: "2",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "Active",
+  },
+  {
+    key: "3",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "Active",
+  },
+  {
+    key: "4",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "Active",
+  },
+  {
+    key: "5",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "InActive",
+  },
 ];
 let server_url;
 
-if (process.env.REACT_APP_ENVIRONMENT === "production") {
-  server_url = "http://api.paystride.co/api";
+if (process.env.NODE_ENV === "production") {
+  server_url = "https://api.paystride.co/api";
 } else {
-  server_url = "http://staging-api.paystride.co";
+  server_url = "https://staging-api.paystride.co/api";
 }
 
 export const SERVER_URL = server_url;

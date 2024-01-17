@@ -11,13 +11,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
-
-  
   return (
     <section>
       <Navbar />
-      <div className="grid place-items-center">{children}</div>
+      <div className="grid place-items-center ">{children}</div>
     </section>
   );
 }

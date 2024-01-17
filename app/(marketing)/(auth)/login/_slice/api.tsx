@@ -1,10 +1,12 @@
 import { SERVER_URL } from "@/Utils/constants";
-import { request } from "@/Utils/request";
+import { storeItem } from "@/Utils/localStorage";
+import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
+import axios from "axios";
 
 function loginApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/`;
+  const url = `${SERVER_URL}/login`;
   const options = {
     method: "POST",
     headers: {
@@ -13,16 +15,31 @@ function loginApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-
-  return request(url, options);
-  //   return axios(url, options);
+  return axios(url, options);
 }
+
 export const signInAccount = async (user: NewUser) => {
   try {
-    loginApi(user);
-    // const response = await axios(url, options);
+    const response: any = await loginApi(user);
+
+    const { data, status, statusText } = response;
+    const responseData = { ...data, status, statusText };
+
+    if (data) {
+      const { token, ...rest } = responseData;
+
+      // Store the token in local storage
+      storeItem("AuthToken", token);
+      storeItem("user-info", data.data);
+
+      // Navigate to the dashboard page
+
+      // Return the remaining user data
+      return { success: { ...rest } };
+    }
   } catch (error) {
-    console.log(error);
+    const response = handleAxiosError(error);
+
+    return { error: { response } };
   }
-  return user;
 };

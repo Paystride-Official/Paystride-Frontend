@@ -5,7 +5,7 @@ import {
   useQueryClient,
   useInfiniteQuery,
 } from "react-query";
-import { createUserAccount, verifyOtp } from "./api";
+import { createUserAccount, resendOtp, verifyOtp } from "./api";
 
 export const useCreateUserAccount = () => {
   return useMutation({
@@ -19,8 +19,8 @@ export const useVerifyOtp = () => {
   });
 };
 
-export const useSignOutAccount = () => {
-  //   return useMutation({
-  //     mutationFn: signOutAccount,
-  //   });
+export const useResendOtp = () => {
+  return useMutation({
+    mutationFn: (data: { email: string }) => resendOtp(data),
+  });
 };

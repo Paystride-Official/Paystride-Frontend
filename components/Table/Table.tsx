@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Arrowdown from "@/app/(analytics)/payment-point/assets/arrowdown.svg";
 import Edit from "@/app/(analytics)/payment-point/assets/edit.svg";
+import Delete from "@/components/Table/assets/Delete.svg";
 
 import {
   Table,
@@ -10,15 +11,17 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
-import { column, row } from "@/types/types";
+import { NewUser, column, row } from "@/types/types";
 import Image from "next/image";
 
 type TableProps = {
-  columns: column[];
+  columns: NewUser[] | undefined;
   rows: row[];
   openModal?: () => void;
 
   setSingleRow?: React.Dispatch<React.SetStateAction<object>>;
+  setDeleteModal?: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteModal?: boolean;
 };
 
 export function TableComponent({
@@ -26,6 +29,8 @@ export function TableComponent({
   columns,
   setSingleRow,
   openModal,
+  deleteModal,
+  setDeleteModal,
 }: TableProps) {
   const getData = (column: object) => {
     if (column) {
@@ -37,6 +42,13 @@ export function TableComponent({
     // const cellValue = column[columnKey as keyof column[]];
 
     switch (columnKey) {
+      case "name":
+        return (
+          <div>
+            <p className="text-[#21272A] font-bold capitalize">{column.name}</p>
+            <p>{column.phoneNumber}</p>
+          </div>
+        );
       case "onDuty":
         return (
           <div
@@ -53,16 +65,39 @@ export function TableComponent({
         );
       case "status":
         return (
-          <div className=" flex items-center gap-8">
+          <div className=" flex items-start gap-8">
             <p>{column.status}</p>
-            <div
+            {/* <div
               className="flex item-center justify-center gap-6 cursor-pointer"
               onClick={() => {
                 openModal?.(), getData(column);
               }}
             >
               <Image src={Edit} alt="Edit" />
-            </div>
+            </div> */}
+          </div>
+        );
+      case "action":
+        return (
+          <div className="flex w-full item-start justify-start gap-6 cursor-pointer">
+            <Image
+              src={Edit}
+              alt="Edit"
+              width={15}
+              height={15}
+              // className="flex items-start "
+              onClick={() => {
+                openModal?.(), getData(column);
+              }}
+            />
+            <Image
+              src={Delete}
+              width={15}
+              height={15}
+              alt="Delete"
+              onClick={() => setDeleteModal && setDeleteModal(!deleteModal)}
+              // className="flex items-start "
+            />
           </div>
         );
       default:
@@ -80,7 +115,7 @@ export function TableComponent({
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn
-              key={column.key}
+              key={column?.key}
               style={{ overflowX: "auto" }}
               className="bg-[#FAFAFA]  border-b-[#EFEFEF] border-b border-solid text-[#949494] text-md"
             >
