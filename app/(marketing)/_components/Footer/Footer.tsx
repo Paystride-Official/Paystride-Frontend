@@ -4,7 +4,7 @@ import PaystrideWhite from "@/app/(marketing)/assets/image 11.svg";
 import Facebook from "@/app/(marketing)/assets/Facebook.svg";
 import Instagram from "@/app/(marketing)/assets/Instagram.svg";
 import Twitter from "@/app/(marketing)/assets/Twitter.svg";
-import LinkedIn from "@/app/(marketing)/assets/LinkedIn.svg";
+import LinkedIn from "@/app/(marketing)/assets/Linkedin.svg";
 import Link from "next/link";
 
 type Props = {};
