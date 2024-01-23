@@ -28,6 +28,7 @@
     "react-hook-form": "^7.48.2",
     "react-otp-input": "^3.1.0",
     "react-query": "^3.39.3",
+    "react-to-print": "^2.14.15",
     "zod": "^3.22.4"
   },
   "devDependencies": {
