@@ -6,7 +6,7 @@ import Sidebar from "../_components/Sidebar/Sidebar";
 
 type Props = {};
 
-const freeTrial = ({}: Props) => {
+const FreeTrial = ({}: Props) => {
     const { register, handleSubmit, getValues, reset } = useForm();
 
     const handleOnSubmit = (data: FieldValues) => {
@@ -131,4 +131,4 @@ const freeTrial = ({}: Props) => {
     );
 };
 
-export default freeTrial;
+export default FreeTrial;
