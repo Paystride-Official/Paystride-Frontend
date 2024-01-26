@@ -33,8 +33,8 @@ const PaymentLink = () => {
 
     return (
         <>
-            <div className="py-10 px-5">
-                <div className="flex flex-row md:flex-col items-center justify-center gap-x-2 sm:gap-x-4 pb-6 sm:pb-8 md:pb-12">
+            <div className="mx-7 mb-8">
+                <div className="flex flex-row md:flex-col items-center justify-center gap-x-2 sm:gap-x-4 pb-6 sm:pb-8 md:pb-10">
                     <Image
                         src={Logo}
                         alt="Logo"
@@ -46,7 +46,7 @@ const PaymentLink = () => {
                         className="w-20 sm:w-24 md:w-32"
                     />
                 </div>
-                <div className="w-[90%] md:w-[620px] mx-auto gap-y-7 flex flex-col">
+                <div className="gap-y-7 flex flex-col">
                     {generateLink.map((details, index) => {
                         return (
                             <div key={index}>
@@ -71,7 +71,7 @@ const PaymentLink = () => {
                                         </div>
                                         <div
                                             ref={componentRef}
-                                            className="bg-[#D2DDE2] w-full sm:max-w-[80%] p-5 gap-y-2 flex flex-col rounded-xl mx-auto"
+                                            className="bg-[#D2DDE2] w-full sm:max-w-[80%] p-5 gap-y-2 flex flex-col rounded-xl mx-auto sm:mx-0"
                                         >
                                             <div className="block sm:hidden">
                                                 <div className="flex justify-between">

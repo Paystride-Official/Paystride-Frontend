@@ -1,20 +1,42 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { useForm, FieldValues } from "react-hook-form";
 import Link from "next/link";
 import Sidebar from "../_components/Sidebar/Sidebar";
+import PaymentLink from "../payment-link/page";
+import ModalPopUp from "@/components/Modal/Modal";
 
 type Props = {};
 
 const FreeTrial = ({}: Props) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [content, setContent] = useState<ReactNode>("");
+
     const { register, handleSubmit, getValues, reset } = useForm();
 
     const handleOnSubmit = (data: FieldValues) => {
+        setIsOpen(true);
         const formData = getValues();
         console.log(formData);
 
         reset();
     };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+    useEffect(() => {
+        const determineContent = () => {
+            if (isOpen) {
+                return <PaymentLink />;
+            }
+            // Return a default or null if neither condition is met
+            return null;
+        };
+
+        setContent(determineContent());
+    }, [isOpen]);
 
     return (
         <div>
@@ -123,6 +145,14 @@ const FreeTrial = ({}: Props) => {
 
                                 <hr />
                             </form>
+                            <div>
+                                <ModalPopUp
+                                    isOpen={isOpen}
+                                    closeModal={closeModal}
+                                    body={content}
+                                    size="3xl"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
