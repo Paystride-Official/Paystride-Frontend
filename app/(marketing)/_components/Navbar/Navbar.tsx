@@ -47,7 +47,7 @@ const Navbar = (props: Props) => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/free-trial">
+                            <Link href="/paystride-lite">
                                 <button
                                     type="button"
                                     className="text-white capitalize bg-[#091F8E] py-2 px-4 text-base xl:text-xl"
@@ -116,7 +116,7 @@ const Navbar = (props: Props) => {
                             </li>
                             <li className="hover:font-bold w-full py-5">
                                 <Link
-                                    href="/free-trial"
+                                    href="/paystride-lite"
                                     onClick={() => setOpen(!open)}
                                 >
                                     <button className="text-black capitalize bg-white py-[6px] px-3 text-base">
