@@ -43,12 +43,12 @@ const FreeTrial = ({}: Props) => {
             <section className="w-full h-[100vh]">
                 <Sidebar />
                 <div className="md:w-[75%] md:ml-[25%] flex items-center justify-center h-full">
-                    <div className="w-[90%] md:w-[80%] lg:w-[75%]">
+                    <div className="w-[90%] md:w-[80%] lg:w-[75%] my-4">
                         <div className=" text-[#7F7F7F]">
-                            <h2 className="text-[4.99vw] min-[500px]:text-2xl lg:text-[32px] font-bold w-fit">
+                            <h2 className="text-[4.99vw] min-[500px]:text-2xl lg:text-[32px] font-bold w-fit mt-8">
                                 Start accepting payments in 3 minutes
                             </h2>
-                            <p className="text-xs sm:text-sm mb-10 w-fit">
+                            <p className="text-xs sm:text-sm mb-10 w-fit pt-1">
                                 Get Started
                             </p>
 
@@ -58,14 +58,14 @@ const FreeTrial = ({}: Props) => {
                             >
                                 <input
                                     type="text"
-                                    placeholder="Business name"
+                                    placeholder="Business Name"
                                     required
                                     {...register("businessName")}
                                     className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
                                 />
                                 <input
                                     type="tel"
-                                    placeholder="Bank account"
+                                    placeholder="Bank Account Number"
                                     maxLength={10}
                                     required
                                     {...register("bankAccount")}
@@ -73,22 +73,22 @@ const FreeTrial = ({}: Props) => {
                                 />
                                 <input
                                     type="text"
-                                    placeholder="Bank name"
+                                    placeholder="Bank Name"
                                     required
                                     {...register("bankName")}
                                     className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
                                 />
                                 <input
                                     type="tel"
-                                    placeholder="Phone number"
+                                    placeholder="WhatsApp Number"
                                     maxLength={15}
                                     required
-                                    {...register("phoneNumber")}
+                                    {...register("whatsappNumber")}
                                     className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
                                 />
                                 <input
                                     type="email"
-                                    placeholder="Email address"
+                                    placeholder="Email Address"
                                     required
                                     {...register("email")}
                                     className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
@@ -101,9 +101,10 @@ const FreeTrial = ({}: Props) => {
                                     How many payment points do you have?
                                 </label>
                                 <input
-                                    type="tel"
+                                    type="number"
                                     id="points"
-                                    maxLength={1}
+                                    min={1}
+                                    max={20}
                                     required
                                     {...register("points")}
                                     className="w-12 sm:w-20 pl-2 sm:pl-4 py-1 sm:py-2 mb-3 border border-[#051355] rounded"
