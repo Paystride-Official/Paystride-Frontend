@@ -259,14 +259,14 @@ export const staffRow = [
     bankName: "Grocery",
     status: "Active",
   },
-  // {
-  //   key: "5",
-  //   role: "sales Manager",
-  //   phoneNumber: "08138465066",
-  //   name: "Jumat",
-  //   department: "Account",
-  //   status: "InActive",
-  // },
+  {
+    key: "5",
+    role: "sales Manager",
+    phoneNumber: "08138465066",
+    name: "Jumat",
+    department: "Account",
+    status: "InActive",
+  },
 ];
 
 export const virtualCol = [
