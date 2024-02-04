@@ -17,6 +17,7 @@ import {
   useGetPaypoint,
 } from "./_slice/query";
 import { getUser } from "@/ProtectedRoute/ProtectedRoute";
+import DeletePaypoint from "./_components/DeletePaypoint/DeletePaypoint";
 
 type Props = {};
 
@@ -24,23 +25,23 @@ const Paymentpoint = (props: Props) => {
   const [singleRow, setSingleRow] = useState<{ [key: string]: any }>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [addNewModal, setAddNewModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [search, setSearch] = useState<string>("");
   const [filters, setFilters] = useState<FilterObject | null>(null);
   const [content, setContent] = useState<ReactNode>("");
 
   const { mutateAsync: createPaypoint } = useCreatePaymentPoint();
   const { mutateAsync: editPaypoint } = useEditPaymentPoint();
-  const { isLoading, data, isError } = useGetPaypoint();
-  const {} = useGetAllPaypoint();
+
+  // const { isLoading, data, isError } = useGetPaypoint();
+
+  const { isLoading, data, isError } = useGetAllPaypoint();
 
   const user = getUser();
   const addPaypoint = async (data: FieldValues) => {
     const updatedData = { ...data, merchant_id: user.id };
 
-    console.log(data);
     const response = await createPaypoint(updatedData);
-
-    console.log(response);
   };
 
   const handleEditPaypoint = async (data: FieldValues) => {
@@ -49,17 +50,16 @@ const Paymentpoint = (props: Props) => {
     console.log(data);
   };
 
+  const handleDeltePaypoint = async () => {};
+
   const closeModal = () => {
+    setDeleteModal(false);
     setAddNewModal(false);
     setIsOpen(false);
   };
 
   const openModal = () => {
     setIsOpen(true);
-  };
-
-  const openAddNewMOdal = () => {
-    setAddNewModal(true);
   };
 
   useEffect(() => {
@@ -74,13 +74,15 @@ const Paymentpoint = (props: Props) => {
             closeModal={closeModal}
           />
         );
+      } else if (deleteModal) {
+        return <DeletePaypoint singleRow={singleRow} closeModal={closeModal} />;
       }
 
       return null;
     };
 
     setContent(determineContent());
-  }, [isOpen, addNewModal]);
+  }, [isOpen, addNewModal, deleteModal]);
 
   const bankStat = [
     {
@@ -120,12 +122,14 @@ const Paymentpoint = (props: Props) => {
             columns={payPointCol}
             openModal={openModal}
             setSingleRow={setSingleRow}
+            deleteModal={deleteModal}
+            setDeleteModal={setDeleteModal}
           />
         </div>
 
         <div>
           <ModalPopUp
-            isOpen={isOpen || addNewModal}
+            isOpen={isOpen || addNewModal || deleteModal}
             closeModal={closeModal}
             body={content}
           />

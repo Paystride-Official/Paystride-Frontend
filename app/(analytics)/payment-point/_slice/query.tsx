@@ -2,6 +2,7 @@ import { NewUser } from "@/types/types";
 import { useMutation, useQuery } from "react-query";
 import {
   createPaypoint,
+  deletePaypoint,
   editPaypoint,
   getAllPaypoint,
   getPaypoint,
@@ -15,6 +16,12 @@ export const useCreatePaymentPoint = () => {
 export const useEditPaymentPoint = () => {
   return useMutation({
     mutationFn: (paypointData: NewUser) => editPaypoint(paypointData),
+  });
+};
+
+export const useDeltePaymentPoint = () => {
+  return useMutation({
+    mutationFn: (paypointData: NewUser) => deletePaypoint(paypointData),
   });
 };
 

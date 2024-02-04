@@ -201,20 +201,20 @@ export const payPointCol = [
 ];
 export const staffCol = [
   {
-    key: "name",
-    label: "Name",
+    key: "default",
+    label: "Mark Default",
   },
   {
-    key: "role",
-    label: "Role",
+    key: "account",
+    label: "Account",
   },
   {
-    key: "department",
-    label: "Department",
+    key: "bank",
+    label: "Bank",
   },
   {
-    key: "phoneNumber",
-    label: "Phone number",
+    key: "bankName",
+    label: "Bank Name",
   },
   {
     key: "status",
@@ -228,44 +228,45 @@ export const staffCol = [
 export const staffRow = [
   {
     key: "1",
-    role: "sales Manager",
-    name: "Alex",
-    department: "Account",
-    phoneNumber: "08138465066",
+    account: "0163445272",
+    default: true,
+    bank: "Zenith",
+    bankName: "Grocery",
     status: "Active",
   },
   {
     key: "2",
-    role: "sales Manager",
-    name: "Omotola",
-    department: "Account",
-    phoneNumber: "08138465066",
+    account: "0163445272",
+    default: false,
+    bank: "Gt Bank",
+    bankName: "Grocery",
     status: "Active",
+    // phoneNumber: "08138465066",
   },
   {
     key: "3",
-    role: "sales Manager",
-    name: "Chidi",
-    department: "Account",
-    phoneNumber: "08138465066",
+    account: "0163445272",
+    default: true,
+    bank: "Gt Bank",
+    bankName: "Grocery",
     status: "Active",
   },
   {
     key: "4",
-    role: "sales Manager",
-    name: "Korede",
-    department: "Account",
-    phoneNumber: "08138465066",
+    account: "0163445272",
+    default: false,
+    bank: "Gt Bank",
+    bankName: "Grocery",
     status: "Active",
   },
-  {
-    key: "5",
-    role: "sales Manager",
-    phoneNumber: "08138465066",
-    name: "Jumat",
-    department: "Account",
-    status: "InActive",
-  },
+  // {
+  //   key: "5",
+  //   role: "sales Manager",
+  //   phoneNumber: "08138465066",
+  //   name: "Jumat",
+  //   department: "Account",
+  //   status: "InActive",
+  // },
 ];
 
 export const virtualCol = [
@@ -329,6 +330,83 @@ export const virtualRow = [
     status: "InActive",
   },
 ];
+
+export const permissionCol = [
+  {
+    key: "role",
+    label: "Role",
+  },
+  {
+    key: "dashboard",
+    label: "Dashboard",
+  },
+
+  {
+    key: "transaction",
+    label: "Transaction",
+  },
+  {
+    key: "paymentPoint",
+    label: "Payment Point",
+  },
+  {
+    key: "settlement",
+    label: "Settlement",
+  },
+  {
+    key: "settings",
+    label: "Settings",
+  },
+];
+
+export const permissionRow = [
+  {
+    key: "1",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+  {
+    key: "2",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+  {
+    key: "3",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+  {
+    key: "4",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+  {
+    key: "5",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+];
+
 let server_url;
 
 if (process.env.NODE_ENV === "production") {

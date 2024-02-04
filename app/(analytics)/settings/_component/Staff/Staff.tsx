@@ -1,5 +1,6 @@
 "use client";
 import React, { ReactNode, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import Header from "@/app/(analytics)/_components/HeaderStat/Header";
 import Controllers from "@/components/Controllers/Controllers";
 import { FilterObject, NewUser } from "@/types/types";
@@ -18,17 +19,12 @@ import { useUserContext } from "@/context/AuthContext";
 import DeleteStaff from "../DeleteStaff/DeleteStaff";
 import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 
-type Props = {
-  // setAddNewModal: React.Dispatch<React.SetStateAction<boolean>>;
-  // addNewModal: boolean | undefined;
-  // openModal: () => void;
-  // staff?: NewUser[] | undefined;
-};
+type Props = {};
 
 const Staff = (props: Props) => {
   const [search, setSearch] = useState<string>("");
   const [filters, setFilters] = useState<FilterObject | null>(null);
-  const [staff, setStaff] = useState<NewUser[] | undefined>();
+  const [singleRow, setSingleRow] = useState<{ [key: string]: any }>([]);
   const [addNewModal, setAddNewModal] = useState<boolean>(false);
   const [editModal, setEditModal] = useState<boolean>(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -36,20 +32,13 @@ const Staff = (props: Props) => {
   const { mutateAsync: createStaff } = useCreateStaff();
   const { mutateAsync: editStaff } = useEditStaff();
   const user = getUser();
-  console.log(user, "user");
 
-  //  if(user){
-
-  //  }
   const {
     isLoading: loading,
     data,
     isError,
   } = useGetAllStaff({ merchant_id: user?.id });
-
-  console.log(data?.success);
-
-  // setStaff(data);
+  let staff: NewUser[] | [] = data?.success?.users ?? [];
 
   useEffect(() => {
     const determineContent = () => {
@@ -58,9 +47,15 @@ const Staff = (props: Props) => {
           <NewStaff closeModal={closeModal} onSubmit={handleCreateStaff} />
         );
       } else if (editModal) {
-        return <EditStaff closeModal={closeModal} onSubmit={handleEditStaff} />;
+        return (
+          <EditStaff
+            closeModal={closeModal}
+            onSubmit={handleEditStaff}
+            singleRow={singleRow}
+          />
+        );
       } else if (deleteModal) {
-        return <DeleteStaff />;
+        return <DeleteStaff singleRow={singleRow} />;
       }
 
       return null;
@@ -86,7 +81,6 @@ const Staff = (props: Props) => {
       : console.log("error", response.error);
 
     closeModal();
-    console.log(data);
   };
 
   const handleCreateStaff = async (data: FieldValues) => {
@@ -95,7 +89,7 @@ const Staff = (props: Props) => {
     const response: any = await createStaff(updatedData);
 
     response.success
-      ? console.log("success", response.success)
+      ? toast.success(response.success.message)
       : console.log("error", response.error);
 
     closeModal();
@@ -135,12 +129,13 @@ const Staff = (props: Props) => {
           setAddNewModal={setAddNewModal}
         />
         <TableComponent
-          rows={staffRow}
+          // rows={staffRow}
+          rows={staff}
           columns={staffCol}
-          // columns={staff}
           openModal={openModal}
           deleteModal={deleteModal}
           setDeleteModal={setDeleteModal}
+          setSingleRow={setSingleRow}
         />
       </div>
 

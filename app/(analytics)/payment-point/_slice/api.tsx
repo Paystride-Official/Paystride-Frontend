@@ -18,9 +18,24 @@ function createPaypointApi(data: NewUser) {
 
 function editPaypointApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/payment-points${data.id}`;
+  const url = `${SERVER_URL}/merchants/payment-points/${data.id}`;
   const options = {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify(data),
+  };
+  return axios(url, options);
+}
+
+function deletePaypointApi(data: NewUser) {
+  console.log(data, "delte dat");
+
+  //user: { email: string; password: string }
+  const url = `${SERVER_URL}/merchants/payment-points/${data.id}`;
+  const options = {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
@@ -68,6 +83,18 @@ export const createPaypoint = async (paypointdata: NewUser) => {
 export const editPaypoint = async (paypointdata: NewUser) => {
   try {
     const response: any = await editPaypointApi(paypointdata);
+
+    return { success: { ...response } };
+  } catch (error) {
+    const response = handleAxiosError(error);
+
+    return { error: { response } };
+  }
+};
+
+export const deletePaypoint = async (paypointdata: NewUser) => {
+  try {
+    const response: any = await deletePaypointApi(paypointdata);
 
     return { success: { ...response } };
   } catch (error) {

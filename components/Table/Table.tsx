@@ -49,6 +49,7 @@ export function TableComponent({
             <p>{column.phoneNumber}</p>
           </div>
         );
+
       case "onDuty":
         return (
           <div
@@ -63,6 +64,7 @@ export function TableComponent({
             </div>
           </div>
         );
+
       case "status":
         return (
           <div className=" flex items-start gap-8">
@@ -77,6 +79,45 @@ export function TableComponent({
             </div> */}
           </div>
         );
+
+      case "default":
+        return (
+          <div className="flex justify-center items-center">
+            <input type="checkbox" checked={column.default} />
+          </div>
+        );
+
+      case "dashboard":
+        return (
+          <div className="flex justify-center items-center">
+            <input type="checkbox" checked={column.dashboard} />
+          </div>
+        );
+      case "transaction":
+        return (
+          <div className="flex justify-center items-center">
+            <input type="checkbox" checked={column.transaction} />
+          </div>
+        );
+      case "paymentPoint":
+        return (
+          <div className="flex justify-center items-center">
+            <input type="checkbox" checked={column.paymentPoint} />
+          </div>
+        );
+      case "settlement":
+        return (
+          <div className="flex justify-center items-center">
+            <input type="checkbox" checked={column.settlement} />
+          </div>
+        );
+      case "settings":
+        return (
+          <div className="flex justify-center items-center">
+            <input type="checkbox" checked={column.settings} />
+          </div>
+        );
+
       case "action":
         return (
           <div className="flex w-full item-start justify-start gap-6 cursor-pointer">
@@ -85,7 +126,6 @@ export function TableComponent({
               alt="Edit"
               width={15}
               height={15}
-              // className="flex items-start "
               onClick={() => {
                 openModal?.(), getData(column);
               }}
@@ -96,7 +136,6 @@ export function TableComponent({
               height={15}
               alt="Delete"
               onClick={() => setDeleteModal && setDeleteModal(!deleteModal)}
-              // className="flex items-start "
             />
           </div>
         );
@@ -123,7 +162,10 @@ export function TableComponent({
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={rows}>
+        <TableBody
+          items={rows}
+          emptyContent={"You haven't create any staff yet."}
+        >
           {/* <TableBody emptyContent={"No rows to display."}>{[]}</TableBody> */}
           {(item) => (
             <TableRow key={item.key}>

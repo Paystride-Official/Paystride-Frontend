@@ -2,11 +2,14 @@ import React from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 type Props = {
+  singleRow: {
+    [key: string]: any;
+  };
   closeModal: () => void;
   onSubmit: (data: FieldValues) => void;
 };
 
-const EditStaff = ({ closeModal, onSubmit }: Props) => {
+const EditStaff = ({ closeModal, onSubmit, singleRow }: Props) => {
   const { register, handleSubmit } = useForm();
   return (
     <main>
@@ -21,6 +24,7 @@ const EditStaff = ({ closeModal, onSubmit }: Props) => {
           <input
             type="text"
             placeholder="paypoint 1"
+            value={singleRow.name}
             {...register("name")}
             disabled
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
@@ -31,6 +35,7 @@ const EditStaff = ({ closeModal, onSubmit }: Props) => {
           <input
             type="text"
             placeholder="paypoint 1"
+            value={singleRow.phone_number}
             {...register("phone_number")}
             disabled
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
@@ -41,6 +46,7 @@ const EditStaff = ({ closeModal, onSubmit }: Props) => {
           <input
             type="email"
             placeholder="abc@gmail.com"
+            value={singleRow.email}
             {...register("email")}
             disabled
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
@@ -54,6 +60,7 @@ const EditStaff = ({ closeModal, onSubmit }: Props) => {
           <input
             type="password"
             placeholder="paypoint 1"
+            value={singleRow.password}
             {...register("password")}
             disabled
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
@@ -63,6 +70,7 @@ const EditStaff = ({ closeModal, onSubmit }: Props) => {
           <p className="text-[12px]">Role</p>
           <input
             type="text"
+            value={singleRow.role}
             placeholder="paypoint 1"
             {...register("role")}
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
