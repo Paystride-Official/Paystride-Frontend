@@ -331,6 +331,30 @@ export const virtualRow = [
   },
 ];
 
+export const generateLink = [
+  {
+    key: "1",
+    name: "Payment point 1",
+    accountNumber: "0993984484",
+    bankName: "Zenith",
+    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_jhdjbsdgh",
+  },
+  {
+    key: "2",
+    name: "Payment point 2",
+    accountNumber: "0993984484",
+    bankName: "Zenith",
+    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_abcdefghi",
+  },
+  {
+    key: "3",
+    name: "Payment point 3",
+    accountNumber: "0993984484",
+    bankName: "Zenith",
+    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_abidebye",
+  },
+];
+
 export const permissionCol = [
   {
     key: "role",
