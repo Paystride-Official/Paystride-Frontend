@@ -1,5 +1,3 @@
-// components/ProtectedRoute.tsx
-
 "use client";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
@@ -23,7 +21,6 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     setLoading(false);
 
     if (!authToken) {
-      console.log("not true");
       removeItemFromStorage("user-info");
       // If not authenticated, redirect to the login page
       redirect("/login");
@@ -35,6 +32,5 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
 export const getUser = () => {
   const user = getItemFromStorage("user-info");
-  console.log(user, "user-inf");
   return user;
 };

@@ -45,7 +45,7 @@ const LoginPage = (props: Props) => {
       // router.push("/dashboard");
       return;
     } else {
-      console.log(response.error);
+      // console.log(response.error);
     }
   };
 

@@ -25,7 +25,6 @@ export const useGetAllStaff = (data: { merchant_id: number }) => {
 
     onSuccess: (fetchedData) => {
       // You can perform additional logic here if needed
-      console.log("Data successfully fetched:", fetchedData);
     },
 
     enabled: true,

@@ -17,13 +17,13 @@
 html {
   min-height: 100vh;
   width: full !important;
-  /* overflow-x: auto; */
+  overflow-x: auto;
 }
 
 body {
   max-width: 1536px;
   margin: 0 auto;
-  overflow-x: auto;
+  /* overflow-x: auto; */
 }
 
 .otp-input {
