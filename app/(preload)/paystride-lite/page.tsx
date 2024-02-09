@@ -3,14 +3,17 @@ import React, { useState, useEffect, ReactNode } from "react";
 import { useForm, FieldValues } from "react-hook-form";
 import Link from "next/link";
 import Sidebar from "../_components/Sidebar/Sidebar";
-import PaymentLink from "../payment-link/page";
+import PaymentLink from "../_components/PaymentLink/PaymentLink";
 import ModalPopUp from "@/components/Modal/Modal";
+import CbnModal from "../_components/CbnModal/CbnModal";
+import NotificationPopOver from "@/components/Navbar/NotificationPopOver/NotificationPopOver";
 
 type Props = {};
 
 const FreeTrial = ({}: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState<ReactNode>("");
+    const [showCbnPolicy, setShowCbnPolicy] = useState(false);
 
     const { register, handleSubmit, getValues, reset } = useForm();
 
@@ -40,11 +43,11 @@ const FreeTrial = ({}: Props) => {
 
     return (
         <div>
-            <section className="w-full h-[100vh]">
+            <section className="w-full">
                 <Sidebar />
                 <div className="md:w-[75%] md:ml-[25%] flex items-center justify-center h-full">
                     <div className="w-[90%] md:w-[80%] lg:w-[75%] my-4">
-                        <div className=" text-[#7F7F7F]">
+                        <div className="text-[#7F7F7F] pb-5">
                             <h2 className="text-[4.99vw] min-[500px]:text-2xl lg:text-[32px] font-bold w-fit mt-8">
                                 Start accepting payments in 3 minutes
                             </h2>
@@ -61,7 +64,7 @@ const FreeTrial = ({}: Props) => {
                                     placeholder="Business Name"
                                     required
                                     {...register("businessName")}
-                                    className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
+                                    className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                                 />
                                 <input
                                     type="tel"
@@ -69,29 +72,53 @@ const FreeTrial = ({}: Props) => {
                                     maxLength={10}
                                     required
                                     {...register("bankAccount")}
-                                    className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
+                                    className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                                 />
                                 <input
                                     type="text"
                                     placeholder="Bank Name"
                                     required
                                     {...register("bankName")}
-                                    className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
+                                    className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                                 />
+                                <div className="mb-3 relative">
+                                    <input
+                                        type="tel"
+                                        placeholder="BVN"
+                                        maxLength={11}
+                                        required
+                                        {...register("bvn")}
+                                        className="w-full px-3 sm:px-5 py-2  border-[1.5px] border-[#091F8E] rounded"
+                                    />
+                                    <p
+                                        onMouseEnter={() =>
+                                            setShowCbnPolicy(true)
+                                        }
+                                        onClick={() =>
+                                            setShowCbnPolicy(!showCbnPolicy)
+                                        }
+                                        className="absolute text-xs lg:text-sm top-3 right-3 sm:right-5 underline cursor-pointer"
+                                    >
+                                        (Read CBN policy here)
+                                    </p>
+                                    <div className="absolute bottom-6 right-[25%]">
+                                        {showCbnPolicy && <CbnModal />}
+                                    </div>
+                                </div>
                                 <input
                                     type="tel"
                                     placeholder="WhatsApp Number"
                                     maxLength={15}
                                     required
                                     {...register("whatsappNumber")}
-                                    className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
+                                    className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                                 />
                                 <input
                                     type="email"
                                     placeholder="Email Address"
                                     required
                                     {...register("email")}
-                                    className="w-full px-3 sm:px-5 py-2 mb-3 border border-[#051355] rounded"
+                                    className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                                 />
 
                                 <label
@@ -107,7 +134,7 @@ const FreeTrial = ({}: Props) => {
                                     max={20}
                                     required
                                     {...register("points")}
-                                    className="w-12 sm:w-20 pl-2 sm:pl-4 py-1 sm:py-2 mb-3 border border-[#051355] rounded"
+                                    className="w-12 sm:w-20 pl-2 sm:pl-4 py-1 sm:py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                                 />
 
                                 <br />
@@ -139,7 +166,7 @@ const FreeTrial = ({}: Props) => {
 
                                 <button
                                     type="submit"
-                                    className="bg-[#091F8E] text-sm sm:text-base text-white px-12 py-3 rounded my-7 mx-auto sm:mx-0 block"
+                                    className="bg-[#091F8E] text-sm sm:text-base text-white px-12 py-3 rounded mt-8 mb-7 mx-auto sm:mx-0 block"
                                 >
                                     Generate payment link
                                 </button>

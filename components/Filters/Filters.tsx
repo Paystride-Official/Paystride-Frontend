@@ -5,89 +5,133 @@ import DateRange from "@/components/Filters/assets/date.svg";
 import GreaterEqual from "@/components/Filters/assets/greatequals.svg";
 import ArrowRight from "@/components/Filters/assets/rightArrow.svg";
 import Transfer from "@/components/Filters/assets/transfer.svg";
+import Duty from "@/components/Filters/assets/onDuty.svg";
+import Bank from "@/components/Filters/assets/bank.svg";
+import Card from "@/components/Filters/assets/card.svg";
+import Toogle from "@/components/Filters/assets/toggle.svg";
+import Boxes from "@/components/Filters/assets/boxes.svg";
+import Check from "@/components/Filters/assets/clipCheck.svg";
 import Image from "next/image";
 // import DateRangePicker from "../DateRange/DateRangePicker";
 import Amount from "./Amount/Amount";
 import Method from "./Method/Method";
 import DateRangePicker from "../DateRange/DateRangePicker";
+import OnDuty from "./OnDuty/OnDuty";
+import AccountNumber from "./AccountNumber/AccountNumber";
+import PaymentPoint from "./PaymentPoint/PaymentPoint";
+import Status from "./Status/Status";
+import Department from "./Department/Department";
+import Role from "./Role/Role";
 
 type Props = {
-  filters: FilterObject | null;
-  setFilters: React.Dispatch<React.SetStateAction<FilterObject | null>>;
+    filters: FilterObject | null;
+    setFilters: React.Dispatch<React.SetStateAction<FilterObject | null>>;
 };
 interface FilterObject {
-  [key: string]: any;
+    [key: string]: any;
 }
 const Filters = ({ filters, setFilters }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [key, setKey] = useState<string>("date");
+    const [isOpen, setIsOpen] = useState(false);
+    const [key, setKey] = useState<string>("date");
 
-  const stepToRender = (key: string) => {
-    switch (key) {
-      case "date":
-        return <DateRangePicker filters={filters} setFilters={setFilters} />;
-      case "amount":
-        return <Amount filters={filters} setFilters={setFilters} />;
-      case "method":
-        return <Method filters={filters} setFilters={setFilters} />;
+    const stepToRender = (key: string) => {
+        switch (key) {
+            case "date":
+                return (
+                    <DateRangePicker
+                        filters={filters}
+                        setFilters={setFilters}
+                    />
+                );
+            case "amount":
+                return <Amount filters={filters} setFilters={setFilters} />;
+            case "method":
+                return <Method filters={filters} setFilters={setFilters} />;
+            case "on-duty":
+                return <OnDuty filters={filters} setFilters={setFilters} />;
+            case "account number":
+                return (
+                    <AccountNumber filters={filters} setFilters={setFilters} />
+                );
+            case "payment point":
+                return (
+                    <PaymentPoint filters={filters} setFilters={setFilters} />
+                );
+            case "status":
+                return <Status filters={filters} setFilters={setFilters} />;
+            case "department":
+                return <Department filters={filters} setFilters={setFilters} />;
+            case "role":
+                return <Role filters={filters} setFilters={setFilters} />;
 
-      default:
-        break;
-    }
-  };
+            default:
+                break;
+        }
+    };
 
-  const Filters = [
-    { id: 1, name: "Date", Img: DateRange },
-    { id: 2, name: "Amount", Img: GreaterEqual },
-    { id: 3, name: "Method", Img: Transfer },
-  ];
+    const Filters = [
+        { id: 1, name: "Date", Img: DateRange },
+        { id: 2, name: "Amount", Img: GreaterEqual },
+        { id: 3, name: "Method", Img: Transfer },
+        { id: 4, name: "On-duty", Img: Duty },
+        { id: 5, name: "Account Number", Img: Bank },
+        { id: 6, name: "Payment Point", Img: Card },
+        { id: 7, name: "Status", Img: Toogle },
+        { id: 8, name: "Department", Img: Boxes },
+        { id: 9, name: "Role", Img: Check },
+    ];
 
-  return (
-    <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="border border-solid border-[#DDE2FD] px-4 py-1 rounded-md"
-      >
-        Filters
-      </button>
+    return (
+        <div className="relative">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="border border-solid border-[#DDE2FD] px-4 py-1 rounded-md"
+            >
+                Filters
+            </button>
 
-      <div
-        className={classNames({
-          block: isOpen,
-          hidden: !isOpen,
-          " w-[600px]  flex gap-8 px-2 py-8 absolute right-10 rounded-md z-50 bg-[#FAFAFA] shadow-[0px_2.552px_17.016px_0px_rgba(0,0,0,0.25)]":
-            true,
-        })}
-      >
-        <div className="flex flex-col flex-[2] gap-3 mb-8">
-          {Filters.map((filter) => {
-            const isActive = filter.name.toLocaleLowerCase() === key;
+            <div
+                className={classNames({
+                    block: isOpen,
+                    hidden: !isOpen,
+                    " w-[600px] flex gap-8 px-2 py-8 absolute right-10 rounded-md z-50 bg-[#FAFAFA] shadow-[0px_2.552px_17.016px_0px_rgba(0,0,0,0.25)]":
+                        true,
+                })}
+            >
+                <div className="flex flex-col flex-[2] gap-3 mb-8">
+                    {Filters.map((filter) => {
+                        const isActive =
+                            filter.name.toLocaleLowerCase() === key;
 
-            return (
-              <div
-                key={filter.id}
-                onClick={() => setKey(filter.name.toLocaleLowerCase())}
-                className={classNames(
-                  "w-full flex items-center justify-between px-3 py-2 rounded-md cursor-pointer",
-                  {
-                    "bg-white": !isActive,
-                    "bg-[#DDE2FD]": isActive,
-                  }
-                )}
-              >
-                <div className="flex gap-4">
-                  <Image src={filter.Img} alt={filter.Img} />
-                  <button className="text-xl ">{filter.name}</button>
+                        return (
+                            <div
+                                key={filter.id}
+                                onClick={() =>
+                                    setKey(filter.name.toLocaleLowerCase())
+                                }
+                                className={classNames(
+                                    "w-full flex items-center justify-between px-3 py-2 rounded-md cursor-pointer",
+                                    {
+                                        "bg-white": !isActive,
+                                        "bg-[#DDE2FD]": isActive,
+                                    }
+                                )}
+                            >
+                                <div className="flex gap-4">
+                                    <Image src={filter.Img} alt={filter.Img} />
+                                    <button className="text-lg">
+                                        {filter.name}
+                                    </button>
+                                </div>
+                                <Image src={ArrowRight} alt="ArrowRight" />
+                            </div>
+                        );
+                    })}
                 </div>
-                <Image src={ArrowRight} alt="ArrowRight" />
-              </div>
-            );
-          })}
+                <div className="flex-[3]">{stepToRender(key)}</div>
+            </div>
         </div>
-        <div className="flex-[3]">{stepToRender(key)}</div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Filters;
