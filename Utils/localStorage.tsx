@@ -5,7 +5,7 @@ export const clearStorage = (): void => {
 };
 
 export const getItemFromStorage = (key: string): any => {
-  if (localStorage) {
+  if (typeof window !== "undefined") {
     try {
       const item = localStorage.getItem(key);
 
@@ -19,7 +19,7 @@ export const getItemFromStorage = (key: string): any => {
 };
 
 export const storeItem = (key: string, item: any): void => {
-  if (localStorage) {
+  if (typeof window !== "undefined") {
     try {
       localStorage.setItem(key, JSON.stringify(item));
     } catch (err) {
@@ -29,7 +29,7 @@ export const storeItem = (key: string, item: any): void => {
 };
 
 export const removeItemFromStorage = (key: string): void => {
-  if (localStorage) {
+  if (typeof window !== "undefined") {
     try {
       localStorage.removeItem(key);
     } catch (err) {
