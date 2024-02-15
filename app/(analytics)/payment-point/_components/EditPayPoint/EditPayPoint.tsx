@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 type EditPayPointProps = {
@@ -14,6 +14,10 @@ export const EditPayPoint = ({
   onSubmit,
   closeModal,
 }: EditPayPointProps) => {
+  useEffect(() => {
+    console.log("sent");
+  }, []);
+
   const { handleSubmit, register } = useForm();
 
   return (

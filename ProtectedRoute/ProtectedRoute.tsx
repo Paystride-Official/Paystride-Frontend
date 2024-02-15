@@ -17,10 +17,11 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     // Check if the user is authenticated
     setLoading(true);
     const authToken = getItemFromStorage("AuthToken");
+    const user_info = getItemFromStorage("user-info");
 
     setLoading(false);
 
-    if (!authToken) {
+    if (!authToken && !user_info) {
       removeItemFromStorage("user-info");
       // If not authenticated, redirect to the login page
       redirect("/login");

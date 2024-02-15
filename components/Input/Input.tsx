@@ -24,7 +24,7 @@ const Input = ({ label, placeholder, id, type, register }: InputProps) => {
         id={id}
         {...register(id)}
         placeholder={placeholder}
-        className="px-[15px] py-[8px] rounded-[10px] outline-none w-[90%]"
+        className="px-[15px] py-[8px] rounded-[10px] outline-none w-[90%] bg-gray-100"
       />
     </div>
   );

@@ -7,7 +7,7 @@ import Settlement from "@/components/Sidebar/assets/Settlement.svg";
 import Settings from "@/components/Sidebar/assets/Settings.svg";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import classNames from "classnames";
 
 type Props = {};
@@ -51,7 +51,7 @@ const Sidebar = (props: Props) => {
     },
   ];
   return (
-    <div className=" min-h-screen sticky hidden sm:flex  bg-[#ECECEC]  ">
+    <div className=" min-h-screen sticky hidden md:flex  bg-[#ECECEC]  ">
       <div className="h-screen sticky top-0 left-0 w-64 ">
         <div className="flex pl-12 h-[3.5rem]  items-center  bg-white">
           <Image src={Paystride} alt="Paystride" className="h-[2.5rem]" />

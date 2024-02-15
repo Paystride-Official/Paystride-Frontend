@@ -1,8 +1,16 @@
 import { SERVER_URL } from "@/Utils/constants";
-import { storeItem } from "@/Utils/localStorage";
+import {
+  getItemFromStorage,
+  removeItemFromStorage,
+  storeItem,
+} from "@/Utils/localStorage";
 import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
 import axios from "axios";
+import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
+
+const authToken = getItemFromStorage("AuthToken");
 
 function loginApi(data: NewUser) {
   //user: { email: string; password: string }
@@ -11,35 +19,72 @@ function loginApi(data: NewUser) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": "eMke5Bxhz0FHs6fp7ZVljyVmqqKYvQT8",
     },
     data: JSON.stringify(data),
   };
   return axios(url, options);
 }
 
-export const signInAccount = async (user: NewUser) => {
+function signOutApi() {
+  //user: { email: string; password: string }
+  const url = `${SERVER_URL}/logout`;
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
+  return axios(url, options);
+}
+
+export const signInAccount = async (userData: NewUser) => {
   try {
-    const response: any = await loginApi(user);
+    const response: any = await loginApi(userData);
 
-    const { data, status, statusText } = response;
-    const responseData = { ...data, status, statusText };
+    const {
+      data: { token, user },
+    } = response;
+    console.log(response);
 
-    if (data) {
-      const { token, ...rest } = responseData;
+    // const responseData = { ...data, status, statusText };
+    // console.log(responseData);
+
+    if (token && user) {
+      // const { token, ...rest } = responseData;
 
       // Store the token in local storage
       storeItem("AuthToken", token);
-      storeItem("user-info", data.data);
+      storeItem("user-info", user);
 
       // Navigate to the dashboard page
 
       // Return the remaining user data
-      return { success: { ...rest } };
+      return { success: user };
     }
+    return null;
   } catch (error) {
     const response = handleAxiosError(error);
 
-    return { error: { response } };
+    return { error: response };
+  }
+};
+
+export const signOutAccount = async () => {
+  try {
+    const response = await signOutApi();
+
+    removeItemFromStorage("AuthToken");
+    //romve from local storage
+
+    removeItemFromStorage("user-info");
+
+    toast.success("logged out successfully");
+
+    return { success: response };
+  } catch (error) {
+    const response = handleAxiosError(error);
+    return { error: response };
   }
 };

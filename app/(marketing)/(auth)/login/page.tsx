@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
@@ -11,9 +11,12 @@ import Button from "@/components/Button/Button";
 import { useSignInAccount } from "./_slice/query";
 import { useRouter } from "next/navigation";
 import { getUser } from "@/ProtectedRoute/ProtectedRoute";
+import { toast } from "react-toastify";
 
 interface Props {}
 const LoginPage = (props: Props) => {
+  const [error, setError] = useState<any>();
+
   const router = useRouter();
   const {
     register,
@@ -30,6 +33,12 @@ const LoginPage = (props: Props) => {
     user = getUser();
   }, []);
 
+  useEffect(() => {
+    setInterval(() => {
+      setError("");
+    }, 4000);
+  }, [error]);
+
   const { mutateAsync: signInAccount } = useSignInAccount();
 
   const handleOnSubmit = async (data: FieldValues) => {
@@ -37,15 +46,15 @@ const LoginPage = (props: Props) => {
     const response: any = await signInAccount(formData);
 
     if (response.success) {
-      const { data } = response.success;
-      console.log(response.success);
-      router.push(`dashboard/${data?.id}`);
+      toast.success("logged in successfully");
+
+      router.push(`/dashboard/${response.success?.id}`);
+
       reset();
 
-      // router.push("/dashboard");
       return;
     } else {
-      // console.log(response.error);
+      setError(response.error.message);
     }
   };
 
@@ -97,6 +106,9 @@ const LoginPage = (props: Props) => {
             <p className="text-red-500 w-[90%] mx-auto my-0 ">
               {`Invalid email/password`}
             </p>
+          )}
+          {error && (
+            <p className="text-red-500 w-[90%] mx-auto my-0 ">{error}</p>
           )}
 
           <Button type="submit" text="login" disabled={isSubmitting} />

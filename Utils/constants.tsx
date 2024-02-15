@@ -436,7 +436,7 @@ let server_url;
 if (process.env.NODE_ENV === "production") {
   server_url = "https://api.paystride.co/api";
 } else {
-  server_url = "https://staging-api.paystride.co/api";
+  server_url = "https://api.paystride.co/api";
 }
 
 export const SERVER_URL = server_url;

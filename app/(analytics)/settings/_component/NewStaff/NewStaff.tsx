@@ -12,7 +12,7 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
   return (
     <main>
       {/* <section className="flex"> */}
-
+      <h1 className="text-center font-bold capitalize text-3xl">New Staff</h1>
       <form
         className="flex flex-col items-center justify-center my-4 gap-4"
         onSubmit={handleSubmit(onSubmit)}
@@ -56,7 +56,7 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
           />
         </div>
-        <div>
+        {/* <div>
           <p className="text-[12px]">Role</p>
           <input
             type="text"
@@ -64,7 +64,7 @@ const NewStaff = ({ closeModal, onSubmit }: Props) => {
             {...register("role")}
             className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md"
           />
-        </div>
+        </div> */}
         {/* </section> */}
         <div className="flex gap-4 justify-center w-full mb-2">
           <button
