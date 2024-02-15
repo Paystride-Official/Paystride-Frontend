@@ -5,7 +5,7 @@ import axios from "axios";
 
 function resetPasswordApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchant/reset-password`;
+  const url = `${SERVER_URL}/reset-password`;
   const options = {
     method: "POST",
     headers: {

@@ -4,7 +4,7 @@ import { NewUser } from "@/types/types";
 import axios from "axios";
 
 function registerApi(data: NewUser) {
-  const url = `${SERVER_URL}/merchants/`;
+  const url = `${SERVER_URL}/register`;
   const options = {
     method: "POST",
     headers: {
@@ -28,7 +28,7 @@ function verifyOtpApi(data: { otp: string; email: string }) {
   return axios(url, options);
 }
 function resendOtpApi(data: { email: string }) {
-  const url = `${SERVER_URL}/merchants/resend-otp`;
+  const url = `${SERVER_URL}/resend-otp`;
   const options = {
     method: "POST",
     headers: {

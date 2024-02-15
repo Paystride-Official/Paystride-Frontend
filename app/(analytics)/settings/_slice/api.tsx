@@ -1,15 +1,17 @@
 import { SERVER_URL } from "@/Utils/constants";
+import { getItemFromStorage } from "@/Utils/localStorage";
 import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
 import axios from "axios";
 
+const authToken = getItemFromStorage("AuthToken");
 function createStaffApi(data: NewUser) {
-  //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/users`;
+  const url = `${SERVER_URL}/staff`;
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
     },
     data: JSON.stringify(data),
   };
@@ -18,11 +20,12 @@ function createStaffApi(data: NewUser) {
 
 function editStaffApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/users/${data.id}/roles`;
+  const url = `${SERVER_URL}/staff/${data.id}`;
   const options = {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
     },
     data: JSON.stringify(data),
   };
@@ -31,11 +34,12 @@ function editStaffApi(data: NewUser) {
 
 function deleteStaffApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/users/${data.id}`;
+  const url = `${SERVER_URL}/staff/${data.id}`;
   const options = {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
     },
     data: JSON.stringify(data),
   };
@@ -45,11 +49,12 @@ function getAllStaffApi(data: NewUser) {
   console.log(data);
 
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/${data.merchant_id}/users`;
+  const url = `${SERVER_URL}/staff`;
   const options = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
     },
     data: JSON.stringify(data),
   };

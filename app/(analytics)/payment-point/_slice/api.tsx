@@ -5,7 +5,7 @@ import axios from "axios";
 
 function createPaypointApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/payment-points`;
+  const url = `${SERVER_URL}/paymentpoint`;
   const options = {
     method: "POST",
     headers: {
@@ -18,7 +18,7 @@ function createPaypointApi(data: NewUser) {
 
 function editPaypointApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/payment-points/${data.id}`;
+  const url = `${SERVER_URL}/paymentpoint/${data.id}`;
   const options = {
     method: "PUT",
     headers: {
@@ -33,7 +33,7 @@ function deletePaypointApi(data: NewUser) {
   console.log(data, "delte dat");
 
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/payment-points/${data.id}`;
+  const url = `${SERVER_URL}/payment-point/${data.id}`;
   const options = {
     method: "DELETE",
     headers: {
@@ -46,7 +46,7 @@ function deletePaypointApi(data: NewUser) {
 
 function getPaypointApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/merchants/payment-points/${1}`;
+  const url = `${SERVER_URL}/payment-point/${1}`;
   const options = {
     method: "GET",
     headers: {
@@ -56,6 +56,8 @@ function getPaypointApi(data: NewUser) {
   };
   return axios(url, options);
 }
+
+
 function getAllPaypointApi(data: NewUser) {
   //user: { email: string; password: string }
   const url = `${SERVER_URL}/merchants/${1}/payment-points`;

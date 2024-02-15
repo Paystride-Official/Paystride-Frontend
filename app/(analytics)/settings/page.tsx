@@ -9,8 +9,6 @@ import Password from "./_component/Password/Password";
 import VirtualAccount from "./_component/virtualAccount/VirtualAccount";
 import { useForm } from "react-hook-form";
 
-import { useUserContext } from "@/context/AuthContext";
-
 type Props = {};
 
 const Settings = (props: Props) => {
