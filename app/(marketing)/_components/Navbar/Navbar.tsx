@@ -40,7 +40,7 @@ const Navbar = (props: Props) => {
                             <Link href="/login">
                                 <button
                                     type="button"
-                                    className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 text-[12px] md:text-base xl:text-xl capitalize"
+                                    className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 capitalize hover:bg-[#f9f8f8]"
                                 >
                                     Login
                                 </button>
@@ -50,7 +50,7 @@ const Navbar = (props: Props) => {
                             <Link href="/paystride-lite">
                                 <button
                                     type="button"
-                                    className="text-white capitalize bg-[#091F8E] py-2 px-4 text-base xl:text-xl"
+                                    className="text-white capitalize bg-[#091F8E] py-2 px-4 hover:bg-[#051359]"
                                 >
                                     try paystride for free
                                 </button>
@@ -109,7 +109,7 @@ const Navbar = (props: Props) => {
                                     href="/login"
                                     onClick={() => setOpen(!open)}
                                 >
-                                    <button className="border-none py-1 px-3 md:py-2 md:px-4 text-base xl:text-lg capitalize">
+                                    <button className="border-none py-1 px-3 md:py-2 md:px-4 capitalize">
                                         Login
                                     </button>
                                 </Link>
@@ -119,7 +119,7 @@ const Navbar = (props: Props) => {
                                     href="/paystride-lite"
                                     onClick={() => setOpen(!open)}
                                 >
-                                    <button className="text-black capitalize bg-white py-[6px] px-3 text-base">
+                                    <button className="text-black capitalize bg-white py-[6px] px-3">
                                         try paystride for free
                                     </button>
                                 </Link>

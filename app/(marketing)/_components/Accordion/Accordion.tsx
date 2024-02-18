@@ -49,7 +49,7 @@ const Accordion = ({ bgcolor, border }: AccordionProps) => {
                             elit. Suspendisse varius enim in eros elementum
                             tristique.
                         </p>
-                        <button className="border border-solid border-[#21232a] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg capitalize">
+                        <button className="border border-solid border-[#21232a] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg capitalize hover:bg-[#f9f8f8]">
                             contact sales
                         </button>
                     </div>

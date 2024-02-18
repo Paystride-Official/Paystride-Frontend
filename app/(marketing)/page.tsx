@@ -14,6 +14,7 @@ export default function Home() {
     const slides = [
         {
             image: Laptop,
+            star: 2,
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
             name: "Name",
             surname: "Surname",
@@ -23,6 +24,7 @@ export default function Home() {
         },
         {
             image: Slider1,
+            star: 4,
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
             name: "Name",
             surname: "Surname",
@@ -32,6 +34,7 @@ export default function Home() {
         },
         {
             image: Laptop,
+            star: 5,
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
             name: "Name",
             surname: "Surname",
@@ -41,6 +44,7 @@ export default function Home() {
         },
         {
             image: Slider1,
+            star: 3,
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
             name: "Name",
             surname: "Surname",
@@ -50,6 +54,7 @@ export default function Home() {
         },
         {
             image: Laptop,
+            star: 5,
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
             name: "Name",
             surname: "Surname",
@@ -75,15 +80,15 @@ export default function Home() {
                     </p>
 
                     <div className="flex mt-6 mb-2 md:mt-8 gap-4 justify-center">
-                        <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
+                        <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg hover:bg-[#051359]">
                             try paystride for free
                         </button>
-                        <button className="border border-solid border-[#21232a] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg capitalize">
+                        <button className="border border-solid border-[#21232a] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg capitalize hover:bg-[#f9f8f8]">
                             Discover in 1 minute
                         </button>
                     </div>
 
-                    <div className="relative w-full  max-w-[80rem] aspect-square mx-auto">
+                    <div className="relative w-full max-w-[80rem] aspect-square mx-auto">
                         <Image
                             src={Banner}
                             alt="Banner"
@@ -115,7 +120,7 @@ export default function Home() {
                                     quis viverra ornare, eros dolor interdum
                                     nulla, ut commodo diam libero vitae erat.
                                 </p>
-                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
+                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg hover:bg-[#051359]">
                                     try paystride for free
                                 </button>
                             </div>
@@ -154,7 +159,7 @@ export default function Home() {
                                     quis viverra ornare, eros dolor interdum
                                     nulla, ut commodo diam libero vitae erat.
                                 </p>
-                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
+                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg hover:bg-[#051359]">
                                     try paystride for free
                                 </button>
                             </div>
@@ -179,7 +184,7 @@ export default function Home() {
                                     quis viverra ornare, eros dolor interdum
                                     nulla, ut commodo diam libero vitae erat.
                                 </p>
-                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
+                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg hover:bg-[#051359]">
                                     try paystride for free
                                 </button>
                             </div>
@@ -198,8 +203,8 @@ export default function Home() {
             </main>
 
             <div className="bg-[#d2dde2] w-full mt-2 md:mt-5">
-                <div className="w-[90%] mx-auto pb-8">
-                    <h1 className="text-[7.4vw] min-[485px]:text-4xl md:text-5xl lg:text-6xl font-bold text-center py-4 my-8">
+                <div className="w-[90%] mx-auto">
+                    <h1 className="text-[7vw] min-[485px]:text-4xl md:text-5xl lg:text-6xl font-bold text-center pb-4 pt-6">
                         What our customers say...
                     </h1>
                     <Carousel slides={slides} />
