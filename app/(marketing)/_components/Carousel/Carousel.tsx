@@ -80,6 +80,7 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
                                     {Array.from({ length: slide.star }).map(
                                         (_, index) => (
                                             <Image
+                                                key={index}
                                                 src={StarIcon}
                                                 alt="StarIcon"
                                                 className="w-4"
