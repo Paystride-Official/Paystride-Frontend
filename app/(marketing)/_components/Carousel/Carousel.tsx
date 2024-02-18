@@ -8,6 +8,7 @@ import NextButton from "@/app/(marketing)/assets/ButtonNext.svg";
 
 type SlideProps = {
     image: StaticImageData;
+    star: any;
     text: string;
     name: string;
     surname: string;
@@ -49,8 +50,8 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
 
     return (
         <div className="h-auto relative">
-            <div className="w-full flex flex-col md:flex-row items-center gap-4 h-25 md:py-5">
-                <div className=" flex-[1] relative w-full">
+            <div className="w-full flex flex-col md:flex-row items-center gap-4 pt-7 md:pb-3">
+                <div className="flex-[2] relative w-full">
                     {slides.map((slide, index) => (
                         <Transition
                             key={index}
@@ -66,40 +67,28 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
                                 src={slide.image}
                                 alt="SliderImage"
                                 priority
-                                className="w-full md:w-[85%] h-auto rounded-2xl md:rounded-none"
+                                className="w-[60%] h-auto rounded-2xl md:rounded-none mx-auto md:ml-[15%] "
                             />
                         </Transition>
                     ))}
                 </div>
-                <div className="flex-[1] flex items-center order-2 md:order-1 py-4 md:py-0">
+                <div className="flex-[3] flex items-center order-2 md:order-1 py-4 md:py-0">
                     <div>
-                        <div className="flex gap-1">
-                            <Image
-                                src={StarIcon}
-                                alt="StarIcon"
-                                className="w-4 md:w-auto"
-                            />
-                            <Image
-                                src={StarIcon}
-                                alt="StarIcon"
-                                className="w-4 md:w-auto"
-                            />
-                            <Image
-                                src={StarIcon}
-                                alt="StarIcon"
-                                className="w-4 md:w-auto"
-                            />
-                            <Image
-                                src={StarIcon}
-                                alt="StarIcon"
-                                className="w-4 md:w-auto"
-                            />
-                            <Image
-                                src={StarIcon}
-                                alt="StarIcon"
-                                className="w-4 md:w-auto"
-                            />
-                        </div>
+                        {slides.map((slide, index) => (
+                            <Transition key={index} show={active === index}>
+                                <div className="flex gap-1">
+                                    {Array.from({ length: slide.star }).map(
+                                        (_, index) => (
+                                            <Image
+                                                src={StarIcon}
+                                                alt="StarIcon"
+                                                className="w-4"
+                                            />
+                                        )
+                                    )}
+                                </div>
+                            </Transition>
+                        ))}
 
                         {slides.map((slide, index) => (
                             <Transition
@@ -111,7 +100,7 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
                                 leaveFrom="opacity-100 translate-x-0"
                                 leaveTo="opacity-0 translate-x-4"
                             >
-                                <p className="font-bold py-3 lg:py-5 max-w-[50rem] sm:mt-3 lg:mt-6 mx-auto  text-sm md:text-base lg:text-xl text-start">
+                                <p className="font-bold py-3 lg:py-4 max-w-[50rem] sm:mt-0 mx-auto  text-sm md:text-base lg:text-lg text-start">
                                     {slide.text}
                                 </p>
                             </Transition>
@@ -126,7 +115,7 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
                                 leaveFrom="opacity-100 translate-x-4"
                                 leaveTo="opacity-0 translate-x-0"
                             >
-                                <div className="flex capitalize mt-3 mb-2 md:my-3">
+                                <div className="flex capitalize mt-3">
                                     <div className="pr-3 text-[12px] md:text-base border-r-2 border-zinc-950">
                                         <h3 className="font-semibold">
                                             {slide.name} {slide.surname}
@@ -169,7 +158,7 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
                         <Image
                             src={PrevButton}
                             alt="PrevButton"
-                            className="w-6 md:w-auto cursor-pointer"
+                            className="w-6 sm:w-10 cursor-pointer"
                             onClick={showPrev}
                         />
                     </button>
@@ -177,7 +166,7 @@ const Carousel = ({ slides }: { slides: SlideProps[] }) => {
                         <Image
                             src={NextButton}
                             alt="NextButton"
-                            className="w-6 md:w-auto cursor-pointer"
+                            className="w-6 sm:w-10 cursor-pointer"
                             onClick={showNext}
                         />
                     </button>

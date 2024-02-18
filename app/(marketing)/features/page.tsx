@@ -21,10 +21,10 @@ const Features = (props: Props) => {
                                 business
                             </h1>
                             <div className="flex mt-6 mb-2 md:mt-8 gap-4">
-                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
+                                <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg hover:bg-[#051359]">
                                     try paystride for free
                                 </button>
-                                <button className="border border-solid border-[#21232a] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg capitalize">
+                                <button className="border border-solid border-[#21232a] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg capitalize hover:bg-[#f9f8f8]">
                                     Discover in 1 minute
                                 </button>
                             </div>
@@ -68,7 +68,7 @@ const Features = (props: Props) => {
                                 commodo diam libero vitae erat.
                             </p>
 
-                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
+                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg hover:bg-[#051359]">
                                 try paystride for free
                             </button>
                         </div>
@@ -89,7 +89,7 @@ const Features = (props: Props) => {
                                 viverra ornare, eros dolor interdum nulla, ut
                                 commodo diam libero vitae erat.
                             </p>
-                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
+                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg hover:bg-[#051359]">
                                 try paystride for free
                             </button>
                         </div>
@@ -132,7 +132,7 @@ const Features = (props: Props) => {
                                 viverra ornare, eros dolor interdum nulla, ut
                                 commodo diam libero vitae erat.
                             </p>
-                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 mt-4 mb-3 md:my-6 text-[12px] min-[360px]:text-sm sm:text-base xl:text-xl">
+                            <button className="text-white capitalize bg-[#091F8E] py-[6px] px-3 md:py-2 md:px-4 text-[12px] min-[360px]:text-sm sm:text-base xl:text-lg hover:bg-[#051359]">
                                 try paystride for free
                             </button>
                         </div>

@@ -40,7 +40,7 @@ const Navbar = (props: Props) => {
                             <Link href="/login">
                                 <button
                                     type="button"
-                                    className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 capitalize"
+                                    className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 capitalize hover:bg-[#f9f8f8]"
                                 >
                                     Login
                                 </button>
@@ -50,7 +50,7 @@ const Navbar = (props: Props) => {
                             <Link href="/paystride-lite">
                                 <button
                                     type="button"
-                                    className="text-white capitalize bg-[#091F8E] py-2 px-4"
+                                    className="text-white capitalize bg-[#091F8E] py-2 px-4 hover:bg-[#051359]"
                                 >
                                     try paystride for free
                                 </button>
