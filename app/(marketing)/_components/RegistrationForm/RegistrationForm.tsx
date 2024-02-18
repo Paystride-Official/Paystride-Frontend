@@ -10,7 +10,6 @@ import Image from "next/image";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import { useCreateUserAccount } from "../../(auth)/register/_slice/query";
-import { NewUser, signUpUser } from "@/types/types";
 import { SignUpSchema } from "@/Utils/Schemas";
 
 type Props = {
@@ -35,8 +34,6 @@ const RegistrationForm = ({ setStep, step, setUserData, onSubmit }: Props) => {
   });
 
   const { mutateAsync: createUserAccount } = useCreateUserAccount();
-
-  const handleClick = () => {};
 
   const handleOnSubmit = async (data: FieldValues) => {
     const formData = getValues();
@@ -106,7 +103,7 @@ const RegistrationForm = ({ setStep, step, setUserData, onSubmit }: Props) => {
             label="Phone Number"
             id="phone_number"
             placeholder=""
-            type="number"
+            type="text"
           />
           {errors.phone_number && (
             <p className="text-red-500 w-[90%] mx-auto my-0 mt-[-1rem]">
@@ -119,6 +116,19 @@ const RegistrationForm = ({ setStep, step, setUserData, onSubmit }: Props) => {
             label="Password"
             id="password"
             placeholder="Enter at least 8 characters"
+            type="password"
+          />
+          {errors.password && (
+            <p className="text-red-500 w-[90%] mx-auto my-0 mt-[-1rem]">
+              {`${errors.password.message}`}
+            </p>
+          )}
+
+          <Input
+            register={register}
+            label="Password Confirmation"
+            id="password_confirmation"
+            placeholder=""
             type="password"
           />
           {errors.password && (

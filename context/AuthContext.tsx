@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { getItemFromStorage } from "@/Utils/localStorage";
 import { NewUser } from "@/types/types";
 import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 
@@ -23,8 +22,6 @@ const AuthContext = createContext<IContextType>(INITIAL_STATE);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<NewUser>(getUser());
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log(user, "user");
 
   const value = {
     user,

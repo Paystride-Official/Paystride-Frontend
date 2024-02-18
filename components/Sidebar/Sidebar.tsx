@@ -7,7 +7,7 @@ import Settlement from "@/components/Sidebar/assets/Settlement.svg";
 import Settings from "@/components/Sidebar/assets/Settings.svg";
 import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import classNames from "classnames";
 
 type Props = {

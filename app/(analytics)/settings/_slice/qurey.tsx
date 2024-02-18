@@ -1,10 +1,16 @@
 import { NewUser } from "@/types/types";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { createStaff, deleteStaff, editStaff, getAllStaff } from "./api";
 
 export const useCreateStaff = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (createData: NewUser) => createStaff(createData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["getAllStaff"],
+      });
+    },
   });
 };
 export const useEditStaff = () => {
