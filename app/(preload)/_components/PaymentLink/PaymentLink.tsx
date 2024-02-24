@@ -152,9 +152,9 @@ const PaymentLink = () => {
         </div>
       </div>
       <div className="hidden">
-        {generateLink.map((faqs) => {
+        {generateLink.map((faqs, index) => {
           return (
-            <div ref={componentRef}>
+            <div key={index} ref={componentRef}>
               <PrintCard {...faqs} key={faqs.id} />
             </div>
           );
