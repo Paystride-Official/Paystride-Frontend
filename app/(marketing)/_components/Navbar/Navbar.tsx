@@ -17,7 +17,7 @@ const Navbar = (props: Props) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className="h-fit w-full sticky top-0 bg-white border-b-[#21232a] border-b border-solid z-[1000]">
+        <div className="h-fit w-full sticky top-0 bg-white shadow-lg z-[1000]">
             <div className="flex items-center justify-between px-2 py-4 md:py-5 w-[90%] mx-auto">
                 <div className="flex gap-2 items-center">
                     <Link href="/">
