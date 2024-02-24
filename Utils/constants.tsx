@@ -333,23 +333,26 @@ export const virtualRow = [
 
 export const generateLink = [
   {
-    key: "1",
+    id: "1",
     name: "Payment point 1",
     accountNumber: "0993984484",
+    businessName: "ABC Malls",
     bankName: "Zenith",
     paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_jhdjbsdgh",
   },
   {
-    key: "2",
+    id: "2",
     name: "Payment point 2",
     accountNumber: "0993984484",
+    businessName: "LIK Malls",
     bankName: "Zenith",
     paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_abcdefghi",
   },
   {
-    key: "3",
+    id: "3",
     name: "Payment point 3",
     accountNumber: "0993984484",
+    businessName: "BUG Malls",
     bankName: "Zenith",
     paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_abidebye",
   },
@@ -428,6 +431,72 @@ export const permissionRow = [
     paymentPoint: true,
     settlement: false,
     settings: true,
+  },
+];
+
+export const settlementRow = [
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "Access",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "Zenith",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "UBA",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "UBA",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "Access",
+    amount: "N 20,000",
+  },
+];
+
+export const settlementCol = [
+  {
+    key: "date",
+    label: "Date & Time",
+  },
+  {
+    key: "transactionId",
+    label: "Transaction Id",
+  },
+  {
+    key: "accountNumber",
+    label: "Account Number",
+  },
+  {
+    key: "bank",
+    label: "Bank",
+  },
+  {
+    key: "amount",
+    label: "Amount",
   },
 ];
 
