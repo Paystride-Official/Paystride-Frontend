@@ -29,10 +29,9 @@ const PaymentLink = () => {
 
   const componentRef = useRef(null);
 
-  const handlePrint = (key: string) =>
-    useReactToPrint({
-      content: () => componentRef.current,
-    });
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   //   const PrintItem = (data: any) => {
   //     console.log(data);
@@ -69,7 +68,7 @@ const PaymentLink = () => {
                         <p>{details.name}</p>
                         <button
                           type="button"
-                          onClick={() => handlePrint(details.id)}
+                          onClick={handlePrint}
                           className="bg-[#091F8E] text-white gap-2 px-4 sm:px-6 py-2 flex items-center rounded"
                         >
                           {/* {selectedItem && selectedItem?.id === index + 1 && ( */}
@@ -134,7 +133,7 @@ const PaymentLink = () => {
                       </div>
                       <div className="block sm:hidden">
                         <button
-                          onClick={() => handlePrint}
+                          onClick={handlePrint}
                           className="bg-[#091F8E] text-white gap-2 px-4 py-1 mt-1 ml-auto flex items-center rounded"
                         >
                           <Image src={Print} alt="PrintIcon" className="w-3" />
