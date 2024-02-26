@@ -33,23 +33,31 @@ const Navbar = (props: Props) => {
         <div className="flex items-center md:hidden gap-2">
           <div className="block md:hidden">
             <div className="flex h-[3.5rem]  items-center  bg-white">
-              <Image src={Paystride} alt="Paystride" className="h-[2.5rem]" />
-              <h1 className="ml-1 text-lg font-bold text-[#6A8F9F] flex items-center justify-center">
+              <Image
+                src={Paystride}
+                alt="Paystride"
+                className="h-8 sm:h-[2.5rem] w-6"
+              />
+              <h1 className="ml-1 text-base sm:text-lg font-bold text-[#6A8F9F] flex items-center justify-center">
                 Paystride
               </h1>
             </div>
           </div>
           <div onClick={() => setOpen(!open)} className="block md:hidden">
-            <Image src={Menu} alt="Menu" />
+            <Image
+              src={Menu}
+              alt="Menu"
+              className="w-5 sm:w-auto cursor-pointer"
+            />
           </div>
         </div>
-        <div className="flex gap-4 md:mr-4">
+        <div className="flex items-center gap-4 md:mr-4">
           <Popover placement="bottom-end" backdrop="opaque">
             <PopoverTrigger>
               <Image
                 src={Notification}
                 alt="Notification"
-                className="bg-[#ECECEC] w-[50px] h-[40px] my-2 rounded-[5px] p-2 cursor-pointer"
+                className="bg-[#ECECEC] w-8 sm:w-[45px] sm:h-[40px] my-2 rounded-md p-2 cursor-pointer"
               />
             </PopoverTrigger>
             <PopoverContent className="rounded-[4px]">
@@ -61,7 +69,7 @@ const Navbar = (props: Props) => {
             onClick={handleLogout}
             src={Logout}
             alt="Logout"
-            className="bg-[#ECECEC] w-[50px] h-[40px] my-2 rounded-[5px] p-2 cursor-pointer"
+            className="bg-[#ECECEC] w-8 sm:w-[45px] sm:h-[40px] my-2 rounded-md p-2 cursor-pointer"
           />
         </div>
         <div

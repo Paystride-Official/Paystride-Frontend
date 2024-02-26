@@ -8,7 +8,7 @@ type Props = {};
 
 const NotificationPopOver = (props: Props) => {
   return (
-    <div className="w-[80vw] md:w-[52vw] px-2 py-1">
+    <div className="w-[76.5vw] md:w-[52vw] px-2 py-1">
       <div>
         <h2 className="font-bold text-base sm:text-lg mb-1">Notification</h2>
       </div>

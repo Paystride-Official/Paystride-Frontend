@@ -18,7 +18,10 @@ const Barchart = (option: ChartOption) => {
     }, []);
 
     return (
-        <div className="" style={{ overflowX: "hidden" }}>
+        <div
+            className="max-w-[20rem] min-w-full h-auto"
+            style={{ overflowX: "hidden" }}
+        >
             <ReactEcharts
                 ref={chartRef}
                 option={option}
