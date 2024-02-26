@@ -201,12 +201,16 @@ export const payPointCol = [
 ];
 export const staffCol = [
   {
-    key: "default",
-    label: "Mark Default",
+    key: "name",
+    label: "name",
   },
   {
-    key: "account",
-    label: "Account",
+    key: "role",
+    label: "Role",
+  },
+  {
+    key: "department",
+    label: "Department",
   },
   {
     key: "bank",
