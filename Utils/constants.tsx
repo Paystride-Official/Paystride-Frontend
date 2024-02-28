@@ -134,7 +134,7 @@ export const payPointRow = [
   {
     key: "1",
     payPoint: "paypoint 1",
-    onDuty: "chima",
+    onDuty: "Account",
     phoneNumber: "08138465066",
     account: "XXXXXXXXXX",
     status: "Active",
@@ -194,13 +194,318 @@ export const payPointCol = [
     key: "status",
     label: "Status",
   },
+  {
+    key: "action",
+    label: "Action",
+  },
 ];
+export const staffCol = [
+  {
+    key: "default",
+    label: "Mark Default",
+  },
+  {
+    key: "account",
+    label: "Account",
+  },
+  {
+    key: "bank",
+    label: "Bank",
+  },
+  {
+    key: "bankName",
+    label: "Bank Name",
+  },
+  {
+    key: "status",
+    label: "Status",
+  },
+  {
+    key: "action",
+    label: "Action",
+  },
+];
+export const staffRow = [
+  {
+    key: "1",
+    account: "0163445272",
+    default: true,
+    bank: "Zenith",
+    bankName: "Grocery",
+    status: "Active",
+  },
+  {
+    key: "2",
+    account: "0163445272",
+    default: false,
+    bank: "Gt Bank",
+    bankName: "Grocery",
+    status: "Active",
+    // phoneNumber: "08138465066",
+  },
+  {
+    key: "3",
+    account: "0163445272",
+    default: true,
+    bank: "Gt Bank",
+    bankName: "Grocery",
+    status: "Active",
+  },
+  {
+    key: "4",
+    account: "0163445272",
+    default: false,
+    bank: "Gt Bank",
+    bankName: "Grocery",
+    status: "Active",
+  },
+  {
+    key: "5",
+    role: "sales Manager",
+    phoneNumber: "08138465066",
+    name: "Jumat",
+    department: "Account",
+    status: "InActive",
+  },
+];
+
+export const virtualCol = [
+  {
+    key: "date",
+    label: "Date Generated",
+  },
+  {
+    key: "accountNumber",
+    label: "Account Number",
+  },
+
+  {
+    key: "amount",
+    label: "Amount",
+  },
+  {
+    key: "status",
+    label: "status",
+  },
+  {
+    key: "action",
+    label: "Action",
+  },
+];
+
+export const virtualRow = [
+  {
+    key: "1",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "Active",
+  },
+  {
+    key: "2",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "Active",
+  },
+  {
+    key: "3",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "Active",
+  },
+  {
+    key: "4",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "Active",
+  },
+  {
+    key: "5",
+    amount: " 20000",
+    date: "Oct 12, 2023",
+    accountNumber: "0001100110",
+    status: "InActive",
+  },
+];
+
+export const generateLink = [
+  {
+    id: "1",
+    name: "Payment point 1",
+    accountNumber: "0993984484",
+    businessName: "ABC Malls",
+    bankName: "Zenith",
+    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_jhdjbsdgh",
+  },
+  {
+    id: "2",
+    name: "Payment point 2",
+    accountNumber: "0993984484",
+    businessName: "LIK Malls",
+    bankName: "Zenith",
+    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_abcdefghi",
+  },
+  {
+    id: "3",
+    name: "Payment point 3",
+    accountNumber: "0993984484",
+    businessName: "BUG Malls",
+    bankName: "Zenith",
+    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_abidebye",
+  },
+];
+
+export const permissionCol = [
+  {
+    key: "role",
+    label: "Role",
+  },
+  {
+    key: "dashboard",
+    label: "Dashboard",
+  },
+
+  {
+    key: "transaction",
+    label: "Transaction",
+  },
+  {
+    key: "paymentPoint",
+    label: "Payment Point",
+  },
+  {
+    key: "settlement",
+    label: "Settlement",
+  },
+  {
+    key: "settings",
+    label: "Settings",
+  },
+];
+
+export const permissionRow = [
+  {
+    key: "1",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+  {
+    key: "2",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+  {
+    key: "3",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+  {
+    key: "4",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+  {
+    key: "5",
+    role: "Account",
+    dashboard: false,
+    transaction: false,
+    paymentPoint: true,
+    settlement: false,
+    settings: true,
+  },
+];
+
+export const settlementRow = [
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "Access",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "Zenith",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "UBA",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "UBA",
+    amount: "N 20,000",
+  },
+  {
+    key: "1",
+    date: "Oct 12, 2023",
+    transactionId: "6748928879999003",
+    accountNumber: "0001100110",
+    bank: "Access",
+    amount: "N 20,000",
+  },
+];
+
+export const settlementCol = [
+  {
+    key: "date",
+    label: "Date & Time",
+  },
+  {
+    key: "transactionId",
+    label: "Transaction Id",
+  },
+  {
+    key: "accountNumber",
+    label: "Account Number",
+  },
+  {
+    key: "bank",
+    label: "Bank",
+  },
+  {
+    key: "amount",
+    label: "Amount",
+  },
+];
+
 let server_url;
 
-if (process.env.REACT_APP_ENVIRONMENT === "production") {
-  server_url = "http://api.paystride.co/api";
+if (process.env.NODE_ENV === "production") {
+  server_url = "https://api.paystride.co/api";
 } else {
-  server_url = "http://staging-api.paystride.co";
+  server_url = "https://api.paystride.co/api";
 }
 
 export const SERVER_URL = server_url;

@@ -6,11 +6,18 @@ import BankAccount from "./_component/BankAccount/BankAccount";
 import Staff from "./_component/Staff/Staff";
 import Permissions from "./_component/Permissions/Permissions";
 import Password from "./_component/Password/Password";
+import VirtualAccount from "./_component/virtualAccount/VirtualAccount";
+import { useForm } from "react-hook-form";
 
 type Props = {};
 
 const Settings = (props: Props) => {
-  const [selectedSettings, setSelectedSettings] = useState<string>("password");
+  const { reset } = useForm();
+  const [selectedSettings, setSelectedSettings] = useState<string>("staff");
+
+  const handleCickSettings = (item: string) => {
+    setSelectedSettings(item);
+  };
 
   const stepToRender = (key: string) => {
     switch (key) {
@@ -24,6 +31,8 @@ const Settings = (props: Props) => {
         return <Password />;
       case "permissions":
         return <Permissions />;
+      case "virtual":
+        return <VirtualAccount />;
 
       default:
         break;
@@ -32,7 +41,11 @@ const Settings = (props: Props) => {
 
   return (
     <section className="flex">
-      <SettingsSidebar setSelectedSettings={setSelectedSettings} />
+      <SettingsSidebar
+        selectedSetting={selectedSettings}
+        setSelectedSettings={setSelectedSettings}
+        handleClickSettings={handleCickSettings}
+      />
       <div className="flex-[4] mt-10">{stepToRender(selectedSettings)}</div>
     </section>
   );

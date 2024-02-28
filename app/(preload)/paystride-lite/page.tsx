@@ -1,0 +1,185 @@
+"use client";
+import React, { useState, useEffect, ReactNode } from "react";
+import { useForm, FieldValues } from "react-hook-form";
+import Link from "next/link";
+import Sidebar from "../_components/Sidebar/Sidebar";
+import PaymentLink from "../_components/PaymentLink/PaymentLink";
+import ModalPopUp from "@/components/Modal/Modal";
+import CbnModal from "../_components/CbnModal/CbnModal";
+import NotificationPopOver from "@/components/Navbar/NotificationPopOver/NotificationPopOver";
+import PrintCard from "../_components/PrintCard/PrintCard";
+
+type Props = {};
+
+const FreeTrial = ({}: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [content, setContent] = useState<ReactNode>("");
+  const [showCbnPolicy, setShowCbnPolicy] = useState(false);
+
+  const { register, handleSubmit, getValues, reset } = useForm();
+
+  const handleOnSubmit = (data: FieldValues) => {
+    setIsOpen(true);
+    const formData = getValues();
+    console.log(formData);
+
+    reset();
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const determineContent = () => {
+      if (isOpen) {
+        return <PaymentLink />;
+      }
+      // Return a default or null if neither condition is met
+      return null;
+    };
+
+    setContent(determineContent());
+  }, [isOpen]);
+
+  return (
+    <div>
+      <section className="w-full">
+        <Sidebar />
+        <div className="md:w-[75%] md:ml-[25%] flex items-center justify-center h-full">
+          <div className="w-[90%] md:w-[80%] lg:w-[75%] my-4">
+            <div className="text-[#7F7F7F] pb-5">
+              <h2 className="text-[4.99vw] min-[500px]:text-2xl lg:text-[32px] font-bold w-fit mt-8">
+                Start accepting payments in 3 minutes
+              </h2>
+              <p className="text-xs sm:text-sm mb-10 w-fit pt-1">Get Started</p>
+
+              <form
+                onSubmit={handleSubmit(handleOnSubmit)}
+                className="text-base lg:text-[20px]"
+              >
+                <input
+                  type="text"
+                  placeholder="Business Name"
+                  required
+                  {...register("businessName")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+                <input
+                  type="tel"
+                  placeholder="Bank Account Number"
+                  maxLength={10}
+                  required
+                  {...register("bankAccount")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+                <input
+                  type="text"
+                  placeholder="Bank Name"
+                  required
+                  {...register("bankName")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+                <div className="mb-3 relative">
+                  <input
+                    type="tel"
+                    placeholder="BVN"
+                    maxLength={11}
+                    required
+                    {...register("bvn")}
+                    className="w-full px-3 sm:px-5 py-2  border-[1.5px] border-[#091F8E] rounded"
+                  />
+                  <p
+                    onMouseEnter={() => setShowCbnPolicy(true)}
+                    onClick={() => setShowCbnPolicy(!showCbnPolicy)}
+                    className="absolute text-xs lg:text-sm top-3 right-3 sm:right-5 underline cursor-pointer"
+                  >
+                    (Read CBN policy here)
+                  </p>
+                  <div className="absolute bottom-6 right-[25%]">
+                    {showCbnPolicy && <CbnModal />}
+                  </div>
+                </div>
+                <input
+                  type="tel"
+                  placeholder="WhatsApp Number"
+                  maxLength={15}
+                  required
+                  {...register("whatsappNumber")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  required
+                  {...register("email")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+
+                <label
+                  htmlFor="points"
+                  className="text-sm lg:text-base mr-5 sm:mr-7"
+                >
+                  How many payment points do you have?
+                </label>
+                <input
+                  type="number"
+                  id="points"
+                  min={1}
+                  max={20}
+                  required
+                  {...register("points")}
+                  className="w-12 sm:w-20 pl-2 sm:pl-4 py-1 sm:py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+
+                <br />
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    className="w-auto rounded mr-3"
+                    id="check"
+                    required
+                  />
+                  <label
+                    htmlFor="check"
+                    className="text-xs sm:text-sm lg:text-base m-0"
+                  >
+                    By checking you have accepted our{" "}
+                    <span className="text-[#091F8E]">
+                      <Link href="">Terms & Conditions</Link>
+                    </span>{" "}
+                    and{" "}
+                    <span className="text-[#091F8E]">
+                      <Link href="">Policies</Link>
+                    </span>
+                  </label>
+                </div>
+
+                <br />
+
+                <button
+                  type="submit"
+                  className="bg-[#091F8E] text-sm sm:text-base text-white px-12 py-3 rounded mt-8 mb-7 mx-auto sm:mx-0 block"
+                >
+                  Generate payment link
+                </button>
+
+                <hr />
+              </form>
+              <div>
+                <ModalPopUp
+                  isOpen={isOpen}
+                  closeModal={closeModal}
+                  body={content}
+                  size="3xl"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default FreeTrial;

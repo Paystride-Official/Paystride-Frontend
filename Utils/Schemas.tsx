@@ -14,3 +14,15 @@ export const LogInSchema = z.object({
   email: z.string().email("Invalid Username/password"),
   password: z.string().min(8, "Invalid Username/password"),
 });
+
+export const ResetPasswordSchema = z
+  .object({
+    new_password: z.string().min(8, "Password must be at least 8 characters"),
+    confirm_password: z
+      .string()
+      .min(8, "Password must be at least 8 characters"),
+  })
+  .refine((data) => data.new_password === data.confirm_password, {
+    message: "Password must match",
+    path: ["confirm_password"],
+  });

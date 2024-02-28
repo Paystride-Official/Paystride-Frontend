@@ -1,27 +1,36 @@
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
-export async function request(url: string, options: any) {
-  const response = await axios(url, options);
-  const response_1 = await checkStatus(response);
-  return parseJSON(response_1);
+export function navigateToDashboard() {
+  const router = useRouter();
+  router.push("/dashboard");
 }
 
-function checkStatus(response: any) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
+const handleAxiosError = (error: any) => {
+  let errorResponse;
+  if (axios.isCancel(error)) {
+    errorResponse = error.message;
+    return errorResponse;
+  } else if (error.response) {
+    // The request was made, but the server responded with an error status
+
+    errorResponse = error.response.data;
+    return errorResponse;
+
+    // toast.error(`Error: ${status} - ${data.message}`);
+  } else if (error.request) {
+    // The request was made, but no response was received
+    errorResponse = `${error.message},Check your internet connection`;
+    return errorResponse;
+
+    // toast.error('No response received. Check your internet connection.');
+  } else {
+    // Something happened in setting up the request that triggered an Error
+    errorResponse = error.message;
+    return errorResponse;
+
+    // toast.error(`Error: ${error.message}`);
   }
+};
 
-  const error = new Error(response.statusText);
-  console.log(error);
-
-  // error.response = response;
-  // error.status = response.status;
-  throw error;
-}
-
-function parseJSON(response: any) {
-  if (response.status === 204 || response.status === 205) {
-    return null;
-  }
-  return response.json ? response.json() : response;
-}
+export default handleAxiosError;

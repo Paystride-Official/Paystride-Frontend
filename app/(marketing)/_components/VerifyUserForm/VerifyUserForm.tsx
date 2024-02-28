@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import Button from "@/components/Button/Button";
 import OtpInput from "react-otp-input";
 
 import React from "react";
-import { useVerifyOtp } from "../../(auth)/register/_slice/query";
+import { useResendOtp, useVerifyOtp } from "../../(auth)/register/_slice/query";
 import { FieldValues } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 type Props = {
   step: number;
@@ -15,8 +15,13 @@ type Props = {
 };
 
 const VerifyUserForm = ({ setStep, step, userData }: Props) => {
+  const router = useRouter();
   const [otp, setOtp] = useState<string>("");
   const [isMounted, setIsMounted] = useState(false);
+  const [otpSuccessResponse, setOtpSuccessResponse] = useState<any>();
+  const [otpErrorResponse, setOtpErrorResponse] = useState<any>();
+  const [resendEror, setResendError] = useState<any>();
+  const [resendSuccess, setResendSuccess] = useState<any>();
 
   useEffect(() => {
     setIsMounted(true);
@@ -30,10 +35,12 @@ const VerifyUserForm = ({ setStep, step, userData }: Props) => {
     setOtp(data);
   };
   const { mutateAsync: verifyOtp } = useVerifyOtp();
+  const { mutateAsync: resendOtp } = useResendOtp();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!otp) {
       console.log("Please input your OTP");
+      //this should be a toast
       return;
     }
 
@@ -41,7 +48,26 @@ const VerifyUserForm = ({ setStep, step, userData }: Props) => {
       otp,
       email: userData?.email,
     };
-    verifyOtp(data);
+
+    const response: any = await verifyOtp(data);
+    if (response.success) {
+      setOtpSuccessResponse(response.success);
+      router.push("/login");
+    } else {
+      setOtpErrorResponse(response.error);
+    }
+  };
+
+  const handleResendOtp = async () => {
+    const response: any = await resendOtp({ email: userData?.email });
+
+    if (response.success) {
+      setResendSuccess(response.success);
+      ///use a toast for the success notification
+    } else {
+      setResendError(response.error);
+    }
+    console.log(response);
   };
 
   return (
@@ -49,9 +75,9 @@ const VerifyUserForm = ({ setStep, step, userData }: Props) => {
       <div className="py-8 min-w-[330px] sm:w-[500px]   flex  flex-col items-center justify-center bg-[#F3F3F3] rounded-[15px]">
         <div className="mb-4 ">
           <h1 className="text-2xl font-bold leading-[normal] px-2 text-center capitalize">
-            Verify you email
+            Verify your email
           </h1>
-          <p className="text-center ">Enter the token sent to your email,</p>
+          <p className="text-center ">Enter the token sent to your email</p>
           <p className="text-center text-[#6366F1] ">{userData?.email}</p>
         </div>
         {/* <div className="w-[90%] flex flex-col gap-4 mx-auto"> */}
@@ -61,7 +87,7 @@ const VerifyUserForm = ({ setStep, step, userData }: Props) => {
               value={otp}
               inputType="text"
               onChange={handleChange}
-              inputStyle="otp-input"
+              inputStyle={`${otpErrorResponse && "error"} otp-input`}
               numInputs={6}
               renderSeparator={<div className=" md:px-2 mx-1 " />}
               renderInput={(props) => <input {...props} />}
@@ -77,10 +103,19 @@ const VerifyUserForm = ({ setStep, step, userData }: Props) => {
         </button>
         <div className="flex gap-2 text-sm">
           <span>Didn&apos;t get the code?</span>
-          <span className="text-[#6366F1] capitalize cursor-pointer">
+          <span
+            onClick={handleResendOtp}
+            className="text-[#6366F1] capitalize cursor-pointer"
+          >
             resend code
           </span>
         </div>
+        {otpErrorResponse && (
+          <p className=" text-[#fe1f1f]">{otpErrorResponse?.message}</p>
+        )}
+        {otpSuccessResponse && (
+          <p className=" text-[#599B3A]">{otpSuccessResponse?.data.message}</p>
+        )}
       </div>
     </section>
   );

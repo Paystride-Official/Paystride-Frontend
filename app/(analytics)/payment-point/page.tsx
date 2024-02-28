@@ -9,6 +9,15 @@ import { EditPayPoint } from "./_components/EditPayPoint/EditPayPoint";
 import { AddPayPoint } from "./_components/AddPayPoint/AddPayPoint";
 import { payPointCol, payPointRow } from "@/Utils/constants";
 import { TableComponent } from "@/components/Table/Table";
+import { FilterObject } from "@/types/types";
+import {
+  useCreatePaymentPoint,
+  useEditPaymentPoint,
+  useGetAllPaypoint,
+  useGetPaypoint,
+} from "./_slice/query";
+import { getUser } from "@/ProtectedRoute/ProtectedRoute";
+import DeletePaypoint from "./_components/DeletePaypoint/DeletePaypoint";
 
 type Props = {};
 
@@ -16,12 +25,35 @@ const Paymentpoint = (props: Props) => {
   const [singleRow, setSingleRow] = useState<{ [key: string]: any }>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [addNewModal, setAddNewModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [search, setSearch] = useState<string>("");
-  const [filters, setFilters] = useState<string>("");
+  const [filters, setFilters] = useState<FilterObject | null>(null);
   const [content, setContent] = useState<ReactNode>("");
-  const onSubmit = (data: FieldValues) => console.log(data);
+
+  const { mutateAsync: createPaypoint } = useCreatePaymentPoint();
+  const { mutateAsync: editPaypoint } = useEditPaymentPoint();
+
+  // const { isLoading, data, isError } = useGetPaypoint();
+
+  const { isLoading, data, isError } = useGetAllPaypoint();
+
+  const user = getUser();
+  const addPaypoint = async (data: FieldValues) => {
+    const updatedData = { ...data, merchant_id: user.id };
+
+    const response = await createPaypoint(updatedData);
+  };
+
+  const handleEditPaypoint = async (data: FieldValues) => {
+    const updatedData = { ...data, merchant_id: user.id };
+    const response = await editPaypoint(updatedData);
+    console.log(data);
+  };
+
+  const handleDeltePaypoint = async () => {};
 
   const closeModal = () => {
+    setDeleteModal(false);
     setAddNewModal(false);
     setIsOpen(false);
   };
@@ -33,22 +65,24 @@ const Paymentpoint = (props: Props) => {
   useEffect(() => {
     const determineContent = () => {
       if (addNewModal) {
-        return <AddPayPoint onSubmit={onSubmit} closeModal={closeModal} />;
+        return <AddPayPoint onSubmit={addPaypoint} closeModal={closeModal} />;
       } else if (isOpen) {
         return (
           <EditPayPoint
             singleRow={singleRow}
-            onSubmit={onSubmit}
+            onSubmit={handleEditPaypoint}
             closeModal={closeModal}
           />
         );
+      } else if (deleteModal) {
+        return <DeletePaypoint singleRow={singleRow} closeModal={closeModal} />;
       }
-      // Return a default or null if neither condition is met
+
       return null;
     };
 
     setContent(determineContent());
-  }, [isOpen, addNewModal]);
+  }, [isOpen, addNewModal, deleteModal]);
 
   const bankStat = [
     {
@@ -61,20 +95,8 @@ const Paymentpoint = (props: Props) => {
     <section className="">
       <div className="mt-8">
         <h1 className="text-[#333] text-xl font-bold pb-4">Payment Point</h1>
-        <div className="flex">
-          <Header headerStat={bankStat} />
-
-          <div className="w-full flex justify-start items-end ml-4">
-            <button
-              onClick={() => {
-                setAddNewModal(!addNewModal);
-              }}
-              className="bg-[#091F8E]  text-white px-4 py-1 rounded"
-            >
-              Add New Payment point
-            </button>
-          </div>
-        </div>
+        {/* <div className="flex"> */}
+        <Header headerStat={bankStat} />
 
         <div
           className="    
@@ -91,18 +113,23 @@ const Paymentpoint = (props: Props) => {
             setSearch={setSearch}
             filters={filters}
             setFilters={setFilters}
+            addNew
+            addNewModal={addNewModal}
+            setAddNewModal={setAddNewModal}
           />
           <TableComponent
             rows={payPointRow}
             columns={payPointCol}
             openModal={openModal}
             setSingleRow={setSingleRow}
+            deleteModal={deleteModal}
+            setDeleteModal={setDeleteModal}
           />
         </div>
 
         <div>
           <ModalPopUp
-            isOpen={isOpen || addNewModal}
+            isOpen={isOpen || addNewModal || deleteModal}
             closeModal={closeModal}
             body={content}
           />

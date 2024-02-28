@@ -14,7 +14,8 @@ const Button = ({ type, text, handleClick, size, disabled }: Props) => {
     <div
       className={classNames(
         "  text-center bg-[#091f8e] text-[white] mx-auto my-4  px-0 rounded-[37px]",
-        { "disabled:bg-slate-500": disabled },
+        { "bg-slate-500": disabled },
+        { "bg-[#091f8e]": !disabled },
         { "w-[90%]": !size },
         { "w-[65%]": size }
       )}

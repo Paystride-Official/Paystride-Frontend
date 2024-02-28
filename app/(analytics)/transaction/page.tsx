@@ -3,17 +3,18 @@ import { useState } from "react";
 import { transactionCol, transactionRow } from "@/Utils/constants";
 import Controllers from "@/components/Controllers/Controllers";
 import { TableComponent } from "@/components/Table/Table";
+import { FilterObject } from "@/types/types";
 
 type Props = {};
 
 const Transaction = (props: Props) => {
-  const [search, setSearch] = useState<string>("");
-  const [filters, setFilters] = useState<string>("");
+    const [search, setSearch] = useState<string>("");
+    const [filters, setFilters] = useState<FilterObject | null>(null);
 
-  return (
-    <div>
-      <div
-        className="
+    return (
+        <div>
+            <div
+                className="
           text-gray-600
             font-inter
             text-3xl
@@ -21,12 +22,12 @@ const Transaction = (props: Props) => {
             font-bold
             mt-12
             "
-      >
-        <p>Transactions</p>
-      </div>
+            >
+                <p>Transactions</p>
+            </div>
 
-      <div
-        className="    
+            <div
+                className="    
            bg-white  
             rounded-[6.198px]
             border-[2.066px]
@@ -35,18 +36,21 @@ const Transaction = (props: Props) => {
             mt-8
             px-4
             "
-      >
-        <Controllers
-          search={search}
-          setSearch={setSearch}
-          filters={filters}
-          setFilters={setFilters}
-        />
+            >
+                <Controllers
+                    search={search}
+                    setSearch={setSearch}
+                    filters={filters}
+                    setFilters={setFilters}
+                />
 
-        <TableComponent rows={transactionRow} columns={transactionCol} />
-      </div>
-    </div>
-  );
+                <TableComponent
+                    rows={transactionRow}
+                    columns={transactionCol}
+                />
+            </div>
+        </div>
+    );
 };
 
 export default Transaction;
