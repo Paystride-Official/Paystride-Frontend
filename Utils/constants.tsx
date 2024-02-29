@@ -444,7 +444,7 @@ export const settlementRow = [
     amount: "N 20,000",
   },
   {
-    key: "1",
+    key: "2",
     date: "Oct 12, 2023",
     transactionId: "6748928879999003",
     accountNumber: "0001100110",
@@ -452,7 +452,7 @@ export const settlementRow = [
     amount: "N 20,000",
   },
   {
-    key: "1",
+    key: "3",
     date: "Oct 12, 2023",
     transactionId: "6748928879999003",
     accountNumber: "0001100110",
@@ -460,7 +460,7 @@ export const settlementRow = [
     amount: "N 20,000",
   },
   {
-    key: "1",
+    key: "4",
     date: "Oct 12, 2023",
     transactionId: "6748928879999003",
     accountNumber: "0001100110",
@@ -468,7 +468,7 @@ export const settlementRow = [
     amount: "N 20,000",
   },
   {
-    key: "1",
+    key: "5",
     date: "Oct 12, 2023",
     transactionId: "6748928879999003",
     accountNumber: "0001100110",
