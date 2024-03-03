@@ -10,7 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Paystride",
-  description: "A seamless payment gateway",
+  description:
+    "Paystride helpts in Effortlessly Accepting and Confirming Large Scale Transfers! Empower your store sales rep(s) to instantly confirm transfer payments - no calls needed, no customer delays.",
 };
 
 export default function RootLayout({

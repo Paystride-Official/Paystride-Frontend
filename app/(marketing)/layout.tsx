@@ -3,7 +3,8 @@ import Navbar from "./_components/Navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "Paystride",
-  description: "A seamless payment gateway",
+  description:
+    "Paystride Empower's your store sales rep(s) to instantly confirm transfer payments - no calls needed, no customer delays.",
 };
 
 export default function RootLayout({

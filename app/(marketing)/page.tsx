@@ -2,13 +2,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Banner from "@/app/(marketing)/assets/image 2.svg";
-import Atm from "@/app/(marketing)/assets/image 4.svg";
-import Settle from "@/app/(marketing)/assets/Image 15.svg";
+import Atm from "@/app/(marketing)/assets/mobile.png";
+import Settle from "@/app/(marketing)/assets/paypoint.png";
 import Slider1 from "@/app/(marketing)/assets/Slider1.svg";
 import SliderChima from "@/app/(marketing)/assets/SliderImg1.jpg";
 import SliderAlex from "@/app/(marketing)/assets/SliderImg2.jpg";
 import Webflow from "@/app/(marketing)/assets/Black.svg";
-import Laptop from "@/app/(marketing)/assets/Laptop1.svg";
+import Laptop from "@/app/(marketing)/assets/laptop1.png";
 import Footer from "@/app/(marketing)/_components/Footer/Footer";
 import Accordion from "@/app/(marketing)/_components/Accordion/Accordion";
 import Carousel from "@/app/(marketing)/_components/Carousel/Carousel";
@@ -128,7 +128,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className=" flex-[1] relative w-full  max-w-[80rem] aspect-square mx-auto md:order-2">
+            <div className=" flex-[1] relative w-full  max-w-[80rem] aspect-[80/45] sm:aspect-square mx-auto md:order-2">
               <Image
                 src={Atm}
                 alt="AtmImage"
@@ -140,7 +140,7 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col md:flex-row  items-center gap-6 py-5 my-4">
-            <div className=" flex-[1] relative w-full  max-w-[80rem] aspect-square mx-auto ">
+            <div className=" flex-[1] relative w-full  max-w-[80rem] aspect-[80/45] sm:aspect-square mx-auto ">
               <Image
                 src={Settle}
                 alt="SettlementImage"
@@ -204,7 +204,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className=" flex-[1] relative w-full  max-w-[80rem] aspect-square mx-auto md:order-2">
+            <div className=" flex-[1] relative w-full  max-w-[80rem] aspect-[80/45] sm:aspect-square mx-auto md:order-2">
               <Image
                 src={Laptop}
                 alt="DashboardImage"
