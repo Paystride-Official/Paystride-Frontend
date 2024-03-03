@@ -12,7 +12,7 @@ type Props = {
   addNew?: boolean;
   setAddNewModal?: React.Dispatch<React.SetStateAction<boolean>>;
   addNewModal?: boolean;
-  defaultFilters: {
+  defaultFilters?: {
     id: number;
     name: string;
     Img: any;
