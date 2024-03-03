@@ -18,6 +18,9 @@ import EditStaff from "../EditStaff/EditStaff";
 import { useUserContext } from "@/context/AuthContext";
 import DeleteStaff from "../DeleteStaff/DeleteStaff";
 import { getUser } from "@/ProtectedRoute/ProtectedRoute";
+import Toogle from "@/components/Filters/assets/toggle.svg";
+import Boxes from "@/components/Filters/assets/boxes.svg";
+import Check from "@/components/Filters/assets/clipCheck.svg";
 
 type Props = {};
 
@@ -39,6 +42,12 @@ const Staff = (props: Props) => {
     isError,
   } = useGetAllStaff({ merchant_id: user?.id });
   let staff: NewUser[] | [] = data?.success?.users ?? [];
+
+  const defaultFilters = [
+    { id: 1, name: "Status", Img: Toogle },
+    { id: 2, name: "Department", Img: Boxes },
+    { id: 3, name: "Role", Img: Check },
+  ];
 
   useEffect(() => {
     const determineContent = () => {
@@ -127,6 +136,7 @@ const Staff = (props: Props) => {
           addNew
           addNewModal={addNewModal}
           setAddNewModal={setAddNewModal}
+          defaultFilters={defaultFilters}
         />
         <TableComponent
           // rows={staffRow}

@@ -3,20 +3,42 @@ import classNames from "classnames";
 import Image from "next/image";
 import React from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import { useGetBusinessInfo, useUpdataBusinessInfo } from "../../_slice/qurey";
 
 type Props = {};
-
+let businessInfo: any;
 const BusinessInfo = (props: Props) => {
+  const { data, isLoading, isError } = useGetBusinessInfo();
+  const { mutateAsync: updateBusinessInfo } = useUpdataBusinessInfo();
+
+  if (data?.success) {
+    const { businessInformation } = data?.success;
+    businessInfo = businessInformation;
+    console.log(businessInfo);
+  }
+
   const {
     register,
     handleSubmit,
     getValues,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<FieldValues>();
+  } = useForm<FieldValues>({
+    defaultValues: {
+      business_name: data?.success ? businessInfo.business_name : "",
+      email: data?.success ? businessInfo.email : "",
+      phone_number: data?.success ? businessInfo.phone_number : "",
+      bvn: data?.success ? businessInfo.bvn : "",
+      address1: data?.success ? businessInfo.address1 : "",
+      address2: data?.success ? businessInfo.address1 : "",
+      no_of_employee: data?.success ? businessInfo.no_of_employee : "",
+    },
+  });
+  // const { mutateAsync: getBusinessInfo} = useGetBusinessInfo()
 
-  const handleOnSubmit = (data: FieldValues) => {
-    console.log(data);
+  const handleOnSubmit = async (data: FieldValues) => {
+    const response = await updateBusinessInfo(data);
+    // console.log(response);
   };
 
   return (
@@ -43,6 +65,7 @@ const BusinessInfo = (props: Props) => {
           id="business_name"
           placeholder=""
           type="text"
+          required
         />
         <Input
           register={register}
@@ -50,6 +73,7 @@ const BusinessInfo = (props: Props) => {
           type="email"
           label="Email"
           placeholder=""
+          required
         />
 
         <Input
@@ -58,6 +82,15 @@ const BusinessInfo = (props: Props) => {
           id="phone_number"
           placeholder=""
           type="number"
+          required
+        />
+        <Input
+          register={register}
+          label="Bvn"
+          id="bvn"
+          placeholder=""
+          type="number"
+          required
         />
 
         <Input
@@ -66,18 +99,19 @@ const BusinessInfo = (props: Props) => {
           id="address1"
           placeholder=" line1"
           type="text"
+          required
         />
         <Input
           register={register}
           label=""
-          id="address"
+          id="address2"
           placeholder="line2"
           type="text"
         />
         <Input
           register={register}
           label="No. of employees"
-          id="no_employee"
+          id="no_of_employee"
           placeholder=""
           type="number"
         />
