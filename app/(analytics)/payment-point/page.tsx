@@ -18,10 +18,21 @@ import {
 } from "./_slice/query";
 import { getUser } from "@/ProtectedRoute/ProtectedRoute";
 import DeletePaypoint from "./_components/DeletePaypoint/DeletePaypoint";
+import Duty from "@/components/Filters/assets/onDuty.svg";
+import Bank from "@/components/Filters/assets/bank.svg";
+import Card from "@/components/Filters/assets/card.svg";
+import Toogle from "@/components/Filters/assets/toggle.svg";
 
 type Props = {};
 
 const Paymentpoint = (props: Props) => {
+  const paypointFilters = [
+    { id: 4, name: "On-duty", Img: Duty },
+    { id: 5, name: "Account Number", Img: Bank },
+    { id: 6, name: "Payment Point", Img: Card },
+    { id: 7, name: "Status", Img: Toogle },
+  ];
+
   const [singleRow, setSingleRow] = useState<{ [key: string]: any }>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [addNewModal, setAddNewModal] = useState(false);
@@ -116,6 +127,7 @@ const Paymentpoint = (props: Props) => {
             addNew
             addNewModal={addNewModal}
             setAddNewModal={setAddNewModal}
+            defaultFilters={paypointFilters}
           />
           <TableComponent
             rows={payPointRow}

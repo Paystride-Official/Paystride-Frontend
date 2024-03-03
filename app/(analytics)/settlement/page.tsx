@@ -6,6 +6,10 @@ import { TableComponent } from "@/components/Table/Table";
 import { FilterObject } from "@/types/types";
 import AuthorizePay from "./_components/AuthorizePay/AuthorizePay";
 import ModalPopUp from "@/components/Modal/Modal";
+import DateRange from "@/components/Filters/assets/date.svg";
+import Bank from "@/components/Filters/assets/bank.svg";
+import GreaterEqual from "@/components/Filters/assets/greatequals.svg";
+
 //import NumberFormat from "@/components/NumberFormat/NumberFormat";
 
 type Props = {};
@@ -15,6 +19,12 @@ const SettlementPage = (props: Props) => {
   const [filters, setFilters] = useState<FilterObject | null>(null);
   const [addAuthorizeModal, setAddAuthorizeModal] = useState(false);
   const [content, setContent] = useState<ReactNode>("");
+
+  const settlementFilters = [
+    { id: 1, name: "Date", Img: DateRange },
+    { id: 5, name: "Account Number", Img: Bank },
+    { id: 2, name: "Amount", Img: GreaterEqual },
+  ];
 
   const closeModal = () => {
     setAddAuthorizeModal(false);
@@ -82,6 +92,7 @@ const SettlementPage = (props: Props) => {
           setSearch={setSearch}
           filters={filters}
           setFilters={setFilters}
+          defaultFilters={settlementFilters}
         />
 
         <TableComponent rows={settlementRow} columns={settlementCol} />

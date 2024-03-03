@@ -202,7 +202,7 @@ export const payPointCol = [
 export const staffCol = [
   {
     key: "name",
-    label: "name",
+    label: "Name",
   },
   {
     key: "role",
@@ -230,6 +230,72 @@ export const staffCol = [
   },
 ];
 export const staffRow = [
+  {
+    key: "1",
+    account: "0163445272",
+    default: true,
+    bank: "Zenith",
+    bankName: "Grocery",
+    status: "Active",
+  },
+  {
+    key: "2",
+    account: "0163445272",
+    default: false,
+    bank: "Gt Bank",
+    bankName: "Grocery",
+    status: "Active",
+    // phoneNumber: "08138465066",
+  },
+  {
+    key: "3",
+    account: "0163445272",
+    default: true,
+    bank: "Gt Bank",
+    bankName: "Grocery",
+    status: "Active",
+  },
+  {
+    key: "4",
+    account: "0163445272",
+    default: false,
+    bank: "Gt Bank",
+    bankName: "Grocery",
+    status: "Active",
+  },
+  {
+    key: "5",
+    role: "sales Manager",
+    phoneNumber: "08138465066",
+    name: "Jumat",
+    department: "Account",
+    status: "InActive",
+  },
+];
+export const bankCol = [
+  {
+    key: "default",
+    label: "Default",
+  },
+
+  {
+    key: "bank",
+    label: "Bank",
+  },
+  {
+    key: "bankName",
+    label: "Bank Name",
+  },
+  {
+    key: "status",
+    label: "Status",
+  },
+  {
+    key: "action",
+    label: "Action",
+  },
+];
+export const bankRow = [
   {
     key: "1",
     account: "0163445272",

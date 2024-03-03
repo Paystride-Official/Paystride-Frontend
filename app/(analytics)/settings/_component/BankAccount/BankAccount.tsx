@@ -5,7 +5,7 @@ import { TableComponent } from "@/components/Table/Table";
 import React, { ReactNode, useEffect, useState } from "react";
 import Staff from "../Staff/Staff";
 import { FilterObject } from "@/types/types";
-import { staffCol, staffRow } from "@/Utils/constants";
+import { bankCol, bankRow } from "@/Utils/constants";
 import NewAccount from "../NewAccount/NewAccount";
 import ModalPopUp from "@/components/Modal/Modal";
 import EditAccount from "../EditAccount/EditAccount";
@@ -95,8 +95,8 @@ const BankAccount = (props: Props) => {
           setAddNewModal={setAddNewModal}
         />
         <TableComponent
-          rows={staffRow}
-          columns={staffCol}
+          rows={bankRow}
+          columns={bankCol}
           openModal={openModal}
           deleteModal={deleteModal}
           setDeleteModal={setDeleteModal}
