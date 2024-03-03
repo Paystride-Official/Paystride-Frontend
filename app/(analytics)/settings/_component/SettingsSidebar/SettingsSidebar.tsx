@@ -19,7 +19,7 @@ const SettingsSidebar = ({
   const settingsSidebar = [
     {
       key: "businessInfo",
-      text: "Business Information",
+      text: "Business Info",
     },
     {
       key: "virtual",
@@ -46,7 +46,7 @@ const SettingsSidebar = ({
   return (
     <div className="flex-[1]">
       <h1 className="font-bold text-3xl mb-4 p-2">Settings</h1>
-      <div className=" border-l-[#D9D9D9] border-l border-solid flex flex-col text-start gap-6 pl-2">
+      <div className=" w-full  border-solid flex flex-col text-start gap-5  ">
         {settingsSidebar.map(({ key, text }) => {
           const isActive = selectedSetting === key;
 
@@ -55,8 +55,8 @@ const SettingsSidebar = ({
               onClick={() => handleClickSettings(key)}
               key={key}
               className={classNames(
-                ` font-medium hover:text-[#091F8E] cursor-pointer`,
-                { "text-[#091F8E]": isActive },
+                `sideline flex items-center font-medium hover:text-[#091F8E] cursor-pointer relative text-md`,
+                { "text-[#091F8E] active": isActive },
                 { "text-[#697077]": !isActive }
               )}
             >

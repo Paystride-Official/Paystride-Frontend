@@ -58,6 +58,21 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-.h {
-  @apply h-[calc(100vh_-_3.5rem)];
+.sideline::before {
+  content: "";
+  width: 3px;
+  height: 45px;
+  position: absolute;
+  background-color: #d9d9d9;
+  font-weight: 500;
+  left: -0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.active::before {
+  content: "";
+  width: 3px;
+  height: 45px;
+  position: absolute;
+  background-color: #091f8e !important;
 }
