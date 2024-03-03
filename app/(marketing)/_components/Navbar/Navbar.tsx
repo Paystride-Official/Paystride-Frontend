@@ -17,7 +17,7 @@ const Navbar = (props: Props) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="h-fit w-full sticky top-0 bg-white shadow-sm z-[1000]">
+    <div className="h-fit w-full sticky top-0 bg-white shadow-lg z-[1000]">
       <div className="flex items-center justify-between px-2 py-4 md:py-5 w-[90%] mx-auto">
         <div className="flex gap-2 items-center">
           <Link href="/">
@@ -40,7 +40,7 @@ const Navbar = (props: Props) => {
               <Link href="/login">
                 <button
                   type="button"
-                  className="border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 capitalize hover:bg-[#f9f8f8]"
+                  className="rounded-md border border-solid border-[#21232a] py-1 px-3 md:py-2 md:px-4 capitalize hover:bg-[#f9f8f8]"
                 >
                   Login
                 </button>
@@ -50,7 +50,7 @@ const Navbar = (props: Props) => {
               <Link href="/paystride-lite">
                 <button
                   type="button"
-                  className="text-white capitalize bg-[#091F8E] py-2 px-4 hover:bg-[#051359]"
+                  className="rounded-md text-white capitalize bg-[#091F8E] py-2 px-4 hover:bg-[#051359]"
                 >
                   try paystride for free
                 </button>
@@ -107,7 +107,7 @@ const Navbar = (props: Props) => {
               </li>
               <li className="hover:font-bold w-full py-5">
                 <Link href="/paystride-lite" onClick={() => setOpen(!open)}>
-                  <button className="text-black capitalize bg-white py-[6px] px-3">
+                  <button className="rounded-md text-black capitalize bg-white py-[6px] px-3">
                     try paystride for free
                   </button>
                 </Link>

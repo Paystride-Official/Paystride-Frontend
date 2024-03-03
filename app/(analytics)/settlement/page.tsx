@@ -57,7 +57,7 @@ const SettlementPage = (props: Props) => {
         <p>Settlement</p>
       </div>
       <div className="my-4 flex justify-between items-end">
-        {/* <NumberFormat number="7534326464" /> */}
+        {/* <NumberFormat number={"12345679876543"} /> */}
         <div className=" bg-white rounded-md py-3 px-4 max-w-[300px] border-[2.066px] border-solid border-[#ECEEF6]">
           <h1 className="text-[#343434] text-base sm:text-lg ">
             Available Balance

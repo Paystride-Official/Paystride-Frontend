@@ -279,6 +279,10 @@ export const bankCol = [
   },
 
   {
+    key: "account",
+    label: "Account",
+  },
+  {
     key: "bank",
     label: "Bank",
   },
