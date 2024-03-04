@@ -45,9 +45,7 @@ function deleteStaffApi(data: NewUser) {
   };
   return axios(url, options);
 }
-function getAllStaffApi(data: NewUser) {
-  console.log(data);
-
+function getAllStaffApi() {
   //user: { email: string; password: string }
   const url = `${SERVER_URL}/staff`;
   const options = {
@@ -56,7 +54,6 @@ function getAllStaffApi(data: NewUser) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${authToken}`,
     },
-    data: JSON.stringify(data),
   };
   return axios(url, options);
 }
@@ -101,7 +98,8 @@ export const deleteStaff = async (paypointdata: NewUser) => {
 
 export const getAllStaff = async (paypointdata: NewUser) => {
   try {
-    const response: any = await getAllStaffApi(paypointdata);
+    const response: any = await getAllStaffApi();
+    console.log(response.data);
 
     return { success: { ...response.data } };
   } catch (error) {
@@ -110,3 +108,80 @@ export const getAllStaff = async (paypointdata: NewUser) => {
     return { error: { response } };
   }
 };
+
+/************************* SETTING PAGE API******************************** */
+function getBusinessInfoApi() {
+  const url = `${SERVER_URL}/settings/business-information`;
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
+  return axios(url, options);
+}
+
+function updateBusinessInfoApi(data: NewUser) {
+  const url = `${SERVER_URL}/settings/business-information`;
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+    data: JSON.stringify(data),
+  };
+  return axios(url, options);
+}
+
+function updatePasswordApi(data: NewUser) {
+  const url = `${SERVER_URL}/settings/change-password`;
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+    data: JSON.stringify(data),
+  };
+  return axios(url, options);
+}
+
+export const getBusinessInfo = async () => {
+  try {
+    const response: any = await getBusinessInfoApi();
+
+    return { success: response.data };
+  } catch (error) {
+    const response = handleAxiosError(error);
+
+    return { error: response.error };
+  }
+};
+
+export const updateBusinessInfo = async (data: NewUser) => {
+  try {
+    const response: any = await updateBusinessInfoApi(data);
+
+    return { success: response.data };
+  } catch (error) {
+    const response = handleAxiosError(error);
+
+    return { error: response };
+  }
+};
+
+export const updatePassword = async (data: NewUser) => {
+  try {
+    const response: any = await updatePasswordApi(data);
+
+    return { success: response.data };
+  } catch (error) {
+    const response = handleAxiosError(error);
+
+    return { error: response };
+  }
+};
+
+/************************** SETTING PAGE API******************************* */

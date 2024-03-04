@@ -10,46 +10,44 @@ type PrintCard = {
   bankName: string;
   businessName: string;
 };
-//type Props = {};
 
 const PrintCard = ({ accountNumber, bankName, businessName }: PrintCard) => {
-  console.log(bankName, accountNumber, businessName);
   return (
-    <div className="flex justify-center mt-10">
-      <div className="bg-gradient-to-r from-[#051355] to-[#0b2edc] rounded-lg w-[18.5rem]">
-        <div className="bg-gradient-to-r from-[#bdc1d3] to-[#a1b1f8] rounded-t-lg flex items-center justify-center gap-5 p-4">
-          <h2 className="uppercase font-bold text-blue-600 tracking-wider text-lg">
+    <div className="flex justify-center mt-16">
+      <div className="bg-gradient-to-r from-[#051355] to-[#0b2edc] rounded-lg w-[30rem]">
+        <div className="bg-gradient-to-r from-[#bdc1d3] to-[#a1b1f8] rounded-t-lg flex items-center justify-center gap-7 p-4">
+          <h2 className="uppercase font-bold text-blue-600 tracking-wider text-[27px]">
             pay with transfer
           </h2>
-          <Image src={Transfer} alt="Transfer" width={24} />
+          <Image src={Transfer} alt="Transfer" width={30} />
         </div>
-        <div className="flex flex-col gap-5 p-5">
+        <div className="flex flex-col gap-8 py-8 px-10">
           <div>
-            <p className="text-xs text-[#dedcdc] font-semibold capitalize">
+            <p className="text-sm text-[#dedcdc] font-semibold capitalize">
               account number
             </p>
-            <p className="text-3xl text-white font-bold">{accountNumber}</p>
+            <p className="text-4xl text-white font-bold">{accountNumber}</p>
           </div>
           <div>
-            <p className="text-xs text-[#dedcdc] font-semibold capitalize">
+            <p className="text-sm text-[#dedcdc] font-semibold capitalize">
               account name
             </p>
-            <p className="text-lg text-white font-bold">{businessName}</p>
+            <p className="text-2xl text-white font-bold">{businessName}</p>
           </div>
           <div>
-            <p className="text-xs text-[#dedcdc] capitalize font-semibold">
+            <p className="text-sm text-[#dedcdc] capitalize font-semibold">
               bank name
             </p>
-            <p className="text-lg text-white font-bold">{bankName}</p>
+            <p className="text-2xl text-white font-bold">{bankName}</p>
           </div>
         </div>
         <hr className="bg-white h-[1px] w-[90%] mx-auto" />
-        <div className="flex px-5 py-4">
+        <div className="flex justify-center items-center px-5 py-7">
           <div className="flex-[2] flex justify-center">
-            <Image src={Paystride} alt="logo" className="w-6" />
+            <Image src={Paystride} alt="logo" className="w-8" />
           </div>
           <div className="flex-[5]">
-            <div className="text-white text-[10px] flex flex-col gap-2">
+            <div className="text-white text-xs flex flex-col gap-2">
               <p className="">
                 10X swift transfer payments - 10x swift transfer collection.
               </p>
@@ -57,7 +55,7 @@ const PrintCard = ({ accountNumber, bankName, businessName }: PrintCard) => {
             </div>
           </div>
         </div>
-        <div className="text-center text-white text-xs py-3">
+        <div className="text-center text-white text-sm py-4 mb-3">
           <p>
             Powered by: <span className="font-bold">Paystride</span>
           </p>

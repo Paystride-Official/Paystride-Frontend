@@ -12,8 +12,19 @@ type Props = {
   addNew?: boolean;
   setAddNewModal?: React.Dispatch<React.SetStateAction<boolean>>;
   addNewModal?: boolean;
+  defaultFilters?: {
+    id: number;
+    name: string;
+    Img: any;
+  }[];
 };
 
+// paypointFilters: {
+//   id: number;
+//   name: string;
+//   Img: any;
+// }
+// [];
 interface FilterObject {
   [key: string]: any;
 }
@@ -25,6 +36,7 @@ const Controllers = ({
   setFilters,
   addNewModal,
   setAddNewModal,
+  defaultFilters,
 }: Props) => {
   return (
     <section className="flex justify-between items-center px-4 pt-4">
@@ -45,7 +57,11 @@ const Controllers = ({
 
         {/* {filters && ( */}
         <div>
-          <Filters filters={filters} setFilters={setFilters} />
+          <Filters
+            filters={filters}
+            setFilters={setFilters}
+            defaultFilters={defaultFilters}
+          />
         </div>
         {/* )} */}
         <div>

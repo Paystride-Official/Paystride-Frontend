@@ -1,6 +1,14 @@
 import { NewUser } from "@/types/types";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { createStaff, deleteStaff, editStaff, getAllStaff } from "./api";
+import {
+  createStaff,
+  deleteStaff,
+  editStaff,
+  getAllStaff,
+  getBusinessInfo,
+  updateBusinessInfo,
+  updatePassword,
+} from "./api";
 
 export const useCreateStaff = () => {
   const queryClient = useQueryClient();
@@ -13,11 +21,13 @@ export const useCreateStaff = () => {
     },
   });
 };
+
 export const useEditStaff = () => {
   return useMutation({
     mutationFn: (editData: NewUser) => editStaff(editData),
   });
 };
+
 export const useDeleteStaff = () => {
   return useMutation({
     mutationFn: (deleteData: NewUser) => deleteStaff(deleteData),
@@ -34,5 +44,26 @@ export const useGetAllStaff = (data: { merchant_id: number }) => {
     },
 
     enabled: true,
+  });
+};
+
+export const useGetBusinessInfo = () => {
+  return useQuery({
+    queryKey: ["getBusinessInfo"],
+    queryFn: () => getBusinessInfo(),
+
+    enabled: true,
+  });
+};
+
+export const useUpdataBusinessInfo = () => {
+  return useMutation({
+    mutationFn: (data: NewUser) => updateBusinessInfo(data),
+  });
+};
+
+export const useUpdatePassword = () => {
+  return useMutation({
+    mutationFn: (data: NewUser) => updatePassword(data),
   });
 };
