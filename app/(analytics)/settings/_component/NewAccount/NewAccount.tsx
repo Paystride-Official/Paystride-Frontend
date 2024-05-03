@@ -1,19 +1,34 @@
 import React from "react";
 import { useForm, FieldValues } from "react-hook-form";
+import { toast } from "react-toastify";
+
+import { useCreateSettlement } from "@/app/(analytics)/settlement/_slice/query";
 
 type Props = {
   closeModal: () => void;
-  onSubmit: (data: FieldValues) => void;
+  // onSubmit: (data: FieldValues) => void;
 };
 
-const NewAccount = ({ closeModal, onSubmit }: Props) => {
+const NewAccount = ({ closeModal }: Props) => {
   const { handleSubmit, register, getValues, reset } = useForm();
 
-  const handleOnSubmit = (data: FieldValues) => {
+  const { mutateAsync: createSettlement, isLoading } = useCreateSettlement();
+
+  const handleOnSubmit = async () => {
     const formData = getValues();
-    console.log(formData);
+    const { account_number, ...rest } = formData;
+    const accoutnumberInt = Number.parseInt(account_number);
+    const response = await createSettlement({
+      ...rest,
+      account_number: accoutnumberInt,
+    });
+
+    response.success
+      ? toast.success("created")
+      : toast.error(response.error.message);
 
     reset();
+    closeModal();
   };
 
   const bankoptions = [
@@ -42,8 +57,14 @@ const NewAccount = ({ closeModal, onSubmit }: Props) => {
             />
           </div>
           <div className="">
-            <p className="text-[12px] text-[#B9B9B9]">Bank</p>
-            <select
+            <p className="text-[12px] text-[#B9B9B9]">Bank Name</p>
+            <input
+              type="text"
+              placeholder="0010234590"
+              {...register("bank_name")}
+              className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md w-32"
+            />
+            {/* <select
               className="block border-[0.889px] border-solid border-[#D9D9D9] px-2 py-2 outline-none w-32 rounded-md"
               {...register("bank")}
             >
@@ -52,7 +73,7 @@ const NewAccount = ({ closeModal, onSubmit }: Props) => {
                   {opt.option}
                 </option>
               ))}
-            </select>
+            </select> */}
           </div>
         </div>
         <div className="">
@@ -79,7 +100,7 @@ const NewAccount = ({ closeModal, onSubmit }: Props) => {
             type="submit"
             className="text-white bg-[#091F8E] px-4 py-1 capitalize rounded"
           >
-            Add Account
+            {isLoading ? "Loading..." : "Add Account"}
           </button>
           <button
             type="button"

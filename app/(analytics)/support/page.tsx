@@ -1,18 +1,23 @@
 "use client";
 import React from "react";
+
 import SupportLog from "./_components/SupportLog/SupportLog";
 import { useForm, FieldValues } from "react-hook-form";
+import { useGetAllPastIssues, useSubmitRequest } from "./_slice/query";
 
 type Props = {};
 
 const SupportPage = (props: Props) => {
+  const { mutateAsync: submitRequest } = useSubmitRequest();
   const { handleSubmit, register, getValues, reset } = useForm();
-  const handleOnSubmit = (data: FieldValues) => {
-    const formData = getValues();
-    console.log(formData);
 
-    reset();
+  const { isLoading, data, isError } = useGetAllPastIssues();
+
+  const handleOnSubmit = async (data: FieldValues) => {
+    const formData = getValues();
+    const response = await submitRequest(formData);
   };
+
   const TopicOption = [
     { value: "dashboard", topic: "Dashboard" },
     { value: "transactions", topic: "Transactions" },

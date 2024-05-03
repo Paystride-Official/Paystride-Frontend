@@ -1,14 +1,14 @@
 import axios from "axios";
 
 import { SERVER_URL } from "@/Utils/constants";
-import { getItemFromStorage } from "@/Utils/localStorage";
-import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
+import handleAxiosError from "@/Utils/request";
+import { getItemFromStorage } from "@/Utils/localStorage";
 
 const authToken = getItemFromStorage("AuthToken");
-function createPaypointApi(data: NewUser) {
+function submitRequestApi(data: NewUser) {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/paymentpoint`;
+  const url = `${SERVER_URL}/support/submit-request`;
   const options = {
     method: "POST",
     headers: {
@@ -20,46 +20,44 @@ function createPaypointApi(data: NewUser) {
   return axios(url, options);
 }
 
-function editPaypointApi(data: NewUser) {
-  const url = `${SERVER_URL}/paymentpoint/${data.id}`;
-  const options = {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${authToken}`,
-    },
-    data: JSON.stringify(data),
-  };
-  return axios(url, options);
-}
-
-function deletePaypointApi(data: NewUser) {
-  const url = `${SERVER_URL}/payment-point/${data.id}`;
-  const options = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${authToken}`,
-    },
-    data: JSON.stringify(data),
-  };
-  return axios(url, options);
-}
-
-function getPaypointApi(data: NewUser) {
-  const url = `${SERVER_URL}/paymentpoint/${1}`;
+function getAllPastIssuesApi() {
+  //user: { email: string; password: string }
+  const url = `${SERVER_URL}/support/pase-issues`;
   const options = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${authToken}`,
     },
-    data: JSON.stringify(data),
   };
   return axios(url, options);
 }
 
-function getAllPaypointApi(data: NewUser) {
+function createSettlementApi(data: NewUser) {
+  const url = `${SERVER_URL}/settlements`;
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
+  return axios(url, options);
+}
+
+function getSettlemenAccountApi(data: NewUser) {
+  const url = `${SERVER_URL}/settlements/${data.id}`;
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
+  return axios(url, options);
+}
+
+function getAllSettlementAccountApi() {
   const url = `${SERVER_URL}/paymentpoint`;
   const options = {
     method: "GET",
@@ -67,15 +65,13 @@ function getAllPaypointApi(data: NewUser) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${authToken}`,
     },
-    data: JSON.stringify(data),
   };
   return axios(url, options);
 }
 
-export const createPaypoint = async (paypointdata: NewUser) => {
+export const createSettlement = async (data: NewUser) => {
   try {
-    const response: any = await createPaypointApi(paypointdata);
-    console.log(response);
+    const response: any = await createSettlementApi(data);
   } catch (error) {
     const response = handleAxiosError(error);
 
@@ -83,9 +79,30 @@ export const createPaypoint = async (paypointdata: NewUser) => {
   }
 };
 
-export const editPaypoint = async (paypointdata: NewUser) => {
+export const submitRequest = async (data: NewUser) => {
   try {
-    const response: any = await editPaypointApi(paypointdata);
+    const response: any = await submitRequestApi(data);
+  } catch (error) {
+    const response = handleAxiosError(error);
+
+    return { error: { response } };
+  }
+};
+
+export const getAllPastIssues = async () => {
+  try {
+    const response: any = await getAllPastIssuesApi();
+    return response;
+  } catch (error) {
+    const response = handleAxiosError(error);
+
+    return { error: { response } };
+  }
+};
+
+export const getSettlementAccount = async (data: NewUser) => {
+  try {
+    const response = await getSettlemenAccountApi(data);
 
     return { success: { ...response } };
   } catch (error) {
@@ -95,33 +112,9 @@ export const editPaypoint = async (paypointdata: NewUser) => {
   }
 };
 
-export const deletePaypoint = async (paypointdata: NewUser) => {
+export const getAllSettlementAccount = async () => {
   try {
-    const response: any = await deletePaypointApi(paypointdata);
-
-    return { success: { ...response } };
-  } catch (error) {
-    const response = handleAxiosError(error);
-
-    return { error: { response } };
-  }
-};
-
-export const getPaypoint = async (paypointdata: NewUser) => {
-  try {
-    const response: any = await getPaypointApi(paypointdata);
-
-    return { success: { ...response } };
-  } catch (error) {
-    const response = handleAxiosError(error);
-
-    return { error: { response } };
-  }
-};
-
-export const getAllPaypoint = async (paypointdata: NewUser) => {
-  try {
-    const response: any = await getAllPaypointApi(paypointdata);
+    const response: any = await getAllSettlementAccountApi();
 
     return { success: { ...response } };
   } catch (error) {

@@ -58,8 +58,6 @@ const LoginPage = (props: Props) => {
       router.push(`/dashboard/${response.success?.id}`);
 
       reset();
-
-      return;
     } else {
       setError(response.error.message);
     }
