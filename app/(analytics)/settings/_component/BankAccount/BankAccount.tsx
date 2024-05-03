@@ -1,15 +1,16 @@
 "use client";
+import React, { ReactNode, useEffect, useState } from "react";
+
 import Header from "@/app/(analytics)/_components/HeaderStat/Header";
 import Controllers from "@/components/Controllers/Controllers";
 import { TableComponent } from "@/components/Table/Table";
-import React, { ReactNode, useEffect, useState } from "react";
-import Staff from "../Staff/Staff";
 import { FilterObject } from "@/types/types";
 import { bankCol, bankRow } from "@/Utils/constants";
 import NewAccount from "../NewAccount/NewAccount";
 import ModalPopUp from "@/components/Modal/Modal";
 import EditAccount from "../EditAccount/EditAccount";
 import DeleteAccount from "../DeleteAccount/DeleteAccount";
+import { useGetAllSettlementAccount } from "@/app/(analytics)/settlement/_slice/query";
 
 type Props = {};
 
@@ -22,10 +23,17 @@ const BankAccount = (props: Props) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [content, setContent] = useState<ReactNode>("");
 
+  console.log("delete", deleteModal);
+  const {
+    isLoading,
+    data: settlementAccounts,
+    isError,
+  } = useGetAllSettlementAccount();
+
   const bankStat = [
     {
       name: "Active count",
-      amount: "3",
+      amount: settlementAccounts?.success?.total || "0",
     },
   ];
 
@@ -39,20 +47,10 @@ const BankAccount = (props: Props) => {
     setEditModal(true);
   };
 
-  const handleNewAccount = () => {
-    console.log("Submitted");
-  };
-
-  //   function openModal(): void {
-  //     throw new Error("Function not implemented.");
-  //   }
-
   useEffect(() => {
     const determineContent = () => {
       if (addNewModal) {
-        return (
-          <NewAccount closeModal={closeModal} onSubmit={handleNewAccount} />
-        );
+        return <NewAccount closeModal={closeModal} />;
       } else if (editModal) {
         return (
           <EditAccount
@@ -70,6 +68,10 @@ const BankAccount = (props: Props) => {
 
     setContent(determineContent());
   }, [addNewModal, editModal, deleteModal]);
+
+  if (isLoading) {
+    <h1>Loading...</h1>;
+  }
 
   return (
     <section>
@@ -95,7 +97,7 @@ const BankAccount = (props: Props) => {
           setAddNewModal={setAddNewModal}
         />
         <TableComponent
-          rows={bankRow}
+          rows={settlementAccounts?.success?.accounts || []}
           columns={bankCol}
           openModal={openModal}
           deleteModal={deleteModal}

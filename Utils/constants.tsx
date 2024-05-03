@@ -279,16 +279,16 @@ export const bankCol = [
   },
 
   {
-    key: "account",
-    label: "Account",
+    key: "account_number",
+    label: "Account Number",
   },
   {
-    key: "bank",
-    label: "Bank",
+    key: "bank_account",
+    label: "Bank ",
   },
   {
-    key: "bankName",
-    label: "Bank Name",
+    key: "bank_name",
+    label: "BankName",
   },
   {
     key: "status",

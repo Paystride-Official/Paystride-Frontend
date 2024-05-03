@@ -2,12 +2,12 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import { useForm, FieldValues } from "react-hook-form";
 import Link from "next/link";
+
 import Sidebar from "../_components/Sidebar/Sidebar";
 import PaymentLink from "../_components/PaymentLink/PaymentLink";
 import ModalPopUp from "@/components/Modal/Modal";
 import CbnModal from "../_components/CbnModal/CbnModal";
-import NotificationPopOver from "@/components/Navbar/NotificationPopOver/NotificationPopOver";
-import PrintCard from "../_components/PrintCard/PrintCard";
+import { useCreateVirtualAccout } from "./_slice/query";
 
 type Props = {};
 
@@ -17,13 +17,19 @@ const FreeTrial = ({}: Props) => {
   const [showCbnPolicy, setShowCbnPolicy] = useState(false);
 
   const { register, handleSubmit, getValues, reset } = useForm();
+  const { mutateAsync: createVirtualAccount } = useCreateVirtualAccout();
 
-  const handleOnSubmit = (data: FieldValues) => {
+  const handleOnSubmit = async (data: FieldValues) => {
     setIsOpen(true);
     const formData = getValues();
-    console.log(formData);
+    const { bank_name, ...rest } = formData;
 
-    reset();
+    const response = await createVirtualAccount(rest);
+    response.success
+      ? console.log(response.success)
+      : console.log(response.error);
+
+    // reset();
   };
 
   const closeModal = () => {
@@ -61,29 +67,33 @@ const FreeTrial = ({}: Props) => {
                 <input
                   type="text"
                   placeholder="Business Name"
+                  id="business_name"
                   required
-                  {...register("businessName")}
+                  {...register("business_name")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
                 <input
-                  type="tel"
+                  type="number"
                   placeholder="Bank Account Number"
+                  id="bank_account"
                   maxLength={10}
                   required
-                  {...register("bankAccount")}
+                  {...register("bank_account")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
                 <input
                   type="text"
                   placeholder="Bank Name"
+                  id="bank_name"
                   required
-                  {...register("bankName")}
+                  {...register("bank_name")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
                 <div className="mb-3 relative">
                   <input
-                    type="tel"
+                    type="number"
                     placeholder="BVN"
+                    id="bvn"
                     maxLength={11}
                     required
                     {...register("bvn")}
@@ -102,10 +112,10 @@ const FreeTrial = ({}: Props) => {
                 </div>
                 <input
                   type="tel"
-                  placeholder="WhatsApp Number"
+                  placeholder="phone_number"
                   maxLength={15}
                   required
-                  {...register("whatsappNumber")}
+                  {...register("phone_number")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
                 <input
@@ -124,11 +134,11 @@ const FreeTrial = ({}: Props) => {
                 </label>
                 <input
                   type="number"
-                  id="points"
+                  id="amount"
                   min={1}
                   max={20}
                   required
-                  {...register("points")}
+                  {...register("amount")}
                   className="w-12 sm:w-20 pl-2 sm:pl-4 py-1 sm:py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
 
@@ -137,8 +147,9 @@ const FreeTrial = ({}: Props) => {
                   <input
                     type="checkbox"
                     className="w-auto rounded mr-3"
-                    id="check"
+                    id="t_and_c"
                     required
+                    {...register("t_and_c")}
                   />
                   <label
                     htmlFor="check"

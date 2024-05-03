@@ -1,4 +1,5 @@
 "use client";
+import axiosInstance from "@/AxiosInterceptors";
 import { SERVER_URL } from "@/Utils/constants";
 import {
   getItemFromStorage,
@@ -36,7 +37,7 @@ function signOutApi() {
       Authorization: `Bearer ${authToken}`,
     },
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 export const signInAccount = async (userData: NewUser) => {

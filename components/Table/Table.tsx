@@ -33,11 +33,12 @@ export function TableComponent({
   setDeleteModal,
 }: TableProps) {
   const getData = (column: object) => {
+    console.log(column, "singelrow");
     if (column) {
       setSingleRow?.(column);
     }
   };
-
+  console.log(deleteModal);
   const renderCell = React.useCallback((column: column, columnKey: any) => {
     // const cellValue = column[columnKey as keyof column[]];
 
@@ -121,22 +122,25 @@ export function TableComponent({
       case "action":
         return (
           <div className="flex w-full item-start justify-start gap-6 cursor-pointer">
-            <Image
-              src={Edit}
-              alt="Edit"
-              width={15}
-              height={15}
+            <span className="w-full">
+              <Image
+                src={Edit}
+                alt="Edit"
+                width={15}
+                height={15}
+                onClick={() => {
+                  openModal?.(), getData(column);
+                }}
+              />
+            </span>
+            <span
+              className="w-full"
               onClick={() => {
-                openModal?.(), getData(column);
+                setDeleteModal && setDeleteModal(true), getData(column);
               }}
-            />
-            <Image
-              src={Delete}
-              width={15}
-              height={15}
-              alt="Delete"
-              onClick={() => setDeleteModal && setDeleteModal(!deleteModal)}
-            />
+            >
+              <Image src={Delete} width={15} height={15} alt="Delete" />
+            </span>
           </div>
         );
       default:

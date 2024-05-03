@@ -63,12 +63,11 @@ export const createStaff = async (paypointdata: NewUser) => {
     const response: any = await createStaffApi(paypointdata);
     const { data } = response;
 
-    console.log(response.data);
     return { success: { ...data } };
   } catch (error) {
     const response = handleAxiosError(error);
 
-    return { error: { response } };
+    return { error: { ...response } };
   }
 };
 
@@ -96,10 +95,10 @@ export const deleteStaff = async (paypointdata: NewUser) => {
   }
 };
 
-export const getAllStaff = async (paypointdata: NewUser) => {
+export const getAllStaff = async (data: NewUser) => {
   try {
     const response: any = await getAllStaffApi();
-    console.log(response.data);
+    console.log(response);
 
     return { success: { ...response.data } };
   } catch (error) {
