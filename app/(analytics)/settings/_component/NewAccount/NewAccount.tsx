@@ -16,11 +16,10 @@ const NewAccount = ({ closeModal }: Props) => {
 
   const handleOnSubmit = async () => {
     const formData = getValues();
-    const { account_number, ...rest } = formData;
-    const accoutnumberInt = Number.parseInt(account_number);
+    // const { account_number, ...rest } = formData;
+    // const accoutnumberInt = Number.parseInt(account_number);
     const response = await createSettlement({
-      ...rest,
-      account_number: accoutnumberInt,
+      ...formData,
     });
 
     response.success
