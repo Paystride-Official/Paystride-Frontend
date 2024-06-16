@@ -10,7 +10,7 @@ import Copy from "@/app/(preload)/assets/copyIcon.svg";
 import Link from "next/link";
 import { generateLink } from "@/Utils/constants";
 import PrintCard from "../PrintCard/PrintCard";
-import { useGetAllVirtualAccount } from "../../paystride-lite/_slice/query";
+// import { useGetAllVirtualAccount } from "../../paystride-lite/_slice/query";
 
 export type PaymentLinkProps = {
   id: number;
@@ -20,8 +20,8 @@ export type PaymentLinkProps = {
 };
 
 const PaymentLink = () => {
-  const { isLoading, data, isError } = useGetAllVirtualAccount();
-  console.log(data);
+  // const { isLoading, data, isError } = useGetAllVirtualAccount();
+  // console.log(data);
 
   const handleCopy = (key: string) => {
     const copiedLink = generateLink.find((link) => link.id === key);
@@ -88,7 +88,7 @@ const PaymentLink = () => {
                         </div>
                       </div>
                       <Link
-                        href={details.paymentLink}
+                        href={`/paystride-lite/${details.paymentLink}`}
                         className="underline text-[#727EC0] lowercase flex flex-wrap"
                       >
                         <p className="text-ellipsis overflow-hidden">

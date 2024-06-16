@@ -17,17 +17,36 @@ const FreeTrial = ({}: Props) => {
   const [showCbnPolicy, setShowCbnPolicy] = useState(false);
 
   const { register, handleSubmit, getValues, reset } = useForm();
-  const { mutateAsync: createVirtualAccount } = useCreateVirtualAccout();
+  const { mutateAsync: createVirtualAccount, isLoading } =
+    useCreateVirtualAccout();
 
   const handleOnSubmit = async (data: FieldValues) => {
-    setIsOpen(true);
     const formData = getValues();
-    const { bank_name, ...rest } = formData;
+    const { phone_number, bank_account, bvn, amount, ...rest } = formData;
 
-    const response = await createVirtualAccount(rest);
-    response.success
-      ? console.log(response.success)
-      : console.log(response.error);
+    console.log({
+      phone_number: Number(phone_number),
+      bank_account: Number(bank_account),
+      bvn: Number(bvn),
+      amount: Number(amount),
+      ...rest,
+    });
+
+    const response = await createVirtualAccount({
+      phone_number: Number(phone_number),
+      bank_account: Number(bank_account),
+      bvn: Number(bvn),
+      amount: Number(amount),
+      ...rest,
+    });
+
+    if (response.success) {
+      console.log(response.success);
+      setIsOpen(true);
+    } else {
+      console.log(response.error);
+      setIsOpen(true);
+    }
 
     // reset();
   };
@@ -79,6 +98,15 @@ const FreeTrial = ({}: Props) => {
                   maxLength={10}
                   required
                   {...register("bank_account")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+                <input
+                  type="text"
+                  placeholder="Bank Account Name"
+                  id="bank_account_name"
+                  // maxLength={10}
+                  required
+                  {...register("bank_account_name")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
                 <input
@@ -172,7 +200,7 @@ const FreeTrial = ({}: Props) => {
                   type="submit"
                   className="bg-[#091F8E] text-sm sm:text-base text-white px-12 py-3 rounded mt-8 mb-7 mx-auto sm:mx-0 block"
                 >
-                  Generate payment link
+                  {isLoading ? "Loading..." : "Generate payment link"}
                 </button>
 
                 <hr />

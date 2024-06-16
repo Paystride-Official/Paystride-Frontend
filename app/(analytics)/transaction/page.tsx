@@ -3,17 +3,23 @@ import { useState } from "react";
 import { transactionCol, transactionRow } from "@/Utils/constants";
 import Controllers from "@/components/Controllers/Controllers";
 import { TableComponent } from "@/components/Table/Table";
-import { FilterObject } from "@/types/types";
+import { FilterObject, NewUser } from "@/types/types";
 import Transfer from "@/components/Filters/assets/transfer.svg";
 
 import DateRange from "@/components/Filters/assets/date.svg";
 import GreaterEqual from "@/components/Filters/assets/greatequals.svg";
+import { useGetAllTransaction } from "./_slice/query";
 
 type Props = {};
 
 const Transaction = (props: Props) => {
   const [search, setSearch] = useState<string>("");
   const [filters, setFilters] = useState<FilterObject | null>(null);
+
+  const { isLoading, data, isError } = useGetAllTransaction();
+  let transaction: NewUser[] | [] = data?.success?.data ?? [];
+  console.log(data);
+
   const transactionFilters = [
     { id: 1, name: "Date", Img: DateRange },
     { id: 2, name: "Amount", Img: GreaterEqual },
@@ -54,7 +60,7 @@ const Transaction = (props: Props) => {
           defaultFilters={transactionFilters}
         />
 
-        <TableComponent rows={transactionRow} columns={transactionCol} />
+        <TableComponent rows={transaction} columns={transactionCol} />
       </div>
     </div>
   );

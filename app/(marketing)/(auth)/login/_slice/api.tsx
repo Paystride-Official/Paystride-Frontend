@@ -47,7 +47,6 @@ export const signInAccount = async (userData: NewUser) => {
     const {
       data: { token, user },
     } = response;
-    console.log(response);
 
     // const responseData = { ...data, status, statusText };
     // console.log(responseData);

@@ -51,7 +51,7 @@ const LoginPage = (props: Props) => {
   const handleOnSubmit = async (data: FieldValues) => {
     const formData = getValues();
     const response: any = await signInAccount(formData);
-
+    //check for pending and when the request is successfull and then redirect to dasboard
     if (response.success) {
       toast.success("logged in successfully");
 
