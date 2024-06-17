@@ -42,6 +42,7 @@ const Staff = (props: Props) => {
     isError,
   } = useGetAllStaff({ merchant_id: user?.id });
   let staff: NewUser[] | [] = data?.success?.users ?? [];
+  console.log(data);
 
   const defaultFilters = [
     { id: 1, name: "Status", Img: Toogle },

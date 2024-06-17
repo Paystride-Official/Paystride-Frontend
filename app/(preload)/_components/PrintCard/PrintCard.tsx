@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Transfer from "@/app/(preload)/assets/Transfer.svg";
 import Paystride from "@/app/assets/Paystride.svg";
-import { PaymentLinkProps } from "../PaymentLink/PaymentLink";
+import { PaymentLinkProps } from "../../payment-link/page";
 
 type PrintCard = {
   //printItems: PaymentLinkProps[];

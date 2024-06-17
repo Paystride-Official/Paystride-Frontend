@@ -4,6 +4,7 @@ import { SERVER_URL } from "@/Utils/constants";
 import { getItemFromStorage } from "@/Utils/localStorage";
 import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
+import { redirect } from "next/navigation";
 
 const authToken = getItemFromStorage("AuthToken");
 function createPaypointApi(data: NewUser) {
@@ -122,10 +123,15 @@ export const getPaypoint = async (paypointdata: NewUser) => {
 export const getAllPaypoint = async (paypointdata: NewUser) => {
   try {
     const response: any = await getAllPaypointApi(paypointdata);
+    const { data } = response;
 
-    return { success: { ...response } };
+    return { success: { ...data } };
   } catch (error) {
     const response = handleAxiosError(error);
+    console.log(response.message);
+    if (response.message === "Unauthorized") {
+      redirect("/login");
+    }
 
     return { error: { response } };
   }

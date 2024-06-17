@@ -87,7 +87,7 @@ const NewAccount = ({ closeModal }: Props) => {
             <input type="checkbox" id="defaultAcc" />
             <label
               htmlFor="defaultAcc"
-              className="text-[12px] text-[#7F7F7F] ml-1"
+              className="text-[12px]  ml-1"
             >
               Make this account the default account
             </label>

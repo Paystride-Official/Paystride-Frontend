@@ -4,49 +4,63 @@ import { useForm, FieldValues } from "react-hook-form";
 import Link from "next/link";
 
 import Sidebar from "../_components/Sidebar/Sidebar";
-import PaymentLink from "../_components/PaymentLink/PaymentLink";
 import ModalPopUp from "@/components/Modal/Modal";
 import CbnModal from "../_components/CbnModal/CbnModal";
 import { useCreateVirtualAccout } from "./_slice/query";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const FreeTrial = ({}: Props) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState<ReactNode>("");
   const [showCbnPolicy, setShowCbnPolicy] = useState(false);
 
   const { register, handleSubmit, getValues, reset } = useForm();
-  const { mutateAsync: createVirtualAccount } = useCreateVirtualAccout();
+  const { mutateAsync: createVirtualAccount, isLoading } =
+    useCreateVirtualAccout();
 
   const handleOnSubmit = async (data: FieldValues) => {
-    setIsOpen(true);
     const formData = getValues();
-    const { bank_name, ...rest } = formData;
+    const { phone_number, bank_account, bvn, amount, ...rest } = formData;
 
-    const response = await createVirtualAccount(rest);
-    response.success
-      ? console.log(response.success)
-      : console.log(response.error);
+    const response = await createVirtualAccount({
+      phone_number: Number(phone_number),
+      bank_account: Number(bank_account),
+      bvn: Number(bvn),
+      amount: Number(amount),
+      ...rest,
+    });
+
+    if (response.success) {
+      console.log(response.success);
+      router.push("/payment-link");
+      setIsOpen(true);
+    } else {
+      console.log(response.error);
+      router.push("/payment-link");
+      setIsOpen(true);
+    }
 
     // reset();
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsOpen(false);
+  // };
 
-  useEffect(() => {
-    const determineContent = () => {
-      if (isOpen) {
-        return <PaymentLink />;
-      }
-      // Return a default or null if neither condition is met
-      return null;
-    };
+  // useEffect(() => {
+  //   const determineContent = () => {
+  //     if (isOpen) {
+  //       return <PaymentLink />;
+  //     }
+  //     // Return a default or null if neither condition is met
+  //     return null;
+  //   };
 
-    setContent(determineContent());
-  }, [isOpen]);
+  //   setContent(determineContent());
+  // }, [isOpen]);
 
   return (
     <div>
@@ -58,6 +72,8 @@ const FreeTrial = ({}: Props) => {
               <h2 className="text-[4.99vw] min-[500px]:text-2xl lg:text-[32px] font-bold w-fit mt-8">
                 Start accepting payments in 3 minutes
               </h2>
+
+              <Link href={`paystride-lite/1234455`}> testing</Link>
               <p className="text-xs sm:text-sm mb-10 w-fit pt-1">Get Started</p>
 
               <form
@@ -79,6 +95,15 @@ const FreeTrial = ({}: Props) => {
                   maxLength={10}
                   required
                   {...register("bank_account")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+                <input
+                  type="text"
+                  placeholder="Bank Account Name"
+                  id="bank_account_name"
+                  // maxLength={10}
+                  required
+                  {...register("bank_account_name")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
                 <input
@@ -172,18 +197,19 @@ const FreeTrial = ({}: Props) => {
                   type="submit"
                   className="bg-[#091F8E] text-sm sm:text-base text-white px-12 py-3 rounded mt-8 mb-7 mx-auto sm:mx-0 block"
                 >
-                  Generate payment link
+                  {isLoading ? "Loading..." : "Generate payment link"}
                 </button>
 
                 <hr />
               </form>
               <div>
-                <ModalPopUp
+                {/* {isOpen && <PaymentLink />} */}
+                {/* <ModalPopUp
                   isOpen={isOpen}
                   closeModal={closeModal}
                   body={content}
                   size="3xl"
-                />
+                /> */}
               </div>
             </div>
           </div>
