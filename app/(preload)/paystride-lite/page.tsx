@@ -4,14 +4,15 @@ import { useForm, FieldValues } from "react-hook-form";
 import Link from "next/link";
 
 import Sidebar from "../_components/Sidebar/Sidebar";
-import PaymentLink from "../_components/PaymentLink/PaymentLink";
 import ModalPopUp from "@/components/Modal/Modal";
 import CbnModal from "../_components/CbnModal/CbnModal";
 import { useCreateVirtualAccout } from "./_slice/query";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const FreeTrial = ({}: Props) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState<ReactNode>("");
   const [showCbnPolicy, setShowCbnPolicy] = useState(false);
@@ -24,14 +25,6 @@ const FreeTrial = ({}: Props) => {
     const formData = getValues();
     const { phone_number, bank_account, bvn, amount, ...rest } = formData;
 
-    console.log({
-      phone_number: Number(phone_number),
-      bank_account: Number(bank_account),
-      bvn: Number(bvn),
-      amount: Number(amount),
-      ...rest,
-    });
-
     const response = await createVirtualAccount({
       phone_number: Number(phone_number),
       bank_account: Number(bank_account),
@@ -42,30 +35,32 @@ const FreeTrial = ({}: Props) => {
 
     if (response.success) {
       console.log(response.success);
+      router.push("/payment-link");
       setIsOpen(true);
     } else {
       console.log(response.error);
+      router.push("/payment-link");
       setIsOpen(true);
     }
 
     // reset();
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsOpen(false);
+  // };
 
-  useEffect(() => {
-    const determineContent = () => {
-      if (isOpen) {
-        return <PaymentLink />;
-      }
-      // Return a default or null if neither condition is met
-      return null;
-    };
+  // useEffect(() => {
+  //   const determineContent = () => {
+  //     if (isOpen) {
+  //       return <PaymentLink />;
+  //     }
+  //     // Return a default or null if neither condition is met
+  //     return null;
+  //   };
 
-    setContent(determineContent());
-  }, [isOpen]);
+  //   setContent(determineContent());
+  // }, [isOpen]);
 
   return (
     <div>
@@ -77,6 +72,8 @@ const FreeTrial = ({}: Props) => {
               <h2 className="text-[4.99vw] min-[500px]:text-2xl lg:text-[32px] font-bold w-fit mt-8">
                 Start accepting payments in 3 minutes
               </h2>
+
+              <Link href={`paystride-lite/1234455`}> testing</Link>
               <p className="text-xs sm:text-sm mb-10 w-fit pt-1">Get Started</p>
 
               <form
@@ -206,12 +203,13 @@ const FreeTrial = ({}: Props) => {
                 <hr />
               </form>
               <div>
-                <ModalPopUp
+                {/* {isOpen && <PaymentLink />} */}
+                {/* <ModalPopUp
                   isOpen={isOpen}
                   closeModal={closeModal}
                   body={content}
                   size="3xl"
-                />
+                /> */}
               </div>
             </div>
           </div>
