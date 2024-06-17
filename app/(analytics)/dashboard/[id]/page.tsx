@@ -104,7 +104,7 @@ const Dashboard = (props: DashboardProps) => {
               {tabs.map((tab) => (
                 <button
                   className="hover:bg-[#DDE2FD] text-xs sm:text-sm lg:text-base rounded-[10px] px-2 lg:px-4"
-                  disabled={currentTab == tab.id}
+                  disabled={currentTab == tab.title}
                   key={tab.id}
                 >
                   {tab.title}

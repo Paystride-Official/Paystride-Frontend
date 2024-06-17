@@ -42,6 +42,7 @@ const Staff = (props: Props) => {
     isError,
   } = useGetAllStaff({ merchant_id: user?.id });
   let staff: NewUser[] | [] = data?.success?.users ?? [];
+  console.log(data);
 
   const defaultFilters = [
     { id: 1, name: "Status", Img: Toogle },
@@ -96,10 +97,11 @@ const Staff = (props: Props) => {
     const updatedData = { merchant_id: user?.id, ...data };
 
     const response: any = await createStaff(updatedData);
+    console.log(response);
 
     response.success
       ? toast.success(response.success.message)
-      : console.log("error", response.error);
+      : toast.error(response.error.message);
 
     closeModal();
   };

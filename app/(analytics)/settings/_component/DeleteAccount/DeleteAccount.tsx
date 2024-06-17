@@ -1,5 +1,6 @@
 import React from "react";
-//import { useDeltePaymentPoint } from "../../_slice/query";
+import { useDeleteSettlementAccount } from "@/app/(analytics)/settlement/_slice/query";
+import { toast } from "react-toastify";
 
 type Props = {
   singleRow: {
@@ -9,11 +10,15 @@ type Props = {
 };
 
 const DeleteAccount = ({ singleRow, closeModal }: Props) => {
-  //   const { mutateAsync: deletePaypoint } = useDeltePaymentPoint();
+  console.log(singleRow);
+  const { mutateAsync: deleteSettlement } = useDeleteSettlementAccount();
 
-  //   const handleDeletePaypoint = async () => {
-  //     const response = await deletePaypoint({ id: singleRow.key });
-  //   };
+  const handleDeletePaypoint = async () => {
+    const response = await deleteSettlement({ id: singleRow.key });
+    response.success
+      ? toast.success("Deleted Successfully")
+      : toast.error(response.error.message);
+  };
 
   return (
     <section className="flex flex-col gap-2 text-center">
@@ -22,7 +27,7 @@ const DeleteAccount = ({ singleRow, closeModal }: Props) => {
       </h1>
       <div className="flex gap-4 justify-center w-full mb-2 mt-8">
         <button
-          //onClick={handleDeletePaypoint}
+          onClick={handleDeletePaypoint}
           className="text-white bg-[#091F8E] px-4 py-1 capitalize rounded"
         >
           Confirm

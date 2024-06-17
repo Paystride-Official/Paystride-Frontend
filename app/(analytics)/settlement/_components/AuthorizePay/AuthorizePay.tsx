@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm, FieldValues } from "react-hook-form";
+import { useCreateSettlement } from "../../_slice/query";
 
 type AuthorizeProps = {
   closeModal: () => void;
@@ -9,9 +10,11 @@ type AuthorizeProps = {
 const AuthorizePay = ({ closeModal }: AuthorizeProps) => {
   const { handleSubmit, register, getValues, reset } = useForm();
 
+  const { mutateAsync: createSettlement } = useCreateSettlement();
   const handleOnSubmit = (data: FieldValues) => {
     const formData = getValues();
-    console.log(formData);
+    const { amount, ...remainingformData } = formData;
+    const response: any = createSettlement(remainingformData);
 
     reset();
   };
@@ -30,32 +33,58 @@ const AuthorizePay = ({ closeModal }: AuthorizeProps) => {
         className="flex flex-col items-center justify-center my-4 gap-4"
         onSubmit={handleSubmit(handleOnSubmit)}
       >
-        <div className="flex justify-center gap-6">
-          <div>
-            <div className="flex justify-between text-[12px] text-[#B9B9B9]">
-              <span>Amount</span>
-              <span className="text-[#462cda]">Edit</span>
-            </div>
+        <div>
+          <div className="flex justify-center gap-6 pb-6">
+            <div>
+              <div className="flex justify-between text-[12px] text-[#B9B9B9]">
+                <span>Amount</span>
+                <span className="text-[#462cda]">Edit</span>
+              </div>
 
-            <input
-              type="text"
-              placeholder="0010234590"
-              {...register("amount_authorize")}
-              className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md w-32"
-            />
+              <input
+                type="text"
+                placeholder="0010234590"
+                {...register("amount")}
+                className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md w-32"
+              />
+            </div>
+            <div className="">
+              <p className="text-[12px] text-[#B9B9B9]">Account Number</p>
+              <select
+                className="block border-[0.889px] border-solid border-[#D9D9D9] px-2 py-2 outline-none w-32 rounded-md"
+                {...register("account_number")}
+              >
+                {PrimaryAccountOptions.map((opt, index) => (
+                  <option key={index} value={opt.value}>
+                    {opt.option}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="">
-            <p className="text-[12px] text-[#B9B9B9]">Primary Account</p>
-            <select
-              className="block border-[0.889px] border-solid border-[#D9D9D9] px-2 py-2 outline-none w-32 rounded-md"
-              {...register("primary_account")}
-            >
-              {PrimaryAccountOptions.map((opt, index) => (
-                <option key={index} value={opt.value}>
-                  {opt.option}
-                </option>
-              ))}
-            </select>
+          <div className="flex justify-center gap-6">
+            <div>
+              <div className="flex justify-between text-[12px] text-[#B9B9B9]">
+                <span>Bank Name</span>
+                {/* <span className="text-[#462cda]">Edit</span> */}
+              </div>
+
+              <input
+                type="text"
+                placeholder="0010234590"
+                {...register("bank_name")}
+                className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md w-32"
+              />
+            </div>
+            <div className="">
+              <p className="text-[12px] text-[#B9B9B9]">Account Name</p>
+              <input
+                type="text"
+                placeholder="0010234590"
+                {...register("amount_name")}
+                className=" py-2 px-2 outline-none border-[0.889px] border-solid border-[#D9D9D9] rounded-md w-32"
+              />
+            </div>
           </div>
         </div>
 

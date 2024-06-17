@@ -1,13 +1,16 @@
-import Input from "@/components/Input/Input";
-import classNames from "classnames";
-import Image from "next/image";
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import Image from "next/image";
+
+import Input from "@/components/Input/Input";
 import { useGetBusinessInfo, useUpdataBusinessInfo } from "../../_slice/qurey";
+import FileInput from "@/components/FileInput/FilleInput";
 
 type Props = {};
 let businessInfo: any;
 const BusinessInfo = (props: Props) => {
+  const [file, setFile] = useState<File | null>(null);
   const { data, isLoading, isError } = useGetBusinessInfo();
   const { mutateAsync: updateBusinessInfo } = useUpdataBusinessInfo();
 
@@ -55,9 +58,12 @@ const BusinessInfo = (props: Props) => {
             height={96}
             className="h-24 w-24 rounded-full bg-[#D9D9D9]"
           />
-          <p className="capitalize bg-[#DDE2FD] rounded-md px-4 py-2 text-[10px] md:text-base ">
-            upload logo
-          </p>
+          <div className="relative cursor-pointer">
+            <p className=" cursor-pointer capitalize bg-[#DDE2FD] rounded-md px-4 py-2 text-[10px] w-fit md:text-base ">
+              upload logo
+            </p>
+            <FileInput file={file} setFile={setFile} />
+          </div>
         </div>
         <Input
           register={register}

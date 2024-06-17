@@ -3,6 +3,7 @@ import { getItemFromStorage } from "@/Utils/localStorage";
 import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 const authToken = getItemFromStorage("AuthToken");
 function createStaffApi(data: NewUser) {
@@ -63,12 +64,11 @@ export const createStaff = async (paypointdata: NewUser) => {
     const response: any = await createStaffApi(paypointdata);
     const { data } = response;
 
-    console.log(response.data);
     return { success: { ...data } };
   } catch (error) {
     const response = handleAxiosError(error);
 
-    return { error: { response } };
+    return { error: { ...response } };
   }
 };
 
@@ -96,14 +96,17 @@ export const deleteStaff = async (paypointdata: NewUser) => {
   }
 };
 
-export const getAllStaff = async (paypointdata: NewUser) => {
+export const getAllStaff = async (data: NewUser) => {
   try {
     const response: any = await getAllStaffApi();
-    console.log(response.data);
 
     return { success: { ...response.data } };
   } catch (error) {
     const response = handleAxiosError(error);
+    if (response.message === "Unauthenticated") {
+      console.log("hey");
+      redirect("/login");
+    }
 
     return { error: { response } };
   }

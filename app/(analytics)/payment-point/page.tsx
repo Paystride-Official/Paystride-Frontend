@@ -9,7 +9,7 @@ import { EditPayPoint } from "./_components/EditPayPoint/EditPayPoint";
 import { AddPayPoint } from "./_components/AddPayPoint/AddPayPoint";
 import { payPointCol, payPointRow } from "@/Utils/constants";
 import { TableComponent } from "@/components/Table/Table";
-import { FilterObject } from "@/types/types";
+import { FilterObject, NewUser } from "@/types/types";
 import {
   useCreatePaymentPoint,
   useEditPaymentPoint,
@@ -22,6 +22,7 @@ import Duty from "@/components/Filters/assets/onDuty.svg";
 import Bank from "@/components/Filters/assets/bank.svg";
 import Card from "@/components/Filters/assets/card.svg";
 import Toogle from "@/components/Filters/assets/toggle.svg";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -47,10 +48,18 @@ const Paymentpoint = (props: Props) => {
   // const { isLoading, data, isError } = useGetPaypoint();
 
   const { isLoading, data, isError } = useGetAllPaypoint();
+  let payment_points: NewUser[] | [] = data?.success?.payment_points ?? [];
+
+  console.log(data);
+
+  // data?.success? toast.success("payment point create successfully"):toast.error("hey")
 
   const user = getUser();
   const addPaypoint = async (data: FieldValues) => {
-    const updatedData = { ...data, merchant_id: user.id };
+    const { amount } = data;
+    const amountInt = Number(amount);
+
+    const updatedData = { ...data, amount: amountInt };
 
     const response = await createPaypoint(updatedData);
   };
@@ -98,7 +107,7 @@ const Paymentpoint = (props: Props) => {
   const bankStat = [
     {
       name: "Active Payment Point",
-      amount: "3",
+      amount: String(payment_points.length) || "3",
     },
   ];
 
@@ -130,7 +139,7 @@ const Paymentpoint = (props: Props) => {
             defaultFilters={paypointFilters}
           />
           <TableComponent
-            rows={payPointRow}
+            rows={payment_points}
             columns={payPointCol}
             openModal={openModal}
             setSingleRow={setSingleRow}

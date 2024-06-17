@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Cart from "@/app/(preload)/assets/Buy.svg";
-import Sidebar from "../_components/Sidebar/Sidebar";
+import Sidebar from "../../_components/Sidebar/Sidebar";
 
 type Props = {};
 

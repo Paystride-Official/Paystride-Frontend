@@ -20,7 +20,7 @@
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.323.0",
     "moment": "^2.29.4",
-    "next": "13.5.5",
+    "next": "^14.2.4",
     "react": "^18",
     "react-date-picker": "^10.5.2",
     "react-date-range": "^1.4.0",

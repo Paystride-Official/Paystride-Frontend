@@ -279,16 +279,16 @@ export const bankCol = [
   },
 
   {
-    key: "account",
-    label: "Account",
+    key: "account_number",
+    label: "Account Number",
   },
   {
-    key: "bank",
-    label: "Bank",
+    key: "bank_account",
+    label: "Bank ",
   },
   {
-    key: "bankName",
-    label: "Bank Name",
+    key: "bank_name",
+    label: "BankName",
   },
   {
     key: "status",
@@ -412,7 +412,7 @@ export const generateLink = [
     accountNumber: "0993984484",
     businessName: "ABC Malls",
     bankName: "Zenith",
-    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_jhdjbsdgh",
+    paymentLink: "neihnhjksojuadhxbnakhxifjhkgjjhlk",
   },
   {
     id: "2",
@@ -420,7 +420,7 @@ export const generateLink = [
     accountNumber: "0993984484",
     businessName: "LIK Malls",
     bankName: "Zenith",
-    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_abcdefghi",
+    paymentLink: "neihnksojuadhxbnakhxet7ryutiuoi",
   },
   {
     id: "3",
@@ -428,7 +428,7 @@ export const generateLink = [
     accountNumber: "0993984484",
     businessName: "BUG Malls",
     bankName: "Zenith",
-    paymentLink: "www.paystride.com/neihnksojuadhxbnakhxiuilddxd_abidebye",
+    paymentLink: "neihnkstrwryeruvojuadhxbnafghf",
   },
 ];
 

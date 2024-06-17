@@ -34,7 +34,7 @@ export const useDeleteStaff = () => {
   });
 };
 
-export const useGetAllStaff = (data: { merchant_id: number }) => {
+export const useGetAllStaff = (data: { merchant_id: string }) => {
   return useQuery({
     queryKey: ["getAllStaff", data.merchant_id],
     queryFn: () => getAllStaff(data),
