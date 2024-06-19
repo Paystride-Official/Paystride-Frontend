@@ -49,15 +49,14 @@ const FreeTrial = () => {
       setPaymentLink(response.success.data || []);
       console.log(response.success);
       setIsOpen(true);
+      reset();
     } else {
       // setPaymentLink(response.error?.response.message || []);
       toast.error(response.error?.response.message);
       console.log(response.error);
-      // return;
-      setIsOpen(true);
+      return;
+      // setIsOpen(true);
     }
-
-    // reset();
   };
 
   const closeModal = () => {
@@ -67,7 +66,7 @@ const FreeTrial = () => {
   useEffect(() => {
     const determineContent = () => {
       if (isOpen) {
-        return <PaymentLink generatedLinks={generateLink} />;
+        return <PaymentLink generatedLinks={paymentLink} />;
       }
       // Return a default or null if neither condition is met
       return null;
