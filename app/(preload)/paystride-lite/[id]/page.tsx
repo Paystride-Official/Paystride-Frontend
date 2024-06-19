@@ -7,7 +7,7 @@ import { useGetAllLiteTransaction } from "../_slice/query";
 
 type Props = {};
 
-const cartHistory = ({ params }: { params: { id: string } }) => {
+const CartHistory = ({ params }: { params: { id: string } }) => {
   const { data, isLoading, isError } = useGetAllLiteTransaction(params.id);
   console.log(data);
 
@@ -96,4 +96,4 @@ const cartHistory = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default cartHistory;
+export default CartHistory;
