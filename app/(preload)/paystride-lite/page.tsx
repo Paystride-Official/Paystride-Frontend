@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, ReactNode, useEffect } from "react";
 import { useForm, FieldValues } from "react-hook-form";
 import Link from "next/link";
 
@@ -8,14 +8,26 @@ import ModalPopUp from "@/components/Modal/Modal";
 import CbnModal from "../_components/CbnModal/CbnModal";
 import { useCreateVirtualAccout } from "./_slice/query";
 import { useRouter } from "next/navigation";
+import PaymentLink from "../_components/PaymentLink";
+import { generateLink } from "@/Utils/constants";
+import { toast } from "react-toastify";
 
-type Props = {};
+type PaymentLink = {
+  id: string;
+  name: string;
+  accountNumber: string;
+  businessName: string;
+  bankName: string;
+  paymentLink: string;
+  token: string;
+}[];
 
-const FreeTrial = ({}: Props) => {
+const FreeTrial = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState<ReactNode>("");
   const [showCbnPolicy, setShowCbnPolicy] = useState(false);
+  const [paymentLink, setPaymentLink] = useState<PaymentLink | null>(null);
 
   const { register, handleSubmit, getValues, reset } = useForm();
   const { mutateAsync: createVirtualAccount, isLoading } =
@@ -34,33 +46,35 @@ const FreeTrial = ({}: Props) => {
     });
 
     if (response.success) {
+      setPaymentLink(response.success.data || []);
       console.log(response.success);
-      router.push("/payment-link");
       setIsOpen(true);
     } else {
+      // setPaymentLink(response.error?.response.message || []);
+      toast.error(response.error?.response.message);
       console.log(response.error);
-      router.push("/payment-link");
+      // return;
       setIsOpen(true);
     }
 
     // reset();
   };
 
-  // const closeModal = () => {
-  //   setIsOpen(false);
-  // };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
-  // useEffect(() => {
-  //   const determineContent = () => {
-  //     if (isOpen) {
-  //       return <PaymentLink />;
-  //     }
-  //     // Return a default or null if neither condition is met
-  //     return null;
-  //   };
+  useEffect(() => {
+    const determineContent = () => {
+      if (isOpen) {
+        return <PaymentLink generatedLinks={generateLink} />;
+      }
+      // Return a default or null if neither condition is met
+      return null;
+    };
 
-  //   setContent(determineContent());
-  // }, [isOpen]);
+    setContent(determineContent());
+  }, [isOpen]);
 
   return (
     <div>
@@ -73,7 +87,6 @@ const FreeTrial = ({}: Props) => {
                 Start accepting payments in 3 minutes
               </h2>
 
-              <Link href={`paystride-lite/1234455`}> testing</Link>
               <p className="text-xs sm:text-sm mb-10 w-fit pt-1">Get Started</p>
 
               <form
@@ -204,12 +217,12 @@ const FreeTrial = ({}: Props) => {
               </form>
               <div>
                 {/* {isOpen && <PaymentLink />} */}
-                {/* <ModalPopUp
+                <ModalPopUp
                   isOpen={isOpen}
                   closeModal={closeModal}
                   body={content}
                   size="3xl"
-                /> */}
+                />
               </div>
             </div>
           </div>
