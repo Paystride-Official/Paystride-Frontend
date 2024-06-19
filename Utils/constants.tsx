@@ -413,6 +413,7 @@ export const generateLink = [
     businessName: "ABC Malls",
     bankName: "Zenith",
     paymentLink: "neihnhjksojuadhxbnakhxifjhkgjjhlk",
+    token: "aerahofasdfaadahfaeo-aeoahfadofgahsd-hdfhap",
   },
   {
     id: "2",
@@ -421,6 +422,7 @@ export const generateLink = [
     businessName: "LIK Malls",
     bankName: "Zenith",
     paymentLink: "neihnksojuadhxbnakhxet7ryutiuoi",
+    token: "aerahofasdfaadahfaeo-aeoahfado-hdfhap",
   },
   {
     id: "3",
@@ -429,6 +431,7 @@ export const generateLink = [
     businessName: "BUG Malls",
     bankName: "Zenith",
     paymentLink: "neihnkstrwryeruvojuadhxbnafghf",
+    token: "aerahofas-aeoahfadofgahsd-hdfhap",
   },
 ];
 

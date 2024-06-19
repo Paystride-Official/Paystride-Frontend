@@ -14,7 +14,6 @@ axiosInstance.interceptors.response.use(
     // If the error status is 401 (Unauthorized), redirect to the login page
     if (error.response && error.response.status === 401) {
       const router = useRouter();
-      console.log("see you");
 
       router.push("/login");
       // Assuming '/login' is your login page route

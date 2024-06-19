@@ -1,11 +1,16 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Cart from "@/app/(preload)/assets/Buy.svg";
 import Sidebar from "../../_components/Sidebar/Sidebar";
+import { useGetAllLiteTransaction } from "../_slice/query";
 
 type Props = {};
 
-const cartHistory = (props: Props) => {
+const CartHistory = ({ params }: { params: { id: string } }) => {
+  const { data, isLoading, isError } = useGetAllLiteTransaction(params.id);
+  console.log(data);
+
   return (
     <>
       <div className="h-[100vh]">
@@ -91,4 +96,4 @@ const cartHistory = (props: Props) => {
   );
 };
 
-export default cartHistory;
+export default CartHistory;
