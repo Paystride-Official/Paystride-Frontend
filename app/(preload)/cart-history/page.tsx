@@ -5,7 +5,7 @@ import Sidebar from "../_components/Sidebar/Sidebar";
 
 type Props = {};
 
-const cartHistory = (props: Props) => {
+const CartHistory = (props: Props) => {
   return (
     <>
       <div className="h-[100vh]">
@@ -91,4 +91,4 @@ const cartHistory = (props: Props) => {
   );
 };
 
-export default cartHistory;
+export default CartHistory;

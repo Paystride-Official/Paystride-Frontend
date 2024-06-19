@@ -9,17 +9,24 @@ import Print from "@/app/(preload)/assets/PrintIcon.svg";
 import Copy from "@/app/(preload)/assets/copyIcon.svg";
 import Link from "next/link";
 import { generateLink } from "@/Utils/constants";
-import PrintCard from "../_components/PrintCard/PrintCard";
-import Sidebar from "../_components/Sidebar/Sidebar";
+import PrintCard from "./PrintCard/PrintCard";
+import Sidebar from "./Sidebar/Sidebar";
 
 export type PaymentLinkProps = {
-  id: number;
-  accountNumber: string;
-  bankName: string;
-  paymentLink: string;
+  generatedLinks:
+    | {
+        id: string;
+        name: string;
+        accountNumber: string;
+        businessName: string;
+        bankName: string;
+        paymentLink: string;
+        token: string;
+      }[]
+    | null;
 };
 
-const PaymentLink = () => {
+const PaymentLink = ({ generatedLinks }: PaymentLinkProps) => {
   const handleCopy = (key: string) => {
     const copiedLink = generateLink.find((link) => link.id === key);
     if (copiedLink) {
@@ -30,9 +37,7 @@ const PaymentLink = () => {
   const componentRef = useRef<(HTMLDivElement | null)[]>([]);
 
   return (
-    <div className=" w-full mx-auto mt-8">
-      <Sidebar />
-
+    <div className="   mt-8">
       <div className="flex flex-row md:flex-col items-center justify-center gap-x-2 sm:gap-x-4 pb-6 sm:pb-8 md:pb-10">
         <Image src={Logo} alt="Logo" className="w-4 sm:w-5 md:w-7 md:pb-2" />
         <Image
@@ -41,8 +46,8 @@ const PaymentLink = () => {
           className="w-20 sm:w-24 md:w-32"
         />
       </div>
-      <div className="gap-y-7 flex flex-col w-full max-w-full  md:max-w-xl gap-4 items-center md:items-end mx-auto">
-        {generateLink.map((details, index) => (
+      <div className="gap-y-7 flex flex-col w-full justify-center items-center  mx-auto">
+        {generatedLinks?.map((details, index: number) => (
           <div key={details.id}>
             <div className="w-full h-full relative capitalize flex justify-between text-xs min-[550px]:text-sm lg:text-base text-[#7F7F7F]">
               <div className="sm:block hidden px-4">
@@ -75,7 +80,7 @@ const PaymentLink = () => {
                     <Tooltip content="Copy link" placement="top-start">
                       <div
                         onClick={() => handleCopy(details.id)}
-                        className="bg-[#535391] p-2 rounded-full cursor-pointer"
+                        className="bg-[#D0D0DF] p-2 rounded-full cursor-pointer"
                       >
                         <Image src={Copy} alt="CopyIcon" className="w-3" />
                       </div>
@@ -84,7 +89,7 @@ const PaymentLink = () => {
                 </div>
 
                 <Link
-                  href={`paystride-lite/${details.paymentLink}`}
+                  href={`paystride-lite/${details.token}`}
                   target="_blank"
                   className="underline text-[#727EC0] lowercase flex flex-wrap"
                 >
