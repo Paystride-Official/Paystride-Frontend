@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-
-import SupportLog from "./_components/SupportLog/SupportLog";
 import { useForm, FieldValues } from "react-hook-form";
-import { useGetAllPastIssues, useSubmitRequest } from "./_slice/query";
+
+import SupportLog from "../_components/SupportLog/SupportLog";
+import { useGetAllPastIssues, useSubmitRequest } from "../_slice/query";
 
 type Props = {};
 

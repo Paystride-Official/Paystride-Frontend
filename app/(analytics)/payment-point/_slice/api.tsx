@@ -1,5 +1,4 @@
-import axios from "axios";
-
+import axiosInstance from "@/AxiosInterceptors";
 import { SERVER_URL } from "@/Utils/constants";
 import { getItemFromStorage } from "@/Utils/localStorage";
 import handleAxiosError from "@/Utils/request";
@@ -18,7 +17,7 @@ function createPaypointApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function editPaypointApi(data: NewUser) {
@@ -31,7 +30,7 @@ function editPaypointApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function deletePaypointApi(data: NewUser) {
@@ -44,7 +43,7 @@ function deletePaypointApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function getPaypointApi(data: NewUser) {
@@ -57,7 +56,7 @@ function getPaypointApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function getAllPaypointApi(data: NewUser) {
@@ -70,7 +69,7 @@ function getAllPaypointApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 export const createPaypoint = async (paypointdata: NewUser) => {
@@ -128,10 +127,6 @@ export const getAllPaypoint = async (paypointdata: NewUser) => {
     return { success: { ...data } };
   } catch (error) {
     const response = handleAxiosError(error);
-    console.log(response.message);
-    if (response.message === "Unauthorized") {
-      redirect("/login");
-    }
 
     return { error: { response } };
   }
