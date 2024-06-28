@@ -8,7 +8,8 @@ import Transfer from "@/components/Filters/assets/transfer.svg";
 
 import DateRange from "@/components/Filters/assets/date.svg";
 import GreaterEqual from "@/components/Filters/assets/greatequals.svg";
-import { useGetAllTransaction } from "./_slice/query";
+// import { useGetAllTransaction } from "./_slice/query";
+import { useGetAllTransaction } from "../_slice/query";
 
 type Props = {};
 

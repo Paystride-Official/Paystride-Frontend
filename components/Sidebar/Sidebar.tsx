@@ -9,6 +9,7 @@ import Paystride from "@/app/assets/Paystride.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
+import { useUserContext } from "../../context/AuthContext";
 
 type Props = {
   display?: string;
@@ -78,6 +79,8 @@ const Sidebar = ({ display, displaymd }: Props) => {
 };
 
 const SidebarItem = ({ item }: { item: SidebarProps }) => {
+  const { user } = useUserContext();
+  console.log(user);
   const pathName = usePathname();
   const isActive = pathName.includes(item.href);
   return (
@@ -94,7 +97,10 @@ const SidebarItem = ({ item }: { item: SidebarProps }) => {
         }
       )}
     >
-      <Link href={item.href} className="flex gap-2 py-3 px-10 w-full">
+      <Link
+        href={`${item.href}/${user.id}`}
+        className="flex gap-2 py-3 px-10 w-full"
+      >
         <Image
           src={item.icon}
           alt={item.title}

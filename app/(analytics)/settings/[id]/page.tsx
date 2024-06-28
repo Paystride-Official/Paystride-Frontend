@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import SettingsSidebar from "./_component/SettingsSidebar/SettingsSidebar";
-import BusinessInfo from "./_component/BusinessInfo/BusinessInfo";
-import BankAccount from "./_component/BankAccount/BankAccount";
-import Staff from "./_component/Staff/Staff";
-import Permissions from "./_component/Permissions/Permissions";
-import Password from "./_component/Password/Password";
-import VirtualAccount from "./_component/virtualAccount/VirtualAccount";
+import SettingsSidebar from "../_component/SettingsSidebar/SettingsSidebar";
+import BusinessInfo from "../_component/BusinessInfo/BusinessInfo";
+import BankAccount from "../_component/BankAccount/BankAccount";
+import Staff from "../_component/Staff/Staff";
+import Permissions from "../_component/Permissions/Permissions";
+import Password from "../_component/Password/Password";
+import VirtualAccount from "../_component/virtualAccount/VirtualAccount";
 import { useForm } from "react-hook-form";
 
 type Props = {};
