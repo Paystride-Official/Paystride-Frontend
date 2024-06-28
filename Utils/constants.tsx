@@ -212,14 +212,7 @@ export const staffCol = [
     key: "department",
     label: "Department",
   },
-  {
-    key: "bank",
-    label: "Bank",
-  },
-  {
-    key: "bankName",
-    label: "Bank Name",
-  },
+
   {
     key: "status",
     label: "Status",

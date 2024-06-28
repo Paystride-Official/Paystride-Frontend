@@ -1,28 +1,25 @@
 "use client";
 import React, { ReactNode, useEffect, useState } from "react";
-import "./paypoint.css";
-import Header from "../_components/HeaderStat/Header";
+import Header from "../../_components/HeaderStat/Header";
 import ModalPopUp from "@/components/Modal/Modal";
 import Controllers from "@/components/Controllers/Controllers";
-import { FieldValues, useForm } from "react-hook-form";
-import { EditPayPoint } from "./_components/EditPayPoint/EditPayPoint";
-import { AddPayPoint } from "./_components/AddPayPoint/AddPayPoint";
-import { payPointCol, payPointRow } from "@/Utils/constants";
+import { FieldValues } from "react-hook-form";
+import { EditPayPoint } from "../_components/EditPayPoint/EditPayPoint";
+import { AddPayPoint } from "../_components/AddPayPoint/AddPayPoint";
+import { payPointCol } from "@/Utils/constants";
 import { TableComponent } from "@/components/Table/Table";
 import { FilterObject, NewUser } from "@/types/types";
 import {
   useCreatePaymentPoint,
   useEditPaymentPoint,
   useGetAllPaypoint,
-  useGetPaypoint,
-} from "./_slice/query";
+} from "../_slice/query";
 import { getUser } from "@/ProtectedRoute/ProtectedRoute";
-import DeletePaypoint from "./_components/DeletePaypoint/DeletePaypoint";
+import DeletePaypoint from "../_components/DeletePaypoint/DeletePaypoint";
 import Duty from "@/components/Filters/assets/onDuty.svg";
 import Bank from "@/components/Filters/assets/bank.svg";
 import Card from "@/components/Filters/assets/card.svg";
 import Toogle from "@/components/Filters/assets/toggle.svg";
-import { toast } from "react-toastify";
 
 type Props = {};
 

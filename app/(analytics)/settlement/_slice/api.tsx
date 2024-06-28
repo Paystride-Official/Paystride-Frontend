@@ -1,8 +1,8 @@
+import axiosInstance from "@/AxiosInterceptors";
 import { SERVER_URL } from "@/Utils/constants";
 import { getItemFromStorage } from "@/Utils/localStorage";
 import handleAxiosError from "@/Utils/request";
 import { NewUser } from "@/types/types";
-import axios from "axios";
 
 const authToken = getItemFromStorage("AuthToken");
 
@@ -16,7 +16,7 @@ function createSettlementApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function deleteSettlementApi(data: NewUser) {
@@ -29,7 +29,7 @@ function deleteSettlementApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function getSettlemenAccountApi(data: NewUser) {
@@ -41,7 +41,7 @@ function getSettlemenAccountApi(data: NewUser) {
       Authorization: `Bearer ${authToken}`,
     },
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function getAllSettlementAccountApi() {
@@ -53,7 +53,7 @@ function getAllSettlementAccountApi() {
       Authorization: `Bearer ${authToken}`,
     },
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 export const createSettlement = async (paypointdata: NewUser) => {

@@ -1,9 +1,8 @@
-import axios from "axios";
-
 import { SERVER_URL } from "@/Utils/constants";
 import { NewUser } from "@/types/types";
 import handleAxiosError from "@/Utils/request";
 import { getItemFromStorage } from "@/Utils/localStorage";
+import axiosInstance from "@/AxiosInterceptors";
 
 const authToken = getItemFromStorage("AuthToken");
 function submitRequestApi(data: NewUser) {
@@ -17,12 +16,12 @@ function submitRequestApi(data: NewUser) {
     },
     data: JSON.stringify(data),
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function getAllPastIssuesApi() {
   //user: { email: string; password: string }
-  const url = `${SERVER_URL}/support/pase-issues`;
+  const url = `${SERVER_URL}/support/past-issues`;
   const options = {
     method: "GET",
     headers: {
@@ -30,7 +29,7 @@ function getAllPastIssuesApi() {
       Authorization: `Bearer ${authToken}`,
     },
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function createSettlementApi(data: NewUser) {
@@ -42,7 +41,7 @@ function createSettlementApi(data: NewUser) {
       Authorization: `Bearer ${authToken}`,
     },
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function getSettlemenAccountApi(data: NewUser) {
@@ -54,7 +53,7 @@ function getSettlemenAccountApi(data: NewUser) {
       Authorization: `Bearer ${authToken}`,
     },
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 function getAllSettlementAccountApi() {
@@ -66,7 +65,7 @@ function getAllSettlementAccountApi() {
       Authorization: `Bearer ${authToken}`,
     },
   };
-  return axios(url, options);
+  return axiosInstance(url, options);
 }
 
 export const createSettlement = async (data: NewUser) => {
