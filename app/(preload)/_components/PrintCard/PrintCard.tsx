@@ -5,13 +5,18 @@ import Paystride from "@/app/assets/Paystride.svg";
 import { PaymentLinkProps } from "../../payment-link/page";
 
 type PrintCard = {
-  //printItems: PaymentLinkProps[];
-  accountNumber: string;
-  bankName: string;
-  businessName: string;
+  id: string;
+  payment_point_id: string;
+  merchant_id: string;
+  status: boolean;
+  name: string;
+  account_number: string;
+  business_name: string;
+  bank_name: string;
+  paymentLink: string;
 };
 
-const PrintCard = ({ accountNumber, bankName, businessName }: PrintCard) => {
+const PrintCard = ({ account_number, bank_name, business_name }: PrintCard) => {
   return (
     <div className="flex justify-center mt-16">
       <div className="bg-gradient-to-r from-[#051355] to-[#0b2edc] rounded-lg w-[30rem]">
@@ -26,19 +31,19 @@ const PrintCard = ({ accountNumber, bankName, businessName }: PrintCard) => {
             <p className="text-sm text-[#dedcdc] font-semibold capitalize">
               account number
             </p>
-            <p className="text-4xl text-white font-bold">{accountNumber}</p>
+            <p className="text-4xl text-white font-bold">{account_number}</p>
           </div>
           <div>
             <p className="text-sm text-[#dedcdc] font-semibold capitalize">
               account name
             </p>
-            <p className="text-2xl text-white font-bold">{businessName}</p>
+            <p className="text-2xl text-white font-bold">{business_name}</p>
           </div>
           <div>
             <p className="text-sm text-[#dedcdc] capitalize font-semibold">
               bank name
             </p>
-            <p className="text-2xl text-white font-bold">{bankName}</p>
+            <p className="text-2xl text-white font-bold">{bank_name}</p>
           </div>
         </div>
         <hr className="bg-white h-[1px] w-[90%] mx-auto" />
