@@ -4,10 +4,14 @@ import Image from "next/image";
 import Cart from "@/app/(preload)/assets/Buy.svg";
 import Sidebar from "../../_components/Sidebar/Sidebar";
 import { useGetAllLiteTransaction } from "../_slice/query";
+import { useSearchParams } from "next/navigation";
 
 type Props = {};
 
 const CartHistory = ({ params }: { params: { id: string } }) => {
+  const searchParams = useSearchParams();
+  const name = decodeURIComponent(searchParams.get("name") ?? "");
+  console.log(name, searchParams, "testing");
   const { data, isLoading, isError } = useGetAllLiteTransaction(params.id);
   console.log(data);
 
@@ -21,7 +25,7 @@ const CartHistory = ({ params }: { params: { id: string } }) => {
             <div className="pt-4 pb-3 md:flex items-baseline justify-between w-[100%] md:w-[80%] lg:w-[75%]">
               <div className="text-center md:text-start pb-3 md:pb-0">
                 <h2 className="text-xl sm:text-2xl lg:text-[32px] md:font-bold capitalize tracking-wide">
-                  Ebeano supermarket
+                  {name}
                 </h2>
                 <p className="text-xs sm:text-sm mt-1 md:mt-2">
                   payment point - 1
