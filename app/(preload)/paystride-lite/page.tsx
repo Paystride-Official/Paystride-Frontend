@@ -12,15 +12,22 @@ import PaymentLink from "../_components/PaymentLink";
 import { generateLink } from "@/Utils/constants";
 import { toast } from "react-toastify";
 
-type PaymentLink = {
-  id: string;
-  name: string;
-  accountNumber: string;
-  businessName: string;
-  bankName: string;
-  paymentLink: string;
-  token: string;
-}[];
+type PaymentLink =
+  | {
+      token: string;
+      virtual_account: {
+        id: string;
+        payment_point_id: string;
+        merchant_id: string;
+        status: boolean;
+        name: string;
+        account_number: string;
+        business_name: string;
+        bank_name: string;
+        paymentLink: string;
+      };
+    }[]
+  | null;
 
 const FreeTrial = () => {
   const router = useRouter();
@@ -35,23 +42,22 @@ const FreeTrial = () => {
 
   const handleOnSubmit = async (data: FieldValues) => {
     const formData = getValues();
-    const { phone_number, bank_account, bvn, amount, ...rest } = formData;
+    const { amount, ...rest } = formData;
 
     const response = await createVirtualAccount({
-      phone_number: Number(phone_number),
-      bank_account: Number(bank_account),
-      bvn: Number(bvn),
+      // bank_account: Number(bank_account),
+      // bvn: Number(bvn),
       amount: Number(amount),
+      // t_and_c: t_and_c === true ? 1 : 0,
       ...rest,
     });
 
     if (response.success) {
-      setPaymentLink(response.success.data || []);
+      setPaymentLink(response.success.data.payment_points || []);
       console.log(response.success);
       setIsOpen(true);
       reset();
     } else {
-      // setPaymentLink(response.error?.response.message || []);
       toast.error(response.error?.response.message);
       console.log(response.error);
       return;
@@ -102,28 +108,28 @@ const FreeTrial = () => {
                 />
                 <input
                   type="number"
-                  placeholder="Bank Account Number"
+                  placeholder="Bank Account "
                   id="bank_account"
                   maxLength={10}
                   required
                   {...register("bank_account")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
-                <input
-                  type="text"
-                  placeholder="Bank Account Name"
-                  id="bank_account_name"
-                  // maxLength={10}
-                  required
-                  {...register("bank_account_name")}
-                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
-                />
+
                 <input
                   type="text"
                   placeholder="Bank Name"
                   id="bank_name"
                   required
                   {...register("bank_name")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                />
+                <input
+                  type="text"
+                  placeholder="Bank code"
+                  id="bank_code"
+                  required
+                  {...register("bank_code")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
                 <div className="mb-3 relative">
