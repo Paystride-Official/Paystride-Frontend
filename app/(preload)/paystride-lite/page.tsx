@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import PaymentLink from "../_components/PaymentLink";
 import { generateLink } from "@/Utils/constants";
 import { toast } from "react-toastify";
+import { BANK_LIST } from "@/Utils/banklist";
 
 type PaymentLink =
   | {
@@ -34,9 +35,11 @@ const FreeTrial = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState<ReactNode>("");
   const [showCbnPolicy, setShowCbnPolicy] = useState(false);
+  const [bankName, setBankName] = useState("");
   const [paymentLink, setPaymentLink] = useState<PaymentLink | null>(null);
 
-  const { register, handleSubmit, getValues, reset } = useForm();
+  console.log(bankName);
+  const { register, setValue, handleSubmit, getValues, reset } = useForm();
   const { mutateAsync: createVirtualAccount, isLoading } =
     useCreateVirtualAccout();
 
@@ -47,6 +50,7 @@ const FreeTrial = () => {
     const response = await createVirtualAccount({
       // bank_account: Number(bank_account),
       // bvn: Number(bvn),
+      bank_name: bankName,
       amount: Number(amount),
       // t_and_c: t_and_c === true ? 1 : 0,
       ...rest,
@@ -68,6 +72,19 @@ const FreeTrial = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const matchedBank = BANK_LIST.find(
+      (bank) =>
+        bank.bankName.toLocaleLowerCase() === bankName.toLocaleLowerCase()
+    );
+
+    if (matchedBank) {
+      setValue("bank_code", matchedBank.bankCode);
+    }
+
+    console.log(matchedBank);
+  }, [bankName]);
 
   useEffect(() => {
     const determineContent = () => {
@@ -115,15 +132,33 @@ const FreeTrial = () => {
                   {...register("bank_account")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
                 />
-
-                <input
+                <select
+                  id="bank_name"
+                  required
+                  // defaultValue={"Select your bank"}
+                  onChange={(e) => {
+                    setBankName(e.target.value);
+                  }}
+                  // {...register("bank_name")}
+                  className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
+                >
+                  <option value="" disabled selected>
+                    Select Bank Name
+                  </option>
+                  {BANK_LIST.map((bank) => (
+                    <option key={bank.bankCode} value={bank.bankName}>
+                      {bank.bankName}
+                    </option>
+                  ))}
+                </select>
+                {/* <input
                   type="text"
                   placeholder="Bank Name"
                   id="bank_name"
                   required
                   {...register("bank_name")}
                   className="w-full px-3 sm:px-5 py-2 mb-3 border-[1.5px] border-[#091F8E] rounded"
-                />
+                /> */}
                 <input
                   type="text"
                   placeholder="Bank code"
@@ -155,7 +190,7 @@ const FreeTrial = () => {
                 </div>
                 <input
                   type="tel"
-                  placeholder="phone_number"
+                  placeholder="Phone number"
                   maxLength={15}
                   required
                   {...register("phone_number")}
