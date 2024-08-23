@@ -493,15 +493,6 @@ export const permissionRow = [
     settlement: false,
     settings: true,
   },
-  {
-    key: "5",
-    role: "Account",
-    dashboard: false,
-    transaction: false,
-    paymentPoint: true,
-    settlement: false,
-    settings: true,
-  },
 ];
 
 export const settlementRow = [
